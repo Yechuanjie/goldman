@@ -1,0 +1,10 @@
+{
+	"extends": "stylelint-config-standard",
+	"rules": {
+    "color-hex-case": "lower",
+    "color-hex-length": "long",
+    "rule-empty-line-before":null,
+    "value-list-comma-newline-after": null,
+    "declaration-colon-newline-after": null
+	}
+}

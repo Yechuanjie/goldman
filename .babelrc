@@ -1,0 +1,18 @@
+{
+	"plugins": [
+		"transform-runtime"
+	],
+	"presets": [
+		["env", {
+			"targets": {
+				"browsers": [
+					"> 1%",
+					"iOS >= 7",
+					"Android >=4.0"
+				]
+			},
+			"modules": false,
+			"loose": true
+		}]
+	]
+}

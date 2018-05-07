@@ -1,0 +1,5 @@
+dist/*
+build/*
+config/*
+dll/*
+node_modules/*

@@ -1,0 +1,93 @@
+{
+  "name": "@wnl/cskeleton",
+  "version": "1.0.1",
+  "description": "\thtml(多)页面跳转的webpack脚手架",
+  "private": false,
+  "sideEffects": false,
+  "scripts": {
+    "eslint": "eslint -c ./.eslintrc --ignore-path ./.eslintignore --cache --ext .js,.html ./src --fix",
+    "dev": "node build/dev-server.js",
+    "dll": "webpack --config build/webpack.dll.config.js",
+    "build": "node build/build.js",
+    "build:deploy": "node build/build.js --deploy",
+    "postinstall": "npm run dll"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": [
+        "lint-staged"
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.{js,html}": [
+      "npm run eslint",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://guojinhai@192.168.1.80:29418/~guojinhai/cskeleton.git"
+  },
+  "author": "gjh",
+  "license": "MIT",
+  "dependencies": {
+    "@wnl/ui": "^1.2.9",
+    "@wnl/util": "^1.0.8",
+    "babel-runtime": "^6.26.0",
+    "husky": "^0.15.0-rc.13",
+    "jquery": "^3.2.1",
+    "lint-staged": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.1",
+    "add-asset-html-webpack-plugin": "^2.1.3",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^8.0.3",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-stage-2": "^6.24.1",
+    "connect-history-api-fallback": "^1.5.0",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-friendly-formatter": "^4.0.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-html": "^4.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.0.1",
+    "eventsource-polyfill": "^0.9.6",
+    "express": "^4.16.3",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "ftp": "^0.3.10",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^3.1.0",
+    "http-proxy-middleware": "^0.18.0",
+    "opn": "^5.2.0",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "ora": "^2.0.0",
+    "postcss-cssnext": "^3.0.2",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.1.3",
+    "script-ext-html-webpack-plugin": "^2.0.1",
+    "style-loader": "^0.20.3",
+    "stylelint": "^9.1.3",
+    "stylelint-config-standard": "^18.0.0",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "url-loader": "^1.0.1",
+    "webpack": "^3.10.0",
+    "webpack-bundle-analyzer": "^2.8.2",
+    "webpack-bundle-size-analyzer": "^2.7.0",
+    "webpack-dev-middleware": "^1.12.2",
+    "webpack-hot-middleware": "^2.18.0",
+    "webpack-merge": "^4.1.0"
+  }
+}

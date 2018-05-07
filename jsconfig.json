@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"allowSyntheticDefaultImports": true
+	},
+	"include": [
+		"src/**/*.js"
+	],
+	"exclude": ["node_modules"],
+	"typeAcquisition": {
+		"include": [
+			"@types"
+		]
+	}
+}
