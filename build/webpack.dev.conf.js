@@ -19,16 +19,36 @@ var proWebpackConfig = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              sourceMap: config.dev.cssSourceMap,
-              minimize: false
+          'style-loader', 'css-loader'
+          // {
+          //   loader: 'css-loader',
+          //   options: {
+          //     importLoaders: 1,
+          //     sourceMap: config.dev.cssSourceMap,
+          //     minimize: false
+          //   }
+          // },
+          // 'postcss-loader'
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+            'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                    importLoaders: 1,
+                    sourceMap: config.dev.cssSourceMap
+                }
+            },
+            "postcss-loader",
+            {
+                loader: 'sass-loader', 
+                options: {
+                    sourceMap: config.dev.cssSourceMap 
+                }
             }
-          },
-          'postcss-loader'
         ]
       }
     ]

@@ -20,8 +20,12 @@ let isDeploy = deployArgs.length > 0 && deployArgs[0].indexOf('deploy') > -1;
 var proWebpackConfig = {
   module: {
     rules: [
+      { 
+				test: /\.css$/, 
+				use: ['style-loader', 'css-loader'] 
+			},
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -31,7 +35,13 @@ var proWebpackConfig = {
                 importLoaders: 1
               }
             },
-            'postcss-loader'
+            'postcss-loader',
+            {
+              loader: 'sass-loader', 
+              options: {
+                sourceMap: config.build.cssSourceMap 
+              }
+            }
           ],
           // publicPath: '../../'
           publicPath: isDeploy ? publicPath : '../../'
