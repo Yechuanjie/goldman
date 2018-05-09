@@ -4,3 +4,4 @@ config/*
 dll/*
 node_modules/*
 .eslintcache
+src/static/*

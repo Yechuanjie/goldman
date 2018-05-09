@@ -1,8 +1,25 @@
 @import '../css/common.css';
+html, body {
+    width: 100%;
+    height: 100%;
+}
 .main_container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     .top_wrapper {
-        // height: ;
+        height: 4rem;
+        background-color: aliceblue;
+        .top_head {
+            display: flex;
+            justify-content: space-between;
+            margin: .4rem .6rem .4rem;
+        }
+    }
+    .bottom_wrapper {
+        flex: 1;
+        background-color: saddlebrown;
     }
 }
