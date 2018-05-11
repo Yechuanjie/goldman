@@ -1,8 +1,10 @@
 // import 'babel-polyfill';
+import Swiper from 'swiper';
 import { wnlShare, wxShare, toast, datePicker } from '@wnl/ui';
 import { util } from '@wnl/util';
 import '../scss/index.scss';
 import '../static/flexable';
+
 
 console.log(util.isWnl);
 console.log('wnlshare', wnlShare);
@@ -14,13 +16,16 @@ document.querySelector('.picker').onclick = function() {
     showLunar: true, //是否需要展示农历
     defaultValue: [2010, 1, 21], //默认的日期，默认为公历的日期
     modal: true, //是否模态
-    onChange: result => {
+    onChange: (result) => {
       //选择项改变的时候的回调
       console.log(result);
     },
-    onConfirm: result => {
+    onConfirm: (result) => {
       //点击确定后的回调
       console.log(result);
     }
   });
 };
+
+let swiper = new Swiper();
+console.log(swiper);
