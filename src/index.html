@@ -10,19 +10,30 @@
   <meta name="viewport" content="width=device-width, user-scalable = no,initial-scale=1.0, maximum-scale=1.0, user-scalable = no">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="format-detection" content="telephone=no" />
-  <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.2/vconsole.min.js"></script>
+  <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.2/vconsole.min.js"></script> -->
 </head>
 
 <body>
   <div class="main_container">
     <div class="top_wrapper">
       <div class="top_head">
-        <span class="top_left">所得矿石：X个</span>
-        <span class="top_right">时间：60s</span>
+        <div class="top_left">
+          <span>所得矿石:</span>
+          <span class="number">10</span><span>个</span>
+        </div>
+        <div class="top_right">
+          <span>时间:</span>
+          <span class="time">60</span><span>S</span>
+        </div>
+      </div>
+      <div class="digging_man">
+        <img src="./assets/zz_s0.png" alt="" class="man">
+        <div id="line">
+          <img src="./assets/zz_s8.png" alt="" class="hook" id="hook">
+        </div>
       </div>
     </div>
     <div class="bottom_wrapper">
-      <button class="picker" style="width:120px;height:30px">datePicker</button>
     </div>
   </div>
 </body>

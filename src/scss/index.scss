@@ -12,14 +12,62 @@ html, body {
     .top_wrapper {
         height: 4rem;
         background-color: aliceblue;
+        position: relative;
         .top_head {
             display: flex;
             justify-content: space-between;
             margin: .4rem .6rem .4rem;
+            .top_right, .top_left {
+                display: flex;
+            }
+            .number,.time {
+                width: 20px;
+                text-align: right;
+            }
+            .time {
+                margin-left: 10px;
+            }
+        }
+        .digging_man {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -37.5px;
+            #line {
+                position: absolute;
+                left: 50%;
+                margin-top: -20px;
+                width: 2px;
+                height: 50px;
+                background-color: red;
+                z-index: 10;
+                transform-origin: top;
+                // animation: line 8s infinite;
+                // @keyframes line {
+                //     0% {
+                //         transform: rotate(45deg);
+                //     }
+                //     50% {
+                //         transform: rotate(-45deg);
+                //     }
+                //     100% {
+                //         transform: rotate(45deg);
+                //     }
+                // }
+                .hook {
+                    position: absolute;
+                    bottom: -0.3rem;
+                    left: 50%;
+                    margin-left: -18px;
+                }
+            }
+            
         }
     }
     .bottom_wrapper {
         flex: 1;
-        background-color: saddlebrown;
+        // background-color: saddlebrown;
+        background: url('http://szhong.4399.com/4399swf/upload_swf/ftp14/ck/20141115/5/zz_l2b.jpg') no-repeat center;
+        background-size: cover;
     }
 }
