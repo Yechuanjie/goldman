@@ -69,5 +69,13 @@ html, body {
         // background-color: saddlebrown;
         background: url('http://szhong.4399.com/4399swf/upload_swf/ftp14/ck/20141115/5/zz_l2b.jpg') no-repeat center;
         background-size: cover;
+        // pointer-events: none;
+        .ore_list {
+            display: inline-block;
+            img {
+                display: inline-block;
+            }
+        }
+        
     }
 }
