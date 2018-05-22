@@ -52,8 +52,8 @@ input {
   flex-flow: row nowrap;
 }
 .mask {
-  opacity: 0.8;
-  z-index: 99;
+  opacity: 0.3;
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;

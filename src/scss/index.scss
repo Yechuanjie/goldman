@@ -1,81 +1,136 @@
 @import '../css/common.css';
+@import './_bg-image.scss';
 html, body {
     width: 100%;
     height: 100%;
+    
+}
+.back_icon {
+    width: .3rem;
+    height: .3rem;
+    position: fixed;
+    top: .19rem;
+    left: .14rem;
+    z-index: 2;
+    @include bg-image('../assets/back-icon')
 }
 .main_container {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    background: url('../assets/background3.jpg');
+    background-size: cover;
+    position: relative;
     .top_wrapper {
-        height: 4rem;
-        background-color: aliceblue;
         position: relative;
+        margin-top: .12rem;
         .top_head {
             display: flex;
             justify-content: space-between;
-            margin: .4rem .6rem .4rem;
+            margin: 0 .8rem;
+            color: #5C3226;
+            font-size: .15rem;
+            line-height: .21rem;
             .top_right, .top_left {
                 display: flex;
+                align-items: center;
             }
             .number,.time {
                 width: 20px;
-                text-align: right;
+                text-align: center;
             }
             .time {
                 margin-left: 10px;
             }
-        }
-        .digging_man {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            margin-left: -37.5px;
-            #line {
-                position: absolute;
-                left: 50%;
-                margin-top: -20px;
-                width: 2px;
-                height: 50px;
-                background-color: red;
-                z-index: 10;
-                transform-origin: top;
-                // animation: line 8s infinite;
-                // @keyframes line {
-                //     0% {
-                //         transform: rotate(45deg);
-                //     }
-                //     50% {
-                //         transform: rotate(-45deg);
-                //     }
-                //     100% {
-                //         transform: rotate(45deg);
-                //     }
-                // }
-                .hook {
-                    position: absolute;
-                    bottom: -0.3rem;
-                    left: 50%;
-                    margin-left: -18px;
-                }
+            .diamond_icon {
+                width: .3rem;
+                height: .24rem;
             }
-            
+        }
+    }
+    .digging_man {
+        position: absolute;
+        left: 50%;
+        top: .80rem;
+        margin-left: -.27rem;
+        @media screen and (min-width: 385px) and (max-width: 409px){
+            top: .94rem;
+        }
+        @media screen and (min-width: 410px) and (max-width: 440px){
+            top: 0.98rem;
+        }
+        .man {
+            width: 1.17rem;
+            height: .98rem;
+        }
+        #line {
+            position: absolute;
+            // bottom: 0;
+            // left: 50%;
+            margin-top: .35rem;
+            width: 2px;
+            height: 30px;
+            background-color: #BEBEBE;
+            // z-index: 10;
+            margin-left: .26rem;
+            transform-origin: top;
+            .hook {
+                width: .2rem;
+                height: .39rem;
+                position: absolute;
+                bottom: -.35rem;
+                left: 50%;
+                margin-left: -.09rem;
+            }
         }
     }
     .bottom_wrapper {
         flex: 1;
-        // background-color: saddlebrown;
-        background: url('http://szhong.4399.com/4399swf/upload_swf/ftp14/ck/20141115/5/zz_l2b.jpg') no-repeat center;
-        background-size: cover;
-        // pointer-events: none;
+        // background: url('http://szhong.4399.com/4399swf/upload_swf/ftp14/ck/20141115/5/zz_l2b.jpg') no-repeat center;
+        // background-size: cover;
         .ore_list {
-            display: inline-block;
+            position: relative;
             img {
-                display: inline-block;
+                position: absolute;
             }
         }
-        
+    }
+    .pop_rule {
+        position: absolute;
+        width: 2.95rem;
+        height: 4.31rem;
+        top: 50%;
+        left: 50%;
+        margin-top: -2.15rem;
+        margin-left: -1.47rem;
+        background-color: #ffffff;
+        border-radius: .1rem;
+        z-index: 2;
+        .pop_close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: .15rem;
+            .close_icon {
+                width: 11px;
+                height: 11px;
+                @include bg-image('../assets/general_dialog_close_icon');
+            }
+        }
+        .pop_head {
+            margin: .15rem auto .13rem;
+            text-align: center;
+            font-size: .17rem;
+            color: #333333;
+            font-weight: 550;
+            line-height: .24rem;
+        }
+        .rules {
+            margin: 0;
+            font-size: .17rem;
+            color: #333333;
+            line-height: .24rem;
+            padding: 0 .15rem;
+        }
     }
 }

@@ -10,42 +10,57 @@
   <meta name="viewport" content="width=device-width, user-scalable = no,initial-scale=1.0, maximum-scale=1.0, user-scalable = no">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="format-detection" content="telephone=no" />
+
+  <meta name="full-screen" content="true">
+  <meta name="x5-orientation" content="horizontal">
+  <meta name="360-fullscreen" content="true">
+  <meta name="wnl-back-swipe" content="false">
   <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.2/vconsole.min.js"></script> -->
 </head>
 
 <body>
+  <div class="back_icon"></div>
   <div class="main_container">
     <div class="top_wrapper">
       <div class="top_head">
         <div class="top_left">
-          <span>所得矿石:</span>
-          <span class="number">10</span><span>个</span>
+          <span>所得钻石：</span>
+          <span class="number">0</span>
+          <img src="./assets/diamond-1.png" alt="" class="diamond_icon">
         </div>
         <div class="top_right">
           <span>时间:</span>
-          <span class="time">60</span><span>S</span>
+          <span class="time">60</span>
+          <span>S</span>
         </div>
       </div>
-      <div class="digging_man">
-        <img src="./assets/zz_s0.png" alt="" class="man">
-        <div id="line">
-          <img src="./assets/zz_s8.png" alt="" class="hook" id="hook">
-        </div>
+    </div>
+    <div class="soil_layer"></div>
+    <div class="digging_man">
+      <img src="./assets/dongxiao-1s/donghua_00000.png" alt="" class="man">
+      <div id="line">
+        <img src="./assets/hook.png" alt="" class="hook" id="hook">
       </div>
     </div>
     <div class="bottom_wrapper">
       <div class="ore_list">
-          <img src="./assets/zz_s9.gif" alt="">
-          <img src="./assets/zz_s10.gif" alt="">
-          <img src="./assets/zz_s11.gif" alt="">
-          <img src="./assets/zz_s12.gif" alt="">
-          <img src="./assets/zz_s9.gif" alt="">
-          <img src="./assets/zz_s10.gif" alt="">
-          <img src="./assets/zz_s14.png" alt="">
-          <img src="./assets/zz_s15.png" alt="">
       </div>
     </div>
+    <div class="pop_rule hidden">
+      <div class="pop_close">
+        <div class="close_icon"></div>
+      </div>
+      <div class="pop_head">游戏规则</div>
+      <p class="rules">
+        1、在规定时间60s内，随着钩子左右摆动，只需在钻石区域点击任意位置，钩子就会朝着该方向挖钻石。</br>
+        2、在60S内，挖到0-15个钻石得50个金币，15-25个钻石得100个金币，25个及以上钻石得150个金币。</br>
+        3、每个用户有1次挖钻石机会，分享好友可增加1次机会，总共2次机会。</br>
+        4、挖的钻石个数等同于相应的金币，必须登录领取后，才会存入用户的金币账户，金币最后可用于兑换现金并进行提现。
+      </p>
+    </div>
+    <div class="mask hidden"></div>
   </div>
 </body>
 
 </html>
+

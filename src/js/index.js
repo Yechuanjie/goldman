@@ -43,43 +43,54 @@ $(() => {
       clearInterval(timeInterval);
     }
     $('.time').html(TIME > 9 ? TIME : `0${TIME}`);
+    $('.number').html(TIME);
   }, 1000);
 
-  let NUM = 0; //所得矿石
-  $('.number').html(NUM);
+  // let NUM = 0; //所得矿石
+  // $('.number').html(NUM);
+
+  // 关闭游戏规则弹窗
+  $('.pop_close').click(() => {
+    $('.pop_rule, .mask').addClass('hidden');
+  });
+
+  // 返回按钮
+  $('.back_icon').click(() => {
+    window.location.href = 'protocol://back';
+  });
 
   // 动画
   const screenWidth = $(window).width();
-  const landHeight = $('.bottom_wrapper').height();
+  const screenHeight = $(window).height();
+  const landHeight = screenHeight - 235;
+  const MIN_ROPE_LENGTH = 10;
   const MAX_ROPE_LENGTH = Math.sqrt(Math.pow(screenWidth / 2, 2) + Math.pow(landHeight, 2)); // eslint-disable-line
-  // console.log('MAX_ROPE_LENGTH', MAX_ROPE_LENGTH);
-  const MIN_ROPE_LENGTH = 50;
-  const MAX_ROTATE = 50;
-  const MIN_ROTATE = -50;
+  const MAX_ROTATE = 60;
+  const MIN_ROTATE = -60;
+  const hookHeight = $('#hook').height() + MIN_ROPE_LENGTH;
+  // const hookHeight = 0;
+
+
   let xx = 0;
   let yy = 0;
   let rr = MAX_ROTATE;
-  let hh = 50;
+  let hh = MIN_ROPE_LENGTH;
   let FINISH = false;
 
-  // let config = {
-  //   a: '123',
-  //   b: '234'
-  // };
-  // console.log(Object.keys(config));
-  // console.log(config.hasOwnProperty('a'));
   class GAME {
     constructor() {
+      this.actionInterval = null;
+      this.manImgList = [];
+      this.count = 0;
       this.initHookAnimation();
       this.initOreLocation();
-      $('.bottom_wrapper').on('touchstart', () => {
-        console.log('rr', rr);
-        clearInterval(this.animateInterval);
-        this.lineAnimation();
-        // $('html').on('touchstart', (e) => {
-        //   // 禁止绳子伸长时点击
-        //   e.preventDefault();
-        // });
+      $('.main_container').on('click', () => {
+        console.log('rr', rr, 'hh', hh);
+        // 当绳子没有伸缩时，点击时才执行动画，避免重复执行
+        if (hh <= MIN_ROPE_LENGTH) {
+          clearInterval(this.animateInterval);
+          this.lineAnimation();
+        }
       });
     }
     initOreLocation() {
@@ -117,10 +128,11 @@ $(() => {
     lineAnimation() {
       let width = screenWidth / 2;
       let rad = Math.sin(Math.abs(rr) * (Math.PI / 180));
-      let ropeHeight = width / rad;
+      let ropeHeight = (width / rad);
       console.log('ropeHeight', ropeHeight);
       if (ropeHeight > MAX_ROPE_LENGTH) {
-        ropeHeight = MAX_ROPE_LENGTH;
+        //  ropeHeight = landHeight / cos(rr)
+        ropeHeight = MAX_ROPE_LENGTH - hookHeight;
       }
       let extend = setInterval(() => {
         if (hh < ropeHeight) {
@@ -136,18 +148,42 @@ $(() => {
       }, 10);
     }
     recover() {
+      this.manAction();
       let interval = setInterval(() => {
         if (hh > MIN_ROPE_LENGTH) {
           hh -= 1;
         } else {
           clearInterval(interval);
           this.initHookAnimation();
+          clearInterval(this.actionInterval);
+          $('.man').attr('src', this.manImgList[this.count]);
         }
         line.css({
           transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
           height: `${hh}px`
         });
       }, 10);
+    }
+    manAction() {
+      require.ensure([], () => {
+        /* eslint-disable */
+        let context = require.context('../assets', true, /^\.\/(man_action)\/.*\.png$/);
+        for (let index = 0; index < 24; index += 1) {
+          this.manImgList.push(require('../assets/man_action/donghua_000' + this.formatNumber(index) + '.png'));
+        }
+        /* eslint-enable */
+      });
+      this.actionInterval = setInterval(() => {
+        if (this.count >= 24) {
+          this.count = 0;
+        }
+        $('.man').attr('src', this.manImgList[this.count]);
+        this.count += 1;
+      }, 40);
+    }
+    formatNumber(n) {
+      n = n.toString();
+      return n[1] ? n : '0' + n;
     }
   }
   new GAME(); // eslint-disable-line
