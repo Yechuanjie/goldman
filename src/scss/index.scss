@@ -53,12 +53,6 @@ html, body {
         left: 50%;
         top: .80rem;
         margin-left: -.27rem;
-        @media screen and (min-width: 385px) and (max-width: 409px){
-            top: .94rem;
-        }
-        @media screen and (min-width: 410px) and (max-width: 440px){
-            top: 0.98rem;
-        }
         .man {
             width: 1.17rem;
             height: .98rem;
@@ -71,136 +65,183 @@ html, body {
             margin-left: .258rem;
             margin-top: .37rem;            
             transform-origin: top;
-            @media screen and (max-width: 415px) and (min-width: 410px){
-                margin-top: .41rem;   
-            }
             z-index: 9;
-            
             .hook {
-                width: .2rem;
-                height: 39px;
+                width: .20rem;
+                height: .38.644rem;
                 position: absolute;
                 bottom: -.35rem;
                 left: 50%;
                 margin-left: -.09rem;
-            }
+            }            
         }
     }
     .bottom_wrapper {
         margin-top: 2.5rem;
         .ore_list {
             position: relative;
-            img {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-            }
-            .temp {
-                position: absolute;                
-                &.temp1 {
-                    width: .28rem;
-                    height: .16rem;
-                    transform: translate3d(2.79rem, .1rem, 0);
-                }
-                &.temp2 {
-                    width: .42rem;
-                    height: .24rem;
-                    transform: translate3d(.56rem, .71rem, 0);
-                }
-                &.temp3 {
-                    width: .52rem;
-                    height: .30rem;
-                    transform: translate3d(2.12rem, 2.03rem, 0);                
-                }
-                &.temp4 {
-                    width: .76rem;
-                    height: .44rem;
-                    transform: translate3d(.7rem, 2.3rem, 0);
-                }
-                &.temp5 {
-                    width: .47rem;
-                    height: .42rem;
-                    transform: translate3d(2.55rem, .72rem, 0);
-                }
-                &.temp6 {
-                    width: .53rem;
-                    height: .35rem;
-                    transform: translate3d(1.31rem, .93rem, 0);
-                }
-                &.temp7 {
-                    width: .30rem;
-                    height: .26rem;
-                    transform: translate3d(2.72rem, 2.71rem, 0);
-                }
-                &.temp8 {
-                    width: .35rem;
-                    height: .45rem;
-                    transform: translate3d(1.41rem, 2.74rem, 0);
-                }
-            }
             
-            .shine {
-                position: absolute;
-                background: url('../assets/shine.png') center no-repeat;
-                background-size: cover;
-                z-index: 9;
-                &#shine1 {
-                    width: .46rem;
-                    height: .33rem;
-                    top: 0;
-                    left: 50%;
-                    margin-left: -.23rem;
-                    margin-top: -.165rem;
-                }
-                &#shine2 {
-                    width: .73rem;
-                    height: .52rem;
-                    top: 0;
-                    left: 50%;
-                    margin-left: -.365rem;
-                    margin-top: -.26rem;
-                }
-                &#shine3 {
-                    width: .87rem;
-                    height: .63rem;
-                    top: 0;
-                    left: 50%;
-                    margin-left: -.435rem;
-                    margin-top: -.315rem;
-                }
-                &#shine4 {
-                    width: 1.3rem;
-                    height: .93rem;
-                    top: 0;
-                    left: 50%;
-                    margin-left: -.65rem;
-                    margin-top: -.415rem;
-                }
-            }
-            .shadow {
-                position: absolute;
-                background: #54342A;
-                border-radius: 100%;
-                top: -35%;
-                left: 6%;
-                z-index: -1;
-                &.shadow1 {
-                    width: .3rem;
-                    height: .3rem;
-                }
-                &.shadow2 {
-                    width: .4rem;
-                    height: .4rem;
-                }
-                &.shadow3 {
-                    width: .43rem;
-                    height: .43rem;
-                }
-                &.shadow4 {
-                    width: .62rem;
-                    height: .62rem;
-                }
-            }
+        }
+    }
+    // 移动样式，需要动态设置
+    .move_temp {
+        // transform: none!important;
+        // bottom: -42px;
+        // left: 0;
+        // margin-left: -21px;
+        // margin-top: 24px;
+        // &.temp6 {
+        //     bottom: -.53rem;
+        //     left: 0;
+        //     margin-left: -.265rem;
+        //     margin-top: -.175rem;
+        // }
+    }
+    // 公共样式
+    .shadow {
+        position: absolute;
+        background: #54342A;
+        border-radius: 100%;
+        top: -35%;
+        left: 6%;
+        z-index: -1;
+        &.shadow1 {
+            width: .3rem;
+            height: .3rem;
+        }
+        &.shadow2 {
+            width: .4rem;
+            height: .4rem;
+        }
+        &.shadow3 {
+            width: .43rem;
+            height: .43rem;
+            top: -25%;
+            left: 9%;
+        }
+        &.shadow4 {
+            width: .62rem;
+            height: .62rem;
+            top: -25%;
+            left: 6%;
+        }
+        &.shadow5 {
+            width: .51rem;
+            height: .51rem;
+            top: 0;
+            left: 6%;
+        }
+        &.shadow6 {
+            width: .48rem;
+            height: .48rem;
+            top: -15%;
+            left: 8%;
+        }
+        &.shadow7 {
+            width: .35rem;
+            height: .35rem;
+            top: -10%;
+            left: -10%;
+        }
+        &.shadow8 {
+            width: .49rem;
+            height: .49rem;
+            top: 8%;
+            left: -27%;
+        }
+    }
+    .temp {
+        position: absolute;
+        z-index: 20;
+        transition: opacity .1s;
+        opacity: 1;
+        &.fadeout {
+            opacity: 0;
+            transform: translate3d(-1000px, -1000px, 0)!important;
+        }
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+        }
+        &.temp1 {
+            width: .28rem;
+            height: .16rem;
+            transform: translate3d(2.79rem, .1rem, 0);
+        }
+        &.temp2 {
+            width: .42rem;
+            height: .24rem;
+            transform: translate3d(.56rem, .71rem, 0);
+        }
+        &.temp3 {
+            width: .52rem;
+            height: .30rem;
+            transform: translate3d(2.12rem, 2.03rem, 0);                
+        }
+        &.temp4 {
+            width: .76rem;
+            height: .44rem;
+            transform: translate3d(.7rem, 2.3rem, 0);
+        }
+        &.temp5 {
+            width: .47rem;
+            height: .42rem;
+            transform: translate3d(2.55rem, .72rem, 0);
+        }
+        &.temp6 {
+            width: .53rem;
+            height: .35rem;
+            transform: translate3d(1.31rem, .93rem, 0);
+        }
+        &.temp7 {
+            width: .30rem;
+            height: .26rem;
+            transform: translate3d(2.72rem, 2.71rem, 0);
+        }
+        &.temp8 {
+            width: .35rem;
+            height: .45rem;
+            transform: translate3d(1.41rem, 2.74rem, 0);
+        }
+    }         
+    .shine {
+        position: absolute;
+        background: url('../assets/shine.png') center no-repeat;
+        background-size: cover;
+        z-index: 9;
+        &#shine1 {
+            width: .46rem;
+            height: .33rem;
+            top: 0;
+            left: 50%;
+            margin-left: -.23rem;
+            margin-top: -.165rem;
+        }
+        &#shine2 {
+            width: .73rem;
+            height: .52rem;
+            top: 0;
+            left: 50%;
+            margin-left: -.365rem;
+            margin-top: -.26rem;
+        }
+        &#shine3 {
+            width: .87rem;
+            height: .63rem;
+            top: 0;
+            left: 50%;
+            margin-left: -.435rem;
+            margin-top: -.315rem;
+        }
+        &#shine4 {
+            width: 1.3rem;
+            height: .93rem;
+            top: 0;
+            left: 50%;
+            margin-left: -.65rem;
+            margin-top: -.415rem;
         }
     }
     .pop_rule {

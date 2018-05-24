@@ -49,4 +49,4 @@
             doc.body.style.fontSize = "16px";
         }, false);
     }
-})(375, 375);
+})(375, 750);

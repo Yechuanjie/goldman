@@ -37,18 +37,17 @@ $(() => {
   let line = $('#line');
   console.log(hook.offset());
 
-  let TIME = 15; //倒计时
+  let TIME = 60; //倒计时
   let timeInterval = setInterval(() => {
     TIME -= 1;
     if (TIME <= 0) {
       clearInterval(timeInterval);
     }
     $('.time').html(TIME > 9 ? TIME : `0${TIME}`);
-    $('.number').html(TIME);
+    // $('.number').html(TIME);
   }, 1000);
 
-  // let NUM = 0; //所得矿石
-  // $('.number').html(NUM);
+  let DIAMOND_NUM = 0; //所得矿石
 
   // 关闭游戏规则弹窗
   $('.pop_close').click(() => {
@@ -64,7 +63,7 @@ $(() => {
   const screenWidth = $(window).width();
   const screenHeight = $(window).height();
   const hookHeight = $('#hook').height();
-
+  const designWidth = 375;
 
   const MAX_ROTATE = 70;
   const MIN_ROTATE = -70;
@@ -98,8 +97,10 @@ $(() => {
       });
     }
     getOreLocation() {
+      this.oreList = []; // 每次重新计算矿石位置
       let that = this;
-      $('.ore_list img').each(function() {
+      console.log($('#diamond1').offset());
+      $('.ore_list .temp img').each(function() {
         // let x = 0;
         // let y = 0;
         // $(this).css({
@@ -174,9 +175,8 @@ $(() => {
         if (hh < ropeHeight) {
           hh += 1;
           if (this.checkImpact()) {
-            console.log(this.checkImpact());
             clearInterval(extend);
-            this.recover();
+            this.recover(this.checkImpact());
           }
         } else {
           clearInterval(extend);
@@ -199,9 +199,6 @@ $(() => {
       let y1 = hook.offset().top;
       let xr1 = x1 + width;
       let yb1 = y1 + height;
-      // let hookPosition = {
-      //   x1, y1, xr1, yb1
-      // };
       let impactNum = null;
       for (let i = 0; i < this.oreList.length; i += 1) {
         if (this.oreList[i].yb < y1 || this.oreList[i].x > xr1 || this.oreList[i].y > yb1 || this.oreList[i].xr < x1) {
@@ -212,23 +209,29 @@ $(() => {
         }
       }
       return impactNum;
-      // console.log(hookPosition);
     }
     /**
      * 绳子收回动画
      * @memberof GAME
      */
-    recover() {
+    recover(num) {
+      console.log(num);
       this.manAction();
-      this.handleRecoverAction();
       let interval = setInterval(() => {
         if (hh > MIN_ROPE_LENGTH) {
           hh -= 1;
+          if (num) {
+            this.handleRecoverAction(num);
+          }
         } else {
           clearInterval(interval);
           this.initHookAnimation();
           clearInterval(this.actionInterval);
           $('.man').attr('src', this.manImgList[this.count]);
+          // 勾到矿石，且到顶部时，处理隐藏该矿石，并生成新的矿石
+          if (num) {
+            this.hideAndCreatNewOre(num);
+          }
         }
         line.css({
           transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
@@ -237,11 +240,32 @@ $(() => {
       }, 10);
     }
     /**
+     * 隐藏勾到矿石，并生成新的矿石
+     * @memberof GAME
+     */
+    hideAndCreatNewOre(num) {
+      $(`.temp:nth-child(${num})`).addClass('fadeout');
+      // 重新获取矿石位置
+      this.getOreLocation();
+      // 勾到钻石, 更新游戏数据
+      if (num > 0 && num <= 4) {
+        DIAMOND_NUM += 1;
+        $('.number').html(DIAMOND_NUM);
+      }
+    }
+    /**
      * 处理绳子收回时有矿石的方法
      * @memberof GAME
      */
-    handleRecoverAction() {
-
+    handleRecoverAction(sort) {
+      $(`.temp:nth-child(${sort}) .shadow`).addClass('hidden');
+      let rem = screenWidth * 100 / designWidth;
+      let topHeight = 2.62 * rem;
+      let x1 = hook.offset().left;
+      let y1 = hook.offset().top - topHeight;
+      $(`.temp:nth-child(${sort})`).css({
+        transform: `translate3d(${x1}px, ${y1}px, 0)`
+      });
     }
     /**
      * 绳子收回时，矿工动画
