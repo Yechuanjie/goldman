@@ -1,0 +1,142 @@
+﻿[{
+		"enname": "zi dong ding wei",
+		"id": "00",
+		"name": "\u81ea\u52a8\u5b9a\u4f4d"
+	}, {
+		"enname": "bei jing",
+		"id": "01",
+		"name": "\u5317\u4eac"
+	}, {
+		"enname": "shang hai",
+		"id": "02",
+		"name": "\u4e0a\u6d77"
+	}, {
+		"enname": "tian jin",
+		"id": "03",
+		"name": "\u5929\u6d25"
+	}, {
+		"enname": "chong qing",
+		"id": "04",
+		"name": "\u91cd\u5e86"
+	}, {
+		"enname": "hei long jiang",
+		"id": "05",
+		"name": "\u9ed1\u9f99\u6c5f"
+	}, {
+		"enname": "ji lin",
+		"id": "06",
+		"name": "\u5409\u6797"
+	}, {
+		"enname": "liao ning",
+		"id": "07",
+		"name": "\u8fbd\u5b81"
+	}, {
+		"enname": "nei meng gu",
+		"id": "08",
+		"name": "\u5185\u8499\u53e4"
+	}, {
+		"enname": "he bei",
+		"id": "09",
+		"name": "\u6cb3\u5317"
+	}, {
+		"enname": "shan xi",
+		"id": "10",
+		"name": "\u5c71\u897f"
+	}, {
+		"enname": "shan xi",
+		"id": "11",
+		"name": "\u9655\u897f"
+	}, {
+		"enname": "shan dong",
+		"id": "12",
+		"name": "\u5c71\u4e1c"
+	}, {
+		"enname": "xin jiang",
+		"id": "13",
+		"name": "\u65b0\u7586"
+	}, {
+		"enname": "xi cang",
+		"id": "14",
+		"name": "\u897f\u85cf"
+	}, {
+		"enname": "qing hai",
+		"id": "15",
+		"name": "\u9752\u6d77"
+	}, {
+		"enname": "gan su",
+		"id": "16",
+		"name": "\u7518\u8083"
+	}, {
+		"enname": "ning xia",
+		"id": "17",
+		"name": "\u5b81\u590f"
+	}, {
+		"enname": "he nan",
+		"id": "18",
+		"name": "\u6cb3\u5357"
+	}, {
+		"enname": "jiang su",
+		"id": "19",
+		"name": "\u6c5f\u82cf"
+	}, {
+		"enname": "hu bei",
+		"id": "20",
+		"name": "\u6e56\u5317"
+	}, {
+		"enname": "zhe jiang",
+		"id": "21",
+		"name": "\u6d59\u6c5f"
+	}, {
+		"enname": "an hui",
+		"id": "22",
+		"name": "\u5b89\u5fbd"
+	}, {
+		"enname": "fu jian",
+		"id": "23",
+		"name": "\u798f\u5efa"
+	}, {
+		"enname": "jiang xi",
+		"id": "24",
+		"name": "\u6c5f\u897f"
+	}, {
+		"enname": "hu nan",
+		"id": "25",
+		"name": "\u6e56\u5357"
+	}, {
+		"enname": "gui zhou",
+		"id": "26",
+		"name": "\u8d35\u5dde"
+	}, {
+		"enname": "si chuan",
+		"id": "27",
+		"name": "\u56db\u5ddd"
+	}, {
+		"enname": "guang dong",
+		"id": "28",
+		"name": "\u5e7f\u4e1c"
+	}, {
+		"enname": "yun nan",
+		"id": "29",
+		"name": "\u4e91\u5357"
+	}, {
+		"enname": "guang xi",
+		"id": "30",
+		"name": "\u5e7f\u897f"
+	}, {
+		"enname": "hai nan",
+		"id": "31",
+		"name": "\u6d77\u5357"
+	}, {
+		"enname": "xiang gang",
+		"id": "32",
+		"name": "\u9999\u6e2f"
+	}, {
+		"enname": "ao men",
+		"id": "33",
+		"name": "\u6fb3\u95e8"
+	}, {
+		"enname": "tai wan",
+		"id": "34",
+		"name": "\u53f0\u6e7e"
+	}
+]

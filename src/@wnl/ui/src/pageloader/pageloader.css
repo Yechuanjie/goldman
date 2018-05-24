@@ -1,0 +1,69 @@
+.hidden {
+  display: none !important;
+}
+.pageload_mask {
+  opacity: 0.8;
+  z-index: 9998;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  background-size: 25px 25px;
+}
+.maskImage {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -11px;
+  margin-left: -11px;
+  background: url('//order.51wnl.com/pay_web/img/loading.png') no-repeat center;
+  background-size: 22px 22px;
+  animation: circle 1s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+}
+.maskContent {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -20px;
+  margin-top: -20px;
+  background-color: #ffffff;
+  opacity: 0.2;
+  border-radius: 7px;
+}
+
+@keyframes circle {
+  0% {
+    transform: rotate(0);
+  }
+  67% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* 待加载完成时，$('.maskImage,.maskContent')添加此样式 */
+.jumpOut {
+  animation: jumpout 0.33s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+
+@keyframes jumpout {
+  0% {
+    transform: scale(1);
+  }
+  33% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(0);
+  }
+}

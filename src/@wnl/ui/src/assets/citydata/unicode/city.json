@@ -1,0 +1,1472 @@
+﻿{
+	"00": [{
+			"enname": "zi dong ding wei",
+			"id": "0001",
+			"name": "\u81ea\u52a8\u5b9a\u4f4d"
+		}
+	],
+	"01": [{
+			"enname": "bei jing",
+			"id": "0101",
+			"name": "\u5317\u4eac"
+		}
+	],
+	"02": [{
+			"enname": "shang hai",
+			"id": "0201",
+			"name": "\u4e0a\u6d77"
+		}
+	],
+	"03": [{
+			"enname": "tian jin",
+			"id": "0301",
+			"name": "\u5929\u6d25"
+		}
+	],
+	"04": [{
+			"enname": "chong qing",
+			"id": "0401",
+			"name": "\u91cd\u5e86"
+		}
+	],
+	"05": [{
+			"enname": "ha er bin",
+			"id": "0501",
+			"name": "\u54c8\u5c14\u6ee8"
+		}, {
+			"enname": "qi qi ha er",
+			"id": "0502",
+			"name": "\u9f50\u9f50\u54c8\u5c14"
+		}, {
+			"enname": "mu dan jiang",
+			"id": "0503",
+			"name": "\u7261\u4e39\u6c5f"
+		}, {
+			"enname": "jia mu si",
+			"id": "0504",
+			"name": "\u4f73\u6728\u65af"
+		}, {
+			"enname": "sui hua",
+			"id": "0505",
+			"name": "\u7ee5\u5316"
+		}, {
+			"enname": "hei he",
+			"id": "0506",
+			"name": "\u9ed1\u6cb3"
+		}, {
+			"enname": "da xing an ling",
+			"id": "0507",
+			"name": "\u5927\u5174\u5b89\u5cad"
+		}, {
+			"enname": "yi chun",
+			"id": "0508",
+			"name": "\u4f0a\u6625"
+		}, {
+			"enname": "da qing",
+			"id": "0509",
+			"name": "\u5927\u5e86"
+		}, {
+			"enname": "qi tai he",
+			"id": "0510",
+			"name": "\u4e03\u53f0\u6cb3"
+		}, {
+			"enname": "ji xi",
+			"id": "0511",
+			"name": "\u9e21\u897f"
+		}, {
+			"enname": "he gang",
+			"id": "0512",
+			"name": "\u9e64\u5c97"
+		}, {
+			"enname": "shuang ya shan",
+			"id": "0513",
+			"name": "\u53cc\u9e2d\u5c71"
+		}
+	],
+	"06": [{
+			"enname": "chang chun",
+			"id": "0601",
+			"name": "\u957f\u6625"
+		}, {
+			"enname": "ji lin",
+			"id": "0602",
+			"name": "\u5409\u6797"
+		}, {
+			"enname": "yan bian",
+			"id": "0603",
+			"name": "\u5ef6\u8fb9"
+		}, {
+			"enname": "si ping",
+			"id": "0604",
+			"name": "\u56db\u5e73"
+		}, {
+			"enname": "tong hua",
+			"id": "0605",
+			"name": "\u901a\u5316"
+		}, {
+			"enname": "bai cheng",
+			"id": "0606",
+			"name": "\u767d\u57ce"
+		}, {
+			"enname": "liao yuan",
+			"id": "0607",
+			"name": "\u8fbd\u6e90"
+		}, {
+			"enname": "song yuan",
+			"id": "0608",
+			"name": "\u677e\u539f"
+		}, {
+			"enname": "bai shan",
+			"id": "0609",
+			"name": "\u767d\u5c71"
+		}
+	],
+	"07": [{
+			"enname": "shen yang",
+			"id": "0701",
+			"name": "\u6c88\u9633"
+		}, {
+			"enname": "da lian",
+			"id": "0702",
+			"name": "\u5927\u8fde"
+		}, {
+			"enname": "an shan",
+			"id": "0703",
+			"name": "\u978d\u5c71"
+		}, {
+			"enname": "fu shun",
+			"id": "0704",
+			"name": "\u629a\u987a"
+		}, {
+			"enname": "ben xi",
+			"id": "0705",
+			"name": "\u672c\u6eaa"
+		}, {
+			"enname": "dan dong",
+			"id": "0706",
+			"name": "\u4e39\u4e1c"
+		}, {
+			"enname": "jin zhou",
+			"id": "0707",
+			"name": "\u9526\u5dde"
+		}, {
+			"enname": "ying kou",
+			"id": "0708",
+			"name": "\u8425\u53e3"
+		}, {
+			"enname": "fu xin",
+			"id": "0709",
+			"name": "\u961c\u65b0"
+		}, {
+			"enname": "liao yang",
+			"id": "0710",
+			"name": "\u8fbd\u9633"
+		}, {
+			"enname": "tie ling",
+			"id": "0711",
+			"name": "\u94c1\u5cad"
+		}, {
+			"enname": "chao yang",
+			"id": "0712",
+			"name": "\u671d\u9633"
+		}, {
+			"enname": "pan jin",
+			"id": "0713",
+			"name": "\u76d8\u9526"
+		}, {
+			"enname": "hu lu dao",
+			"id": "0714",
+			"name": "\u846b\u82a6\u5c9b"
+		}
+	],
+	"08": [{
+			"enname": "hu he hao te",
+			"id": "0801",
+			"name": "\u547c\u548c\u6d69\u7279"
+		}, {
+			"enname": "bao tou",
+			"id": "0802",
+			"name": "\u5305\u5934"
+		}, {
+			"enname": "wu hai",
+			"id": "0803",
+			"name": "\u4e4c\u6d77"
+		}, {
+			"enname": "wu lan cha bu",
+			"id": "0804",
+			"name": "\u4e4c\u5170\u5bdf\u5e03"
+		}, {
+			"enname": "tong liao",
+			"id": "0805",
+			"name": "\u901a\u8fbd"
+		}, {
+			"enname": "chi feng",
+			"id": "0806",
+			"name": "\u8d64\u5cf0"
+		}, {
+			"enname": "e er duo si",
+			"id": "0807",
+			"name": "\u9102\u5c14\u591a\u65af"
+		}, {
+			"enname": "ba yan nao er",
+			"id": "0808",
+			"name": "\u5df4\u5f66\u6dd6\u5c14"
+		}, {
+			"enname": "xi lin guo lei",
+			"id": "0809",
+			"name": "\u9521\u6797\u90ed\u52d2"
+		}, {
+			"enname": "hu lun bei er",
+			"id": "0810",
+			"name": "\u547c\u4f26\u8d1d\u5c14"
+		}, {
+			"enname": "xing an meng",
+			"id": "0811",
+			"name": "\u5174\u5b89\u76df"
+		}, {
+			"enname": "a la shan meng",
+			"id": "0812",
+			"name": "\u963f\u62c9\u5584\u76df"
+		}
+	],
+	"09": [{
+			"enname": "shi jia zhuang",
+			"id": "0901",
+			"name": "\u77f3\u5bb6\u5e84"
+		}, {
+			"enname": "bao ding",
+			"id": "0902",
+			"name": "\u4fdd\u5b9a"
+		}, {
+			"enname": "zhang jia kou",
+			"id": "0903",
+			"name": "\u5f20\u5bb6\u53e3"
+		}, {
+			"enname": "cheng de",
+			"id": "0904",
+			"name": "\u627f\u5fb7"
+		}, {
+			"enname": "tang shan",
+			"id": "0905",
+			"name": "\u5510\u5c71"
+		}, {
+			"enname": "lang fang",
+			"id": "0906",
+			"name": "\u5eca\u574a"
+		}, {
+			"enname": "cang zhou",
+			"id": "0907",
+			"name": "\u6ca7\u5dde"
+		}, {
+			"enname": "heng shui",
+			"id": "0908",
+			"name": "\u8861\u6c34"
+		}, {
+			"enname": "xing tai",
+			"id": "0909",
+			"name": "\u90a2\u53f0"
+		}, {
+			"enname": "han dan",
+			"id": "0910",
+			"name": "\u90af\u90f8"
+		}, {
+			"enname": "qin huang dao",
+			"id": "0911",
+			"name": "\u79e6\u7687\u5c9b"
+		}
+	],
+	"10": [{
+			"enname": "tai yuan",
+			"id": "1001",
+			"name": "\u592a\u539f"
+		}, {
+			"enname": "da tong",
+			"id": "1002",
+			"name": "\u5927\u540c"
+		}, {
+			"enname": "yang quan",
+			"id": "1003",
+			"name": "\u9633\u6cc9"
+		}, {
+			"enname": "jin zhong",
+			"id": "1004",
+			"name": "\u664b\u4e2d"
+		}, {
+			"enname": "chang zhi",
+			"id": "1005",
+			"name": "\u957f\u6cbb"
+		}, {
+			"enname": "jin cheng",
+			"id": "1006",
+			"name": "\u664b\u57ce"
+		}, {
+			"enname": "lin fen",
+			"id": "1007",
+			"name": "\u4e34\u6c7e"
+		}, {
+			"enname": "yun cheng",
+			"id": "1008",
+			"name": "\u8fd0\u57ce"
+		}, {
+			"enname": "shuo zhou",
+			"id": "1009",
+			"name": "\u6714\u5dde"
+		}, {
+			"enname": "xin zhou",
+			"id": "1010",
+			"name": "\u5ffb\u5dde"
+		}, {
+			"enname": "lu liang",
+			"id": "1011",
+			"name": "\u5415\u6881"
+		}
+	],
+	"11": [{
+			"enname": "xi an",
+			"id": "1101",
+			"name": "\u897f\u5b89"
+		}, {
+			"enname": "xian yang",
+			"id": "1102",
+			"name": "\u54b8\u9633"
+		}, {
+			"enname": "yan an",
+			"id": "1103",
+			"name": "\u5ef6\u5b89"
+		}, {
+			"enname": "yu lin",
+			"id": "1104",
+			"name": "\u6986\u6797"
+		}, {
+			"enname": "wei nan",
+			"id": "1105",
+			"name": "\u6e2d\u5357"
+		}, {
+			"enname": "shang luo",
+			"id": "1106",
+			"name": "\u5546\u6d1b"
+		}, {
+			"enname": "an kang",
+			"id": "1107",
+			"name": "\u5b89\u5eb7"
+		}, {
+			"enname": "han zhong",
+			"id": "1108",
+			"name": "\u6c49\u4e2d"
+		}, {
+			"enname": "bao ji",
+			"id": "1109",
+			"name": "\u5b9d\u9e21"
+		}, {
+			"enname": "tong chuan",
+			"id": "1110",
+			"name": "\u94dc\u5ddd"
+		}, {
+			"enname": "yang ling",
+			"id": "1111",
+			"name": "\u6768\u51cc"
+		}
+	],
+	"12": [{
+			"enname": "ji nan",
+			"id": "1201",
+			"name": "\u6d4e\u5357"
+		}, {
+			"enname": "qing dao",
+			"id": "1202",
+			"name": "\u9752\u5c9b"
+		}, {
+			"enname": "zi bo",
+			"id": "1203",
+			"name": "\u6dc4\u535a"
+		}, {
+			"enname": "de zhou",
+			"id": "1204",
+			"name": "\u5fb7\u5dde"
+		}, {
+			"enname": "yan tai",
+			"id": "1205",
+			"name": "\u70df\u53f0"
+		}, {
+			"enname": "wei fang",
+			"id": "1206",
+			"name": "\u6f4d\u574a"
+		}, {
+			"enname": "ji ning",
+			"id": "1207",
+			"name": "\u6d4e\u5b81"
+		}, {
+			"enname": "tai an",
+			"id": "1208",
+			"name": "\u6cf0\u5b89"
+		}, {
+			"enname": "lin yi",
+			"id": "1209",
+			"name": "\u4e34\u6c82"
+		}, {
+			"enname": "he ze",
+			"id": "1210",
+			"name": "\u83cf\u6cfd"
+		}, {
+			"enname": "bin zhou",
+			"id": "1211",
+			"name": "\u6ee8\u5dde"
+		}, {
+			"enname": "dong ying",
+			"id": "1212",
+			"name": "\u4e1c\u8425"
+		}, {
+			"enname": "wei hai",
+			"id": "1213",
+			"name": "\u5a01\u6d77"
+		}, {
+			"enname": "zao zhuang",
+			"id": "1214",
+			"name": "\u67a3\u5e84"
+		}, {
+			"enname": "ri zhao",
+			"id": "1215",
+			"name": "\u65e5\u7167"
+		}, {
+			"enname": "lai wu",
+			"id": "1216",
+			"name": "\u83b1\u829c"
+		}, {
+			"enname": "liao cheng",
+			"id": "1217",
+			"name": "\u804a\u57ce"
+		}
+	],
+	"13": [{
+			"enname": "wu lu mu qi",
+			"id": "1301",
+			"name": "\u4e4c\u9c81\u6728\u9f50"
+		}, {
+			"enname": "ke la ma yi",
+			"id": "1302",
+			"name": "\u514b\u62c9\u739b\u4f9d"
+		}, {
+			"enname": "shi he zi",
+			"id": "1303",
+			"name": "\u77f3\u6cb3\u5b50"
+		}, {
+			"enname": "chang ji",
+			"id": "1304",
+			"name": "\u660c\u5409"
+		}, {
+			"enname": "tu lu fan",
+			"id": "1305",
+			"name": "\u5410\u9c81\u756a"
+		}, {
+			"enname": "ba yin guo leng",
+			"id": "1306",
+			"name": "\u5df4\u97f3\u90ed\u695e"
+		}, {
+			"enname": "a la er",
+			"id": "1307",
+			"name": "\u963f\u62c9\u5c14"
+		}, {
+			"enname": "a ke su",
+			"id": "1308",
+			"name": "\u963f\u514b\u82cf"
+		}, {
+			"enname": "ka shen",
+			"id": "1309",
+			"name": "\u5580\u4ec0"
+		}, {
+			"enname": "yi li",
+			"id": "1310",
+			"name": "\u4f0a\u7281"
+		}, {
+			"enname": "ta cheng",
+			"id": "1311",
+			"name": "\u5854\u57ce"
+		}, {
+			"enname": "ha mi",
+			"id": "1312",
+			"name": "\u54c8\u5bc6"
+		}, {
+			"enname": "he tian",
+			"id": "1313",
+			"name": "\u548c\u7530"
+		}, {
+			"enname": "a lei tai",
+			"id": "1314",
+			"name": "\u963f\u52d2\u6cf0"
+		}, {
+			"enname": "ke zhou",
+			"id": "1315",
+			"name": "\u514b\u5dde"
+		}, {
+			"enname": "bo er ta la",
+			"id": "1316",
+			"name": "\u535a\u5c14\u5854\u62c9"
+		}
+	],
+	"14": [{
+			"enname": "la sa",
+			"id": "1401",
+			"name": "\u62c9\u8428"
+		}, {
+			"enname": "ri ka ze",
+			"id": "1402",
+			"name": "\u65e5\u5580\u5219"
+		}, {
+			"enname": "shan nan",
+			"id": "1403",
+			"name": "\u5c71\u5357"
+		}, {
+			"enname": "lin zhi",
+			"id": "1404",
+			"name": "\u6797\u829d"
+		}, {
+			"enname": "chang dou",
+			"id": "1405",
+			"name": "\u660c\u90fd"
+		}, {
+			"enname": "na qu",
+			"id": "1406",
+			"name": "\u90a3\u66f2"
+		}, {
+			"enname": "a li",
+			"id": "1407",
+			"name": "\u963f\u91cc"
+		}
+	],
+	"15": [{
+			"enname": "xi ning",
+			"id": "1501",
+			"name": "\u897f\u5b81"
+		}, {
+			"enname": "hai dong",
+			"id": "1502",
+			"name": "\u6d77\u4e1c"
+		}, {
+			"enname": "huang nan",
+			"id": "1503",
+			"name": "\u9ec4\u5357"
+		}, {
+			"enname": "hai nan",
+			"id": "1504",
+			"name": "\u6d77\u5357"
+		}, {
+			"enname": "guo luo",
+			"id": "1505",
+			"name": "\u679c\u6d1b"
+		}, {
+			"enname": "yu shu",
+			"id": "1506",
+			"name": "\u7389\u6811"
+		}, {
+			"enname": "hai xi",
+			"id": "1507",
+			"name": "\u6d77\u897f"
+		}, {
+			"enname": "hai bei",
+			"id": "1508",
+			"name": "\u6d77\u5317"
+		}, {
+			"enname": "ge er mu",
+			"id": "1509",
+			"name": "\u683c\u5c14\u6728"
+		}
+	],
+	"16": [{
+			"enname": "lan zhou",
+			"id": "1601",
+			"name": "\u5170\u5dde"
+		}, {
+			"enname": "ding xi",
+			"id": "1602",
+			"name": "\u5b9a\u897f"
+		}, {
+			"enname": "ping liang",
+			"id": "1603",
+			"name": "\u5e73\u51c9"
+		}, {
+			"enname": "qing yang",
+			"id": "1604",
+			"name": "\u5e86\u9633"
+		}, {
+			"enname": "wu wei",
+			"id": "1605",
+			"name": "\u6b66\u5a01"
+		}, {
+			"enname": "jin chang",
+			"id": "1606",
+			"name": "\u91d1\u660c"
+		}, {
+			"enname": "zhang ye",
+			"id": "1607",
+			"name": "\u5f20\u6396"
+		}, {
+			"enname": "jiu quan",
+			"id": "1608",
+			"name": "\u9152\u6cc9"
+		}, {
+			"enname": "tian shui",
+			"id": "1609",
+			"name": "\u5929\u6c34"
+		}, {
+			"enname": "long nan",
+			"id": "1610",
+			"name": "\u9647\u5357"
+		}, {
+			"enname": "lin xia",
+			"id": "1611",
+			"name": "\u4e34\u590f"
+		}, {
+			"enname": "gan nan",
+			"id": "1612",
+			"name": "\u7518\u5357"
+		}, {
+			"enname": "bai yin",
+			"id": "1613",
+			"name": "\u767d\u94f6"
+		}, {
+			"enname": "jia yu guan",
+			"id": "1614",
+			"name": "\u5609\u5cea\u5173"
+		}
+	],
+	"17": [{
+			"enname": "yin chuan",
+			"id": "1701",
+			"name": "\u94f6\u5ddd"
+		}, {
+			"enname": "shi zui shan",
+			"id": "1702",
+			"name": "\u77f3\u5634\u5c71"
+		}, {
+			"enname": "wu zhong",
+			"id": "1703",
+			"name": "\u5434\u5fe0"
+		}, {
+			"enname": "gu yuan",
+			"id": "1704",
+			"name": "\u56fa\u539f"
+		}, {
+			"enname": "zhong wei",
+			"id": "1705",
+			"name": "\u4e2d\u536b"
+		}
+	],
+	"18": [{
+			"enname": "zheng zhou",
+			"id": "1801",
+			"name": "\u90d1\u5dde"
+		}, {
+			"enname": "an yang",
+			"id": "1802",
+			"name": "\u5b89\u9633"
+		}, {
+			"enname": "xin xiang",
+			"id": "1803",
+			"name": "\u65b0\u4e61"
+		}, {
+			"enname": "xu chang",
+			"id": "1804",
+			"name": "\u8bb8\u660c"
+		}, {
+			"enname": "ping ding shan",
+			"id": "1805",
+			"name": "\u5e73\u9876\u5c71"
+		}, {
+			"enname": "xin yang",
+			"id": "1806",
+			"name": "\u4fe1\u9633"
+		}, {
+			"enname": "nan yang",
+			"id": "1807",
+			"name": "\u5357\u9633"
+		}, {
+			"enname": "kai feng",
+			"id": "1808",
+			"name": "\u5f00\u5c01"
+		}, {
+			"enname": "luo yang",
+			"id": "1809",
+			"name": "\u6d1b\u9633"
+		}, {
+			"enname": "shang qiu",
+			"id": "1810",
+			"name": "\u5546\u4e18"
+		}, {
+			"enname": "jiao zuo",
+			"id": "1811",
+			"name": "\u7126\u4f5c"
+		}, {
+			"enname": "he bi",
+			"id": "1812",
+			"name": "\u9e64\u58c1"
+		}, {
+			"enname": "pu yang",
+			"id": "1813",
+			"name": "\u6fee\u9633"
+		}, {
+			"enname": "zhou kou",
+			"id": "1814",
+			"name": "\u5468\u53e3"
+		}, {
+			"enname": "luo he",
+			"id": "1815",
+			"name": "\u6f2f\u6cb3"
+		}, {
+			"enname": "zhu ma dian",
+			"id": "1816",
+			"name": "\u9a7b\u9a6c\u5e97"
+		}, {
+			"enname": "san men xia",
+			"id": "1817",
+			"name": "\u4e09\u95e8\u5ce1"
+		}, {
+			"enname": "ji yuan",
+			"id": "1818",
+			"name": "\u6d4e\u6e90"
+		}
+	],
+	"19": [{
+			"enname": "nan jing",
+			"id": "1901",
+			"name": "\u5357\u4eac"
+		}, {
+			"enname": "wu xi",
+			"id": "1902",
+			"name": "\u65e0\u9521"
+		}, {
+			"enname": "zhen jiang",
+			"id": "1903",
+			"name": "\u9547\u6c5f"
+		}, {
+			"enname": "su zhou",
+			"id": "1904",
+			"name": "\u82cf\u5dde"
+		}, {
+			"enname": "nan tong",
+			"id": "1905",
+			"name": "\u5357\u901a"
+		}, {
+			"enname": "yang zhou",
+			"id": "1906",
+			"name": "\u626c\u5dde"
+		}, {
+			"enname": "yan cheng",
+			"id": "1907",
+			"name": "\u76d0\u57ce"
+		}, {
+			"enname": "xu zhou",
+			"id": "1908",
+			"name": "\u5f90\u5dde"
+		}, {
+			"enname": "huai an",
+			"id": "1909",
+			"name": "\u6dee\u5b89"
+		}, {
+			"enname": "lian yun gang",
+			"id": "1910",
+			"name": "\u8fde\u4e91\u6e2f"
+		}, {
+			"enname": "chang zhou",
+			"id": "1911",
+			"name": "\u5e38\u5dde"
+		}, {
+			"enname": "tai zhou",
+			"id": "1912",
+			"name": "\u6cf0\u5dde"
+		}, {
+			"enname": "su qian",
+			"id": "1913",
+			"name": "\u5bbf\u8fc1"
+		}
+	],
+	"20": [{
+			"enname": "wu han",
+			"id": "2001",
+			"name": "\u6b66\u6c49"
+		}, {
+			"enname": "xiang yang",
+			"id": "2002",
+			"name": "\u8944\u9633"
+		}, {
+			"enname": "e zhou",
+			"id": "2003",
+			"name": "\u9102\u5dde"
+		}, {
+			"enname": "xiao gan",
+			"id": "2004",
+			"name": "\u5b5d\u611f"
+		}, {
+			"enname": "huang gang",
+			"id": "2005",
+			"name": "\u9ec4\u5188"
+		}, {
+			"enname": "huang shi",
+			"id": "2006",
+			"name": "\u9ec4\u77f3"
+		}, {
+			"enname": "xian ning",
+			"id": "2007",
+			"name": "\u54b8\u5b81"
+		}, {
+			"enname": "jing zhou",
+			"id": "2008",
+			"name": "\u8346\u5dde"
+		}, {
+			"enname": "yi chang",
+			"id": "2009",
+			"name": "\u5b9c\u660c"
+		}, {
+			"enname": "en shi",
+			"id": "2010",
+			"name": "\u6069\u65bd"
+		}, {
+			"enname": "shi yan",
+			"id": "2011",
+			"name": "\u5341\u5830"
+		}, {
+			"enname": "shen nong jia",
+			"id": "2012",
+			"name": "\u795e\u519c\u67b6"
+		}, {
+			"enname": "sui zhou",
+			"id": "2013",
+			"name": "\u968f\u5dde"
+		}, {
+			"enname": "jing men",
+			"id": "2014",
+			"name": "\u8346\u95e8"
+		}, {
+			"enname": "tian men",
+			"id": "2015",
+			"name": "\u5929\u95e8"
+		}, {
+			"enname": "xian tao",
+			"id": "2016",
+			"name": "\u4ed9\u6843"
+		}, {
+			"enname": "qian jiang",
+			"id": "2017",
+			"name": "\u6f5c\u6c5f"
+		}
+	],
+	"21": [{
+			"enname": "hang zhou",
+			"id": "2101",
+			"name": "\u676d\u5dde"
+		}, {
+			"enname": "hu zhou",
+			"id": "2102",
+			"name": "\u6e56\u5dde"
+		}, {
+			"enname": "jia xing",
+			"id": "2103",
+			"name": "\u5609\u5174"
+		}, {
+			"enname": "ning bo",
+			"id": "2104",
+			"name": "\u5b81\u6ce2"
+		}, {
+			"enname": "shao xing",
+			"id": "2105",
+			"name": "\u7ecd\u5174"
+		}, {
+			"enname": "tai zhou",
+			"id": "2106",
+			"name": "\u53f0\u5dde"
+		}, {
+			"enname": "wen zhou",
+			"id": "2107",
+			"name": "\u6e29\u5dde"
+		}, {
+			"enname": "li shui",
+			"id": "2108",
+			"name": "\u4e3d\u6c34"
+		}, {
+			"enname": "jin hua",
+			"id": "2109",
+			"name": "\u91d1\u534e"
+		}, {
+			"enname": "qu zhou",
+			"id": "2110",
+			"name": "\u8862\u5dde"
+		}, {
+			"enname": "zhou shan",
+			"id": "2111",
+			"name": "\u821f\u5c71"
+		}
+	],
+	"22": [{
+			"enname": "he fei",
+			"id": "2201",
+			"name": "\u5408\u80a5"
+		}, {
+			"enname": "bang bu",
+			"id": "2202",
+			"name": "\u868c\u57e0"
+		}, {
+			"enname": "wu hu",
+			"id": "2203",
+			"name": "\u829c\u6e56"
+		}, {
+			"enname": "huai nan",
+			"id": "2204",
+			"name": "\u6dee\u5357"
+		}, {
+			"enname": "ma an shan",
+			"id": "2205",
+			"name": "\u9a6c\u978d\u5c71"
+		}, {
+			"enname": "an qing",
+			"id": "2206",
+			"name": "\u5b89\u5e86"
+		}, {
+			"enname": "su zhou",
+			"id": "2207",
+			"name": "\u5bbf\u5dde"
+		}, {
+			"enname": "fu yang",
+			"id": "2208",
+			"name": "\u961c\u9633"
+		}, {
+			"enname": "bo zhou",
+			"id": "2209",
+			"name": "\u4eb3\u5dde"
+		}, {
+			"enname": "huang shan",
+			"id": "2210",
+			"name": "\u9ec4\u5c71"
+		}, {
+			"enname": "chu zhou",
+			"id": "2211",
+			"name": "\u6ec1\u5dde"
+		}, {
+			"enname": "huai bei",
+			"id": "2212",
+			"name": "\u6dee\u5317"
+		}, {
+			"enname": "tong ling",
+			"id": "2213",
+			"name": "\u94dc\u9675"
+		}, {
+			"enname": "xuan cheng",
+			"id": "2214",
+			"name": "\u5ba3\u57ce"
+		}, {
+			"enname": "liu an",
+			"id": "2215",
+			"name": "\u516d\u5b89"
+		}, {
+			"enname": "chi zhou",
+			"id": "2217",
+			"name": "\u6c60\u5dde"
+		}
+	],
+	"23": [{
+			"enname": "fu zhou",
+			"id": "2301",
+			"name": "\u798f\u5dde"
+		}, {
+			"enname": "sha men",
+			"id": "2302",
+			"name": "\u53a6\u95e8"
+		}, {
+			"enname": "ning de",
+			"id": "2303",
+			"name": "\u5b81\u5fb7"
+		}, {
+			"enname": "pu tian",
+			"id": "2304",
+			"name": "\u8386\u7530"
+		}, {
+			"enname": "quan zhou",
+			"id": "2305",
+			"name": "\u6cc9\u5dde"
+		}, {
+			"enname": "zhang zhou",
+			"id": "2306",
+			"name": "\u6f33\u5dde"
+		}, {
+			"enname": "long yan",
+			"id": "2307",
+			"name": "\u9f99\u5ca9"
+		}, {
+			"enname": "san ming",
+			"id": "2308",
+			"name": "\u4e09\u660e"
+		}, {
+			"enname": "nan ping",
+			"id": "2309",
+			"name": "\u5357\u5e73"
+		}
+	],
+	"24": [{
+			"enname": "nan chang",
+			"id": "2401",
+			"name": "\u5357\u660c"
+		}, {
+			"enname": "jiu jiang",
+			"id": "2402",
+			"name": "\u4e5d\u6c5f"
+		}, {
+			"enname": "shang rao",
+			"id": "2403",
+			"name": "\u4e0a\u9976"
+		}, {
+			"enname": "fu zhou",
+			"id": "2404",
+			"name": "\u629a\u5dde"
+		}, {
+			"enname": "yi chun",
+			"id": "2405",
+			"name": "\u5b9c\u6625"
+		}, {
+			"enname": "ji an",
+			"id": "2406",
+			"name": "\u5409\u5b89"
+		}, {
+			"enname": "gan zhou",
+			"id": "2407",
+			"name": "\u8d63\u5dde"
+		}, {
+			"enname": "jing de zhen",
+			"id": "2408",
+			"name": "\u666f\u5fb7\u9547"
+		}, {
+			"enname": "ping xiang",
+			"id": "2409",
+			"name": "\u840d\u4e61"
+		}, {
+			"enname": "xin yu",
+			"id": "2410",
+			"name": "\u65b0\u4f59"
+		}, {
+			"enname": "ying tan",
+			"id": "2411",
+			"name": "\u9e70\u6f6d"
+		}
+	],
+	"25": [{
+			"enname": "chang sha",
+			"id": "2501",
+			"name": "\u957f\u6c99"
+		}, {
+			"enname": "xiang tan",
+			"id": "2502",
+			"name": "\u6e58\u6f6d"
+		}, {
+			"enname": "zhu zhou",
+			"id": "2503",
+			"name": "\u682a\u6d32"
+		}, {
+			"enname": "heng yang",
+			"id": "2504",
+			"name": "\u8861\u9633"
+		}, {
+			"enname": "chen zhou",
+			"id": "2505",
+			"name": "\u90f4\u5dde"
+		}, {
+			"enname": "chang de",
+			"id": "2506",
+			"name": "\u5e38\u5fb7"
+		}, {
+			"enname": "yi yang",
+			"id": "2507",
+			"name": "\u76ca\u9633"
+		}, {
+			"enname": "lou di",
+			"id": "2508",
+			"name": "\u5a04\u5e95"
+		}, {
+			"enname": "shao yang",
+			"id": "2509",
+			"name": "\u90b5\u9633"
+		}, {
+			"enname": "yue yang",
+			"id": "2510",
+			"name": "\u5cb3\u9633"
+		}, {
+			"enname": "zhang jia jie",
+			"id": "2511",
+			"name": "\u5f20\u5bb6\u754c"
+		}, {
+			"enname": "huai hua",
+			"id": "2512",
+			"name": "\u6000\u5316"
+		}, {
+			"enname": "yong zhou",
+			"id": "2514",
+			"name": "\u6c38\u5dde"
+		}, {
+			"enname": "xiang xi",
+			"id": "2515",
+			"name": "\u6e58\u897f"
+		}
+	],
+	"26": [{
+			"enname": "gui yang",
+			"id": "2601",
+			"name": "\u8d35\u9633"
+		}, {
+			"enname": "zun yi",
+			"id": "2602",
+			"name": "\u9075\u4e49"
+		}, {
+			"enname": "an shun",
+			"id": "2603",
+			"name": "\u5b89\u987a"
+		}, {
+			"enname": "qian nan",
+			"id": "2604",
+			"name": "\u9ed4\u5357"
+		}, {
+			"enname": "qian dong nan",
+			"id": "2605",
+			"name": "\u9ed4\u4e1c\u5357"
+		}, {
+			"enname": "tong ren",
+			"id": "2606",
+			"name": "\u94dc\u4ec1"
+		}, {
+			"enname": "bi jie",
+			"id": "2607",
+			"name": "\u6bd5\u8282"
+		}, {
+			"enname": "liu pan shui",
+			"id": "2608",
+			"name": "\u516d\u76d8\u6c34"
+		}, {
+			"enname": "qian xi nan",
+			"id": "2609",
+			"name": "\u9ed4\u897f\u5357"
+		}
+	],
+	"27": [{
+			"enname": "cheng dou",
+			"id": "2701",
+			"name": "\u6210\u90fd"
+		}, {
+			"enname": "pan zhi hua",
+			"id": "2702",
+			"name": "\u6500\u679d\u82b1"
+		}, {
+			"enname": "zi gong",
+			"id": "2703",
+			"name": "\u81ea\u8d21"
+		}, {
+			"enname": "mian yang",
+			"id": "2704",
+			"name": "\u7ef5\u9633"
+		}, {
+			"enname": "nan chong",
+			"id": "2705",
+			"name": "\u5357\u5145"
+		}, {
+			"enname": "da zhou",
+			"id": "2706",
+			"name": "\u8fbe\u5dde"
+		}, {
+			"enname": "sui ning",
+			"id": "2707",
+			"name": "\u9042\u5b81"
+		}, {
+			"enname": "guang an",
+			"id": "2708",
+			"name": "\u5e7f\u5b89"
+		}, {
+			"enname": "ba zhong",
+			"id": "2709",
+			"name": "\u5df4\u4e2d"
+		}, {
+			"enname": "lu zhou",
+			"id": "2710",
+			"name": "\u6cf8\u5dde"
+		}, {
+			"enname": "yi bin",
+			"id": "2711",
+			"name": "\u5b9c\u5bbe"
+		}, {
+			"enname": "nei jiang",
+			"id": "2712",
+			"name": "\u5185\u6c5f"
+		}, {
+			"enname": "zi yang",
+			"id": "2713",
+			"name": "\u8d44\u9633"
+		}, {
+			"enname": "le shan",
+			"id": "2714",
+			"name": "\u4e50\u5c71"
+		}, {
+			"enname": "mei shan",
+			"id": "2715",
+			"name": "\u7709\u5c71"
+		}, {
+			"enname": "liang shan",
+			"id": "2716",
+			"name": "\u51c9\u5c71"
+		}, {
+			"enname": "ya an",
+			"id": "2717",
+			"name": "\u96c5\u5b89"
+		}, {
+			"enname": "gan zi",
+			"id": "2718",
+			"name": "\u7518\u5b5c"
+		}, {
+			"enname": "a ba",
+			"id": "2719",
+			"name": "\u963f\u575d"
+		}, {
+			"enname": "de yang",
+			"id": "2720",
+			"name": "\u5fb7\u9633"
+		}, {
+			"enname": "guang yuan",
+			"id": "2721",
+			"name": "\u5e7f\u5143"
+		}
+	],
+	"28": [{
+			"enname": "guang zhou",
+			"id": "2801",
+			"name": "\u5e7f\u5dde"
+		}, {
+			"enname": "shao guan",
+			"id": "2802",
+			"name": "\u97f6\u5173"
+		}, {
+			"enname": "hui zhou",
+			"id": "2803",
+			"name": "\u60e0\u5dde"
+		}, {
+			"enname": "mei zhou",
+			"id": "2804",
+			"name": "\u6885\u5dde"
+		}, {
+			"enname": "shan tou",
+			"id": "2805",
+			"name": "\u6c55\u5934"
+		}, {
+			"enname": "shen zhen",
+			"id": "2806",
+			"name": "\u6df1\u5733"
+		}, {
+			"enname": "zhu hai",
+			"id": "2807",
+			"name": "\u73e0\u6d77"
+		}, {
+			"enname": "fu shan",
+			"id": "2808",
+			"name": "\u4f5b\u5c71"
+		}, {
+			"enname": "zhao qing",
+			"id": "2809",
+			"name": "\u8087\u5e86"
+		}, {
+			"enname": "zhan jiang",
+			"id": "2810",
+			"name": "\u6e5b\u6c5f"
+		}, {
+			"enname": "jiang men",
+			"id": "2811",
+			"name": "\u6c5f\u95e8"
+		}, {
+			"enname": "he yuan",
+			"id": "2812",
+			"name": "\u6cb3\u6e90"
+		}, {
+			"enname": "qing yuan",
+			"id": "2813",
+			"name": "\u6e05\u8fdc"
+		}, {
+			"enname": "yun fu",
+			"id": "2814",
+			"name": "\u4e91\u6d6e"
+		}, {
+			"enname": "chao zhou",
+			"id": "2815",
+			"name": "\u6f6e\u5dde"
+		}, {
+			"enname": "dong guan",
+			"id": "2816",
+			"name": "\u4e1c\u839e"
+		}, {
+			"enname": "zhong shan",
+			"id": "2817",
+			"name": "\u4e2d\u5c71"
+		}, {
+			"enname": "yang jiang",
+			"id": "2818",
+			"name": "\u9633\u6c5f"
+		}, {
+			"enname": "jie yang",
+			"id": "2819",
+			"name": "\u63ed\u9633"
+		}, {
+			"enname": "mao ming",
+			"id": "2820",
+			"name": "\u8302\u540d"
+		}, {
+			"enname": "shan wei",
+			"id": "2821",
+			"name": "\u6c55\u5c3e"
+		}
+	],
+	"29": [{
+			"enname": "kun ming",
+			"id": "2901",
+			"name": "\u6606\u660e"
+		}, {
+			"enname": "da li",
+			"id": "2902",
+			"name": "\u5927\u7406"
+		}, {
+			"enname": "hong he",
+			"id": "2903",
+			"name": "\u7ea2\u6cb3"
+		}, {
+			"enname": "qu jing",
+			"id": "2904",
+			"name": "\u66f2\u9756"
+		}, {
+			"enname": "bao shan",
+			"id": "2905",
+			"name": "\u4fdd\u5c71"
+		}, {
+			"enname": "wen shan",
+			"id": "2906",
+			"name": "\u6587\u5c71"
+		}, {
+			"enname": "yu xi",
+			"id": "2907",
+			"name": "\u7389\u6eaa"
+		}, {
+			"enname": "chu xiong",
+			"id": "2908",
+			"name": "\u695a\u96c4"
+		}, {
+			"enname": "pu er",
+			"id": "2909",
+			"name": "\u666e\u6d31"
+		}, {
+			"enname": "zhao tong",
+			"id": "2910",
+			"name": "\u662d\u901a"
+		}, {
+			"enname": "lin cang",
+			"id": "2911",
+			"name": "\u4e34\u6ca7"
+		}, {
+			"enname": "nu jiang",
+			"id": "2912",
+			"name": "\u6012\u6c5f"
+		}, {
+			"enname": "di qing",
+			"id": "2913",
+			"name": "\u8fea\u5e86"
+		}, {
+			"enname": "li jiang",
+			"id": "2914",
+			"name": "\u4e3d\u6c5f"
+		}, {
+			"enname": "de hong",
+			"id": "2915",
+			"name": "\u5fb7\u5b8f"
+		}, {
+			"enname": "xi shuang ban na",
+			"id": "2916",
+			"name": "\u897f\u53cc\u7248\u7eb3"
+		}
+	],
+	"30": [{
+			"enname": "nan ning",
+			"id": "3001",
+			"name": "\u5357\u5b81"
+		}, {
+			"enname": "chong zuo",
+			"id": "3002",
+			"name": "\u5d07\u5de6"
+		}, {
+			"enname": "liu zhou",
+			"id": "3003",
+			"name": "\u67f3\u5dde"
+		}, {
+			"enname": "lai bin",
+			"id": "3004",
+			"name": "\u6765\u5bbe"
+		}, {
+			"enname": "gui lin",
+			"id": "3005",
+			"name": "\u6842\u6797"
+		}, {
+			"enname": "wu zhou",
+			"id": "3006",
+			"name": "\u68a7\u5dde"
+		}, {
+			"enname": "he zhou",
+			"id": "3007",
+			"name": "\u8d3a\u5dde"
+		}, {
+			"enname": "gui gang",
+			"id": "3008",
+			"name": "\u8d35\u6e2f"
+		}, {
+			"enname": "yu lin",
+			"id": "3009",
+			"name": "\u7389\u6797"
+		}, {
+			"enname": "bai se",
+			"id": "3010",
+			"name": "\u767e\u8272"
+		}, {
+			"enname": "qin zhou",
+			"id": "3011",
+			"name": "\u94a6\u5dde"
+		}, {
+			"enname": "he chi",
+			"id": "3012",
+			"name": "\u6cb3\u6c60"
+		}, {
+			"enname": "bei hai",
+			"id": "3013",
+			"name": "\u5317\u6d77"
+		}, {
+			"enname": "fang cheng gang",
+			"id": "3014",
+			"name": "\u9632\u57ce\u6e2f"
+		}
+	],
+	"31": [{
+			"enname": "hai nan",
+			"id": "3101",
+			"name": "\u6d77\u5357"
+		}
+	],
+	"32": [{
+			"enname": "xiang gang",
+			"id": "3201",
+			"name": "\u9999\u6e2f"
+		}
+	],
+	"33": [{
+			"enname": "ao men",
+			"id": "3301",
+			"name": "\u6fb3\u95e8"
+		}
+	],
+	"34": [{
+			"enname": "tai bei",
+			"id": "3401",
+			"name": "\u53f0\u5317"
+		}, {
+			"enname": "gao xiong",
+			"id": "3402",
+			"name": "\u9ad8\u96c4"
+		}, {
+			"enname": "tai zhong",
+			"id": "3404",
+			"name": "\u53f0\u4e2d"
+		}
+	]
+}
