@@ -63,7 +63,13 @@ $(() => {
   const screenWidth = $(window).width();
   const screenHeight = $(window).height();
   const hookHeight = $('#hook').height();
+  // 设计稿宽度
   const designWidth = 375;
+  // 屏幕根字体大小
+  const rem = screenWidth * 100 / designWidth;
+  // 第一颗钻石距离顶部高度
+  const topHeight = 2.62 * rem;
+
 
   const MAX_ROTATE = 70;
   const MIN_ROTATE = -70;
@@ -118,7 +124,9 @@ $(() => {
           x,
           y,
           xr,
-          yb
+          yb,
+          width,
+          height
         };
         that.oreList.push(thisInfo);
       });
@@ -202,9 +210,9 @@ $(() => {
       let impactNum = null;
       for (let i = 0; i < this.oreList.length; i += 1) {
         if (this.oreList[i].yb < y1 || this.oreList[i].x > xr1 || this.oreList[i].y > yb1 || this.oreList[i].xr < x1) {
-          console.log('未碰撞');
+          // console.log('未碰撞');
         } else {
-          console.log(`和第${i + 1}个物体碰撞`);
+          // console.log(`和第${i + 1}个物体碰撞`);
           impactNum = i + 1;
         }
       }
@@ -245,13 +253,90 @@ $(() => {
      */
     hideAndCreatNewOre(num) {
       $(`.temp:nth-child(${num})`).addClass('fadeout');
-      // 重新获取矿石位置
-      this.getOreLocation();
       // 勾到钻石, 更新游戏数据
-      if (num > 0 && num <= 4) {
+      if (num > 0 && num <= 6) {
         DIAMOND_NUM += 1;
         $('.number').html(DIAMOND_NUM);
+
+        let index = this.getRandom(1, 6);
+        $(`.temp:nth-child(${num})`).attr('class', `temp temp${index} hidden`);
+        $(`.temp:nth-child(${num})`).find('.shadow').attr('class', `shadow shadow${index}`);
+        $(`.temp:nth-child(${num})`).find('.shine').attr('id', `shine${index}`);
+
+        let newWidth = $(`.temp:nth-child(${num})`).width();
+        let newHeight = $(`.temp:nth-child(${num})`).height();
+        let diamondPositionX;
+        let diamondPositionY;
+        // this.checkOverlay(newWidth, newHeight);
+        diamondPositionX = this.checkOverlay(newWidth, newHeight)[0];
+        diamondPositionY = this.checkOverlay(newWidth, newHeight)[1];
+        setTimeout(() => {
+          $(`.temp:nth-child(${num})`).css({
+            transform: `translate3d(${diamondPositionX}px, ${diamondPositionY}px, 0)`
+          }).removeClass('hidden').find('img')
+            .addClass('show');
+        }, 500);
+      } else {
+        // 设置新障碍物的位置
+        let stoneX = this.getRandom(0, screenWidth - 100);
+        let stoneY = this.getRandom(0, landHeight - 100);
+        $(`.temp:nth-child(${num})`).css({
+          transform: `translate3d(${stoneX}px, ${stoneY}px, 0)`,
+          opacity: 1
+        }).find('img').addClass('show');
       }
+
+      // let x1 = this.getRandom(0, screenWidth - 100);
+      // let y1 = this.getRandom(0, landHeight - 100);
+      // $(`.temp:nth-child(${num})`).css({
+      //   transform: `translate3d(${x1}px, ${y1}px, 0)`,
+      //   opacity: 1
+      // });
+      // // 生成一个1-8的随机整数，表示不同矿石
+      // let randomPosition = this.getRandom(1, 8);
+      // // let randomId = this.getRandom(9, 100);
+      // // randomId = 10;
+      // console.log(randomPosition);
+      // // 随机克隆一个矿石
+      // let newTemp = $(`#temp${randomPosition}`).clone();
+      // // 随机生成一个9-100的id
+      // newTemp.attr('id', `temp${num}`);
+      // newTemp.appendTo($('.ore_list'));
+      // // let newX = 0;
+      // // let newY = 0;
+      // // $(`#temp${num}`).attr('style', `transform: translate3d(${newX}px,${newY}px,0)!important`);
+
+      // 重新获取矿石位置
+      this.getOreLocation();
+    }
+    checkOverlay(newWidth, newHeight) {
+      // 设置新钻石的位置
+      let x = this.getRandom(0, screenWidth - 100);
+      let y = this.getRandom(0, landHeight - 100);
+      let XR = x + newWidth;
+      let YB = y + newHeight;
+      // console.log(diamondPositionX, diamondPositionY + topHeight, 'newWidth', newWidth, 'newHeight', newHeight);
+      let position = [];
+      // 处理重叠位置
+      for (let j = 0; j < this.oreList.length; j += 1) {
+        if (this.oreList[j].yb < x || this.oreList[j].x > XR || this.oreList[j].y > YB || this.oreList[j].xr < y) {
+          console.log('未重叠');
+          position.push(x);
+          position.push(y);
+        } else {
+          console.log(`和第${j + 1}个物体重叠`);
+          // x = this.getRandom(0, screenWidth - 100);
+          // y = this.getRandom(0, landHeight - 100);
+        }
+      }
+      return position;
+    }
+    /**
+     * 获取指定区间随机数
+     * @memberof GAME
+     */
+    getRandom(min, max) {
+      return parseInt((Math.random() * (max - min)) + min, 10);
     }
     /**
      * 处理绳子收回时有矿石的方法
@@ -259,8 +344,6 @@ $(() => {
      */
     handleRecoverAction(sort) {
       $(`.temp:nth-child(${sort}) .shadow`).addClass('hidden');
-      let rem = screenWidth * 100 / designWidth;
-      let topHeight = 2.62 * rem;
       let x1 = hook.offset().left;
       let y1 = hook.offset().top - topHeight;
       $(`.temp:nth-child(${sort})`).css({
