@@ -474,6 +474,7 @@ $(() => {
         $('.count_down').addClass('hidden');
         // 初始化游戏
         new GAME(); // eslint-disable-line
+        $('.count_down').html(3);
       }
       $('.count_down').html(count);
     }, 1000);
@@ -493,7 +494,7 @@ $(() => {
   });
   // 再玩一次按钮
   $('.oncemore_btn').click(() => {
-    $('.congratulation_pop').addClass('hidden');
+    $('.congratulation_pop, .mask').addClass('hidden');
     initGame();
   });
 
