@@ -56,6 +56,14 @@ module.exports = {
         }
       },
       {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('media/[name].[hash:7].[ext]')
+        }
+      },
+      {
         test: /\.(woff2?|eot|ttf|otf|png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -68,7 +76,7 @@ module.exports = {
         loader: 'html-loader',
         options: {
           ignoreCustomFragments: [/\{\{.*?}}/],
-          attrs: ['img:src', 'link:href']
+          attrs: ['img:src', 'link:href', 'audio:src']
         }
       }
     ],

@@ -14,13 +14,14 @@
   <meta name="full-screen" content="true">
   <meta name="x5-orientation" content="horizontal">
   <meta name="360-fullscreen" content="true">
-  <meta name="wnl-back-swipe" content="false">
+  <meta name="wnl-back-swipe" content="true">
   <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.2/vconsole.min.js"></script> -->
 </head>
 
 <body>
   <div class="back_icon"></div>
   <div class="main_container">
+    <div class="click_area"></div>
     <div class="top_wrapper">
       <div class="top_head">
         <div class="top_left">
@@ -90,7 +91,7 @@
         </div>
       </div>
     </div>
-    <div class="pop_rule hidden">
+    <div class="pop_rule">
       <div class="pop_close">
         <div class="close_icon"></div>
       </div>
@@ -102,7 +103,19 @@
         4、挖的钻石个数等同于相应的金币，必须登录领取后，才会存入用户的金币账户，金币最后可用于兑换现金并进行提现。
       </p>
     </div>
-    <div class="mask hidden"></div>
+    <div class="mask"></div>
+    <div class="count_down">3</div>
+    <div class="congratulation_pop hidden">
+      <img src="./assets/gongxi.png" alt="">
+      <div class="result">此次挖得钻石<span class="ore_number red">10</span>个，可获得<span class="coin_number red">100</span>个金币</div>
+      <div class="btn_wrapper">
+        <div class="btn get_coin_btn">领取金币</div>
+        <div class="btn share_btn ">奔走相告</div>
+        <div class="btn oncemore_btn hidden">再玩一次</div>
+      </div>
+    </div>
+    <div class="music on"></div>
+    <audio src="./assets/music.mp3" id="audio" autoplay></audio>
   </div>
 </body>
 

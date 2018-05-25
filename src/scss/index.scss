@@ -60,7 +60,7 @@ html, body {
         #line {
             position: absolute;
             width: 2px;
-            height: 2px;
+            height: 7px;
             background-color: rgb(181,181,180);
             margin-left: .258rem;
             margin-top: .37rem;            
@@ -169,7 +169,7 @@ html, body {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 10;
+            z-index: 30;
             &.show {
                 animation: scalelittle .8s ease-in-out forwards;
                 @keyframes scalelittle {
@@ -178,7 +178,7 @@ html, body {
                         filter: brightness(1);
                     }
                     50% {
-                        transform: scale(1.1);
+                        transform: scale(1.5);
                         filter: brightness(.9);
                     }
                     100% {
@@ -285,7 +285,7 @@ html, body {
         margin-left: -1.47rem;
         background-color: #ffffff;
         border-radius: .1rem;
-        z-index: 2;
+        z-index: 100;
         .pop_close {
             position: absolute;
             top: 0;
@@ -312,5 +312,92 @@ html, body {
             line-height: .24rem;
             padding: 0 .15rem;
         }
+    }
+    .count_down {
+        width: .8rem;
+        height: .8rem;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-left: -.4rem;
+        margin-top: -.4rem;
+        background: RGBA(161, 161, 161, .4);
+        color: #ffffff;
+        line-height: .8rem;
+        font-size: .47rem;
+        z-index: 98;
+        border-radius: 100%;
+        text-align: center;
+    }
+    .congratulation_pop {
+        width: 2.95rem;
+        height: 1.96rem;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-left: -1.475rem;
+        margin-top: -.98rem;
+        background: #ffffff;
+        color: #333333;
+        z-index: 80;
+        border-radius: .1rem;
+        img {
+            width: 100%;
+        }
+        .result {
+            line-height: .24rem;
+            font-size: .17rem;
+            margin-top: .2rem;
+            text-align: center;
+            .red {
+                color: #D03F3F;
+            }
+        }
+        .btn_wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            .btn {
+                width: 50%;
+                height: .5rem;
+                border-top: 1px solid #EAEAEA;
+                line-height: .5rem;
+                text-align: center;
+                &.get_coin_btn {
+                    border-right: 1px solid #EAEAEA
+                }
+            }
+        }
+    }
+    .music {
+        position: fixed;
+        top: .2rem;
+        right: .15rem;
+        width: .3rem;
+        height: .3rem;
+        @include bg-image('../assets/music-on-icon');
+        &.on {
+            animation: rotate 3s linear infinite;
+        }
+        &.off {
+            @include bg-image('../assets/music-off-icon');
+        }
+        @keyframes rotate {
+            0% {
+                transform: rotate(0);
+            }
+            100% {
+                transform: rotate(1turn);
+            }
+        }
+    }
+    .click_area {
+        position: absolute;
+        width: 100%;
+        margin-top: 1.8rem;
+        height: calc(100vh - 1.8rem);
+        z-index: 60;
     }
 }
