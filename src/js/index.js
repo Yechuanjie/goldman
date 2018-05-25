@@ -471,12 +471,13 @@ $(() => {
       count -= 1;
       if (count === 0) {
         clearInterval(countDown);
+        $('.count_down').html('3');
         $('.count_down').addClass('hidden');
         // 初始化游戏
         new GAME(); // eslint-disable-line
-        $('.count_down').html(3);
+      } else {
+        $('.count_down').html(count);
       }
-      $('.count_down').html(count);
     }, 1000);
   }
   // 关闭游戏规则弹窗
