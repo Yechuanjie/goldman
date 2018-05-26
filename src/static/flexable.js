@@ -13,9 +13,9 @@
         maxWidth = maxWidth || 540;
         width>maxWidth && (width=maxWidth);
         var rem = width * 100 / designWidth;
-        if (window.navigator.userAgent.indexOf('Lenovo A889') > -1 || window.navigator.userAgent.indexOf('HUAWEI') > -1) {
-            rem -= 6;
-        }
+        // if (window.navigator.userAgent.indexOf('Lenovo A889') > -1 || window.navigator.userAgent.indexOf('HUAWEI') > -1) {
+        //     rem -= 6;
+        // }
         remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
     }
 

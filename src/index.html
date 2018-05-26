@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="UTF-8">
-  <title>挖金小游戏</title>
+  <title></title>
   <meta name="apple-touch-fullscreen" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, user-scalable = no,initial-scale=1.0, maximum-scale=1.0, user-scalable = no">
@@ -19,6 +19,7 @@
 </head>
 
 <body>
+  <div class="body_mask hidden"></div>
   <div class="back_icon"></div>
   <div class="main_container">
     <div class="click_area"></div>
@@ -106,16 +107,25 @@
     <div class="mask"></div>
     <div class="count_down">3</div>
     <div class="congratulation_pop hidden">
-      <img src="./assets/gongxi.png" alt="">
-      <div class="result">此次挖得钻石<span class="ore_number red">10</span>个，可获得<span class="coin_number red">100</span>个金币</div>
-      <div class="btn_wrapper">
-        <div class="btn get_coin_btn">领取金币</div>
-        <div class="btn share_btn ">奔走相告</div>
-        <div class="btn oncemore_btn hidden">再玩一次</div>
+      <div class="section1">
+        <img src="./assets/gongxi.png" alt="">
+        <div class="result">此次挖得钻石<span class="ore_number red">10</span>个，可获得<span class="coin_number red">100</span>个金币</div>
+        <div class="btn_wrapper">
+          <div class="btn get_coin_btn">领取金币</div>
+          <div class="btn share_btn">奔走相告</div>
+          <div class="btn oncemore_btn hidden">再玩一次</div>
+        </div>
+      </div>
+      <div class="section2 hidden">
+        <img src="./assets/loading-icon@3x.png" alt="" class="load_icon">
+        <div class="tip">正在进入我的金币…</div>
+        <div class="text">做更多任务，可获得相对应的金币，赶快参与</div>
       </div>
     </div>
     <div class="music on"></div>
     <audio src="./assets/music.mp3" id="audio" autoplay></audio>
+    <div class="share_guide hidden">分享给好友后，请点击“返回51万年历”，增加一次游戏机会。</div>
+    <div class="guide_mask hidden"></div>
   </div>
 </body>
 

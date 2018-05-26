@@ -11,7 +11,7 @@ html, body {
     position: fixed;
     top: .19rem;
     left: .14rem;
-    z-index: 2;
+    z-index: 999;
     @include bg-image('../assets/back-icon')
 }
 .main_container {
@@ -325,7 +325,7 @@ html, body {
         color: #ffffff;
         line-height: .8rem;
         font-size: .47rem;
-        z-index: 98;
+        z-index: 79;
         border-radius: 100%;
         text-align: center;
     }
@@ -341,33 +341,61 @@ html, body {
         color: #333333;
         z-index: 80;
         border-radius: .1rem;
-        img {
-            width: 100%;
-        }
-        .result {
-            line-height: .24rem;
-            font-size: .17rem;
-            margin-top: .2rem;
-            text-align: center;
-            .red {
-                color: #D03F3F;
+        .section1 {
+            img {
+                width: 100%;
+            }
+            .result {
+                line-height: .24rem;
+                font-size: .17rem;
+                margin-top: .2rem;
+                text-align: center;
+                .red {
+                    color: #D03F3F;
+                }
+            }
+            .btn_wrapper {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                display: flex;
+                .btn {
+                    width: 50%;
+                    height: .5rem;
+                    border-top: 1px solid #EAEAEA;
+                    line-height: .5rem;
+                    text-align: center;
+                    &.get_coin_btn {
+                        border-right: 1px solid #EAEAEA;
+                        &.large {
+                            border-right: none;
+                            width: 100%;
+                        }
+                    }
+                }
             }
         }
-        .btn_wrapper {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            .btn {
-                width: 50%;
-                height: .5rem;
-                border-top: 1px solid #EAEAEA;
-                line-height: .5rem;
+        .section2 {
+            .load_icon {
+                width: .4rem;
+                height: .4rem;
+                margin: .25rem auto .12rem;
+                animation: rotate 1s linear infinite;
+            }
+            .tip {
+                font-size: 13px;
+                color: #999999;
+                line-height: .18rem;
+                margin-bottom: .26rem;
                 text-align: center;
-                &.get_coin_btn {
-                    border-right: 1px solid #EAEAEA
-                }
+            }
+            .text {
+                margin: 0 .2rem;
+                font-size: .17rem;
+                line-height: .24rem;
+                color: #333333;
+                text-align: left;
             }
         }
     }
@@ -399,5 +427,13 @@ html, body {
         margin-top: 1.8rem;
         height: calc(100vh - 1.8rem);
         z-index: 60;
+    }
+    .share_guide {
+        position: fixed;
+        color: #ffffff;
+        font-size: .16rem;
+        line-height: .24rem;
+        margin: 0 .3rem;
+        z-index: 102;
     }
 }

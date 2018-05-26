@@ -22,6 +22,15 @@ if (util.isWnl) {
     url: idnexShareInfo.url
   });
 }
+if (!util.isWnl) {
+  $('.body_mask').removeClass('hidden');
+  if (util.isIOS) {
+    window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
+  } else if (util.isAndroid) {
+    window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
+  }
+}
+
 $(() => {
   let userInfo = {
     nickname: '我',
@@ -46,6 +55,7 @@ $(() => {
       };
     }
   }
+
   const audio = document.getElementById('audio');
   play(audio);
   // new toast().show('toast~'); //eslint-disable-line
@@ -54,10 +64,9 @@ $(() => {
   let line = $('#line');
   console.log(hook.offset());
 
-  let DIAMOND_NUM = 0; //所得矿石
-
   // 返回按钮
   $('.back_icon').click(() => {
+    localStorage.removeItem('data');
     window.location.href = 'protocol://back';
   });
 
@@ -86,25 +95,47 @@ $(() => {
   let rr = 0;
   let hh = MIN_ROPE_LENGTH;
   let FINISH = false;
+  let DIAMOND_NUM = 0; //所得矿石
+
+  // 处理登陆返回后的逻辑 ps:登录成功或者从登录页直接返回该页面，都会导致本页面刷新。
+  let localdata = JSON.parse(localStorage.getItem('data'));
+  if (localdata) {
+    getInfo();
+    $('.congratulation_pop, .mask').removeClass('hidden');
+    $('.pop_rule').addClass('hidden');
+    $('.ore_number').html(localdata.num);
+    $('.coin_number').html(localdata.coin);
+    if (localdata.time === 2) {
+      $('.oncemore_btn, .share_btn').addClass('hidden');
+      $('.get_coin_btn').addClass('large');
+    }
+  }
 
   class GAME {
-    constructor() {
+    constructor(again = false) {
+      this.again = again;
       this.animateInterval = null;
       this.actionInterval = null; // 矿工定时器
       this.extend = null;
       this.manImgList = []; // 矿工图片动画列表
       this.count = 0; // 矿工动画基数
       this.oreList = []; // 矿石位置列表
-      this.TIME = 10; //倒计时
+      this.TIME = 7; //倒计时
+      // this.initData();
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
       $('.click_area').on('click', (e) => {
         e.preventDefault();
+        if (!$('.congratulation_pop').hasClass('hidden')) {
+          return;
+        }
         // 当绳子没有伸缩时，点击时才执行动画，避免重复执行
         if (hh <= MIN_ROPE_LENGTH) {
           clearInterval(this.animateInterval);
-          this.lineAnimation();
+          if (!this.again || localStorage.getItem('data')) {
+            this.lineAnimation();
+          }
         }
       });
     }
@@ -441,12 +472,26 @@ $(() => {
      */
     gameOver() {
       console.log(DIAMOND_NUM);
+      let coinNumber;
+      if (DIAMOND_NUM >= 0 && DIAMOND_NUM <= 15) {
+        coinNumber = 50;
+      } else if (DIAMOND_NUM > 15 && DIAMOND_NUM <= 25) {
+        coinNumber = 100;
+      } else if (DIAMOND_NUM > 25) {
+        coinNumber = 150;
+      }
       $('.ore_number').html(DIAMOND_NUM);
+      $('.coin_number').html(coinNumber);
       $('.congratulation_pop, .mask').removeClass('hidden');
+      if (this.again) {
+        $('.oncemore_btn').addClass('hidden');
+        $('.get_coin_btn').addClass('large');
+      }
       clearInterval(this.animateInterval);
       clearInterval(this.extend);
       clearInterval(this.actionInterval);
-
+      // 充重置数据
+      this.resetData();
       // 设置结果页分享
       // alert(JSON.stringify(userInfo));
       let name = userInfo.nickname;
@@ -462,10 +507,32 @@ $(() => {
         url: idnexShareInfo.url
       });
     }
+    resetData() {
+      xx = 0;
+      yy = 0;
+      rr = 0;
+      hh = MIN_ROPE_LENGTH;
+      DIAMOND_NUM = 0;
+      FINISH = false;
+      // this.animateInterval = null;
+      // this.actionInterval = null; // 矿工定时器
+      // this.extend = null;
+      // this.manImgList = []; // 矿工图片动画列表
+      // this.count = 0; // 矿工动画基数
+      // this.oreList = []; // 矿石位置列表
+      // this.TIME = 60; //倒计时
+      $('.man').attr('src', this.manImgList[0]);
+      line.css({
+        transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
+        height: `${hh}px`
+      });
+    }
   }
 
-  function initGame() {
+  function initGame(again = false) {
     $('.count_down').removeClass('hidden');
+    $('.number').html('0');
+    $('.time').html('60');
     let count = 3;
     let countDown = setInterval(() => {
       count -= 1;
@@ -474,7 +541,7 @@ $(() => {
         $('.count_down').html('3');
         $('.count_down').addClass('hidden');
         // 初始化游戏
-        new GAME(); // eslint-disable-line
+        new GAME(again); // eslint-disable-line
       } else {
         $('.count_down').html(count);
       }
@@ -484,19 +551,24 @@ $(() => {
   $('.pop_close').click((e) => {
     e.stopPropagation();
     $('.pop_rule, .mask').addClass('hidden');
-    initGame();
+    initGame(localStorage.getItem('data') ? true : false); // eslint-disable-line
     getInfo();
   });
 
 
   // 奔走相告按钮
   $('.share_btn').click(() => {
+    $('.share_guide, .guide_mask').removeClass('hidden');
+  });
+  $('.guide_mask').click(() => {
+    $('.share_guide, .guide_mask').addClass('hidden');
     wnlShare.showSharePlatform();
   });
   // 再玩一次按钮
   $('.oncemore_btn').click(() => {
     $('.congratulation_pop, .mask').addClass('hidden');
-    initGame();
+    // 再玩一次传入标识
+    initGame(true);
   });
 
   $('.mask').click((e) => {
@@ -522,12 +594,40 @@ $(() => {
   };
   // 领取金币按钮
   $('.get_coin_btn').click(() => {
+    let diamondNum = $('.ore_number').html();
+    let coinNum = $('.coin_number').html();
+    let times = 1;
+    if ($('.get_coin_btn').hasClass('large')) {
+      times = 2;
+    }
+    let data = {
+      num: diamondNum,
+      time: times,
+      coin: coinNum
+    };
     // 未登录
     if (userInfo.userId === '') {
+      localStorage.setItem('data', JSON.stringify(data));
       window.location.href = 'protocol://enterlogin#';
     } else {
-      // 跳转金币落地页
-      window.location.href = 'protocol://view_goldtask';
+      $('.congratulation_pop .section2').removeClass('hidden');
+      $('.congratulation_pop .section1').addClass('hidden');
+      let reqUrl = `http://192.168.1.110:8780/api/Coin_Activity/Complete?code=A_1002_1&uid=${userInfo.userId}&otherinfo=${diamondNum}&logintoken=${userInfo.token}`;
+      $.ajax({
+        url: reqUrl,
+        type: 'GET',
+        dataType: 'json',
+        success: (res) => {
+          console.log(JSON.stringify(res.data));
+          setTimeout(() => {
+            // 跳转金币落地页
+            window.location.href = 'protocol://view_goldtask';
+          }, 2000);
+        },
+        fail: (err) => {
+          console.log(err);
+        }
+      });
     }
   });
 });
