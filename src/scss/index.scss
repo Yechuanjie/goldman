@@ -365,6 +365,7 @@ html, body {
                     height: .5rem;
                     border-top: 1px solid #EAEAEA;
                     line-height: .5rem;
+                    font-size: .17rem;
                     text-align: center;
                     &.get_coin_btn {
                         border-right: 1px solid #EAEAEA;
@@ -430,10 +431,11 @@ html, body {
     }
     .share_guide {
         position: fixed;
+        top: 1.5rem;
         color: #ffffff;
         font-size: .16rem;
         line-height: .24rem;
         margin: 0 .3rem;
-        z-index: 102;
+        z-index: 9998;
     }
 }

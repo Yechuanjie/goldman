@@ -13,8 +13,8 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    index: './src/js/index',
-    about: './src/js/about.js'
+    index: './src/js/index'
+    // about: './src/js/about.js'
   },
   output: {
     path: config.build.assetsRoot,

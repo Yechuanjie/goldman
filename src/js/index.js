@@ -111,6 +111,57 @@ $(() => {
     }
   }
 
+  // function random(min, max) {
+  //   return parseInt((Math.random() * Math.abs((max - min))) + min, 10);
+  // }
+  // function init() {
+  //   let list = [];
+  //   let object = $('.ore_list .temp');
+  //   object.each(function() {
+  //     let x = random(0, screenWidth - 100);
+  //     let y = random(topHeight, screenHeight - 180);
+  //     list.push({
+  //       x,
+  //       y,
+  //       width: $(this).width(),
+  //       height: $(this).height(),
+  //       xr: x + $(this).width(),
+  //       yb: y + $(this).height()
+  //     });
+  //   });
+  // }
+  // function check(num) {
+  //   // 设置新障碍物的位置
+  //   let newWidth = $(`.temp:nth-child(${num})`).width();
+  //   let newHeight = $(`.temp:nth-child(${num})`).height();
+  //   let newx = random(0, screenWidth - 100);
+  //   let newy = random(topHeight, screenHeight - 180);
+  //   let positionInfo = {
+  //     x: newx, y: newy, width: newWidth, height: newHeight
+  //   };
+  //   // console.log(p);
+  //   let p = positionInfo;
+  //   for (let i = 0; i < list.length; i += 1) {
+  //     if (p.x < list[i].xr && p.x + p.width > list.x && p.y < list.yb && p.y + p.height > list.y) {
+  //       // console.log(`和第${i + 1}位置冲突`);
+  //       return check(num);
+  //     }
+  //   }
+  //   return p;
+  // }
+  // function setDimondPosition() {
+  //   let object = $('.ore_list .temp');
+  //   let postionList = [];
+  //   object.each(function() {
+  //   });
+  //   object.each(function(i) {
+  //     $(this).css({
+  //       transform: `translate3d(${postionList[i].x}px, ${Math.abs(postionList[i].y - topHeight)}px, 0)`
+  //     });
+  //   });
+  // }
+  // setDimondPosition();
+
   class GAME {
     constructor(again = false) {
       this.again = again;
@@ -120,8 +171,7 @@ $(() => {
       this.manImgList = []; // 矿工图片动画列表
       this.count = 0; // 矿工动画基数
       this.oreList = []; // 矿石位置列表
-      this.TIME = 7; //倒计时
-      // this.initData();
+      this.TIME = 600; //倒计时
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
@@ -187,7 +237,7 @@ $(() => {
      * @memberof GAME
      */
     initHookAnimation() {
-      this.animateInterval = setInterval(this.hookAnimation, 30);
+      this.animateInterval = setInterval(this.hookAnimation, 20);
     }
     /**
      * 钩子摆动动画
@@ -245,10 +295,10 @@ $(() => {
           transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
           height: `${hh}px`
         });
-      }, 10);
+      }, 5);
     }
     /**
-     * 碰撞检测
+     * 两个物体的碰撞检测
      * @memberof GAME
      */
     checkImpact(p) {
@@ -279,13 +329,10 @@ $(() => {
         if (this.oreList[i].yb < y1 || this.oreList[i].x > xr1 || this.oreList[i].y > yb1 || this.oreList[i].xr < x1) {
           // console.log('未重叠');
         } else {
-          // if (p) {
-          console.log(`和第${i + 1}个物体重叠`);
-          // }
           impactNum = i + 1;
         }
       }
-      if (impactNum) console.log('impactNum', impactNum);
+      // if (impactNum) console.log('impactNum', impactNum);
       return impactNum;
     }
     /**
@@ -294,6 +341,18 @@ $(() => {
      */
     recover(num) {
       // console.log(num);
+      let speed = 5;
+      if (num === 1) {
+        speed = 6;
+      } else if (num === 2 || num === 3) {
+        speed = 7;
+      } else if (num === 5 || num === 6) {
+        speed = 8;
+      } else if (num === 4) {
+        speed = 9;
+      } else if (num === 7 || num === 8) {
+        speed = 10;
+      }
       this.manAction();
       let interval = setInterval(() => {
         if (hh > MIN_ROPE_LENGTH) {
@@ -315,7 +374,36 @@ $(() => {
           transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
           height: `${hh}px`
         });
-      }, 10);
+      }, speed);
+    }
+    /**
+     * 检测位置
+     * @memberof GAME
+     */
+    checkPosition(num) {
+      // 设置新障碍物的位置
+      let newWidth = $(`.temp:nth-child(${num})`).width();
+      let newHeight = $(`.temp:nth-child(${num})`).height();
+      let newx = this.getRandom(0, screenWidth - 100);
+      let newy = this.getRandom(topHeight, screenHeight - 180);
+      let positionInfo = {
+        x: newx,
+        y: newy,
+        width: newWidth,
+        height: newHeight
+      };
+      // console.log(p);
+      let p = positionInfo;
+      for (let i = 0; i < this.oreList.length; i += 1) {
+        if (p.x < this.oreList[i].xr &&
+          p.x + p.width > this.oreList[i].x &&
+           p.y < this.oreList[i].yb &&
+            p.y + p.height > this.oreList[i].y) {
+          // console.log(`和第${i + 1}位置冲突`);
+          return this.checkPosition(num);
+        }
+      }
+      return p;
     }
     /**
      * 隐藏勾到矿石，并生成新的矿石
@@ -333,56 +421,37 @@ $(() => {
         $(`.temp:nth-child(${num})`).find('.shadow').attr('class', `shadow shadow${index}`);
         $(`.temp:nth-child(${num})`).find('.shine').attr('id', `shine${index}`);
 
-        let newWidth = $(`.temp:nth-child(${num})`).width();
-        let newHeight = $(`.temp:nth-child(${num})`).height();
-        let positionInfo = {
-          width: newWidth,
-          height: newHeight,
-          x: this.getRandom(0, screenWidth - 100),
-          y: this.getRandom(0, screenHeight - topHeight - 180)
-        };
+        // let newWidth = $(`.temp:nth-child(${num})`).width();
+        // let newHeight = $(`.temp:nth-child(${num})`).height();
+        // let newx = this.getRandom(0, screenWidth - 100);
+        // // let newy = this.getRandom(topHeight + 180, screenHeight - topHeight - 180);
+        // let newy = this.getRandom(topHeight, screenHeight - topHeight);
+        // let positionInfo = {
+        //   x: newx,
+        //   y: newy,
+        //   width: newWidth,
+        //   height: newHeight
+        // };
         /////////////////////////*****************************////////////////////////
         // 检测位置
-        // let checkPosition = (p) => {
-        //   let newp = {
-        //     width: newWidth,
-        //     height: newHeight
-        //   };
-        //   for (let i = 0; i < this.oreList.length; i += 1) {
-        //     if (Math.abs(p.x - this.oreList[i].x) < 50 && Math.abs(p.y - this.oreList[i].y) > 50) {
-        //       newp.x = this.getRandom(0 + 50, screenWidth - 100);
-        //     } else if (Math.abs(p.x - this.oreList[i].x) > 50 && Math.abs(p.y - this.oreList[i].y) < 50) {
-        //       newp.y = this.getRandom(50, screenHeight - topHeight - 100);
-        //     } else if (Math.abs(p.x - this.oreList[i].x) < 50 && Math.abs(p.y - this.oreList[i].y) < 50) {
-        //       newp.x = this.getRandom(0 + 50, screenWidth - 100);
-        //       newp.y = this.getRandom(0, screenHeight - topHeight - 100);
-        //     } else {
-        //       newp = p;
-        //     }
-        //   }
-        //   if (newp.x !== p.x || newp.y !== p.y) {
-        //     return checkPosition(newp);
-        //   }
-        //   console.log(newp);
-        //   return newp;
-        // };
-        // let newp = checkPosition(positionInfo);
-        // console.log(positionInfo, newp);
+        let positionInfo = this.checkPosition(num);
         /////////////////////////*****************************////////////////////////
+        // console.log(positionInfo.y, topHeight);
         setTimeout(() => {
           $(`.temp:nth-child(${num})`).css({
-            transform: `translate3d(${positionInfo.x}px, ${positionInfo.y}px, 0)`
+            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y - topHeight)}px, 0)`
           }).removeClass('hidden').find('img')
             .addClass('show');
         }, 500);
       } else {
         $(`.temp:nth-child(${num})`).find('img').addClass('hidden');
-        // 设置新障碍物的位置
-        let stoneX = this.getRandom(0, screenWidth - 100);
-        let stoneY = this.getRandom(0, screenHeight - topHeight - 100);
+        /////////////////////////*****************************////////////////////////
+        // 检测位置
+        let positionInfo = this.checkPosition(num);
+        /////////////////////////*****************************////////////////////////
         setTimeout(() => {
           $(`.temp:nth-child(${num})`).css({
-            transform: `translate3d(${stoneX}px, ${stoneY}px, 0)`,
+            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y - topHeight)}px, 0)`,
             opacity: 1
           }).find('img, .shadow').removeClass('hidden')
             .addClass('show');
@@ -391,7 +460,7 @@ $(() => {
       setTimeout(() => {
         // 重新获取矿石位置
         this.getOreLocation();
-      }, 600);
+      }, 500);
     }
     // /**
     //  * 两个矩形div的碰撞检测
@@ -473,11 +542,11 @@ $(() => {
     gameOver() {
       console.log(DIAMOND_NUM);
       let coinNumber;
-      if (DIAMOND_NUM >= 0 && DIAMOND_NUM <= 15) {
+      if (DIAMOND_NUM >= 0 && DIAMOND_NUM <= 10) {
         coinNumber = 50;
-      } else if (DIAMOND_NUM > 15 && DIAMOND_NUM <= 25) {
+      } else if (DIAMOND_NUM > 10 && DIAMOND_NUM <= 20) {
         coinNumber = 100;
-      } else if (DIAMOND_NUM > 25) {
+      } else if (DIAMOND_NUM > 20) {
         coinNumber = 150;
       }
       $('.ore_number').html(DIAMOND_NUM);
@@ -558,10 +627,7 @@ $(() => {
 
   // 奔走相告按钮
   $('.share_btn').click(() => {
-    $('.share_guide, .guide_mask').removeClass('hidden');
-  });
-  $('.guide_mask').click(() => {
-    $('.share_guide, .guide_mask').addClass('hidden');
+    $('.share_guide').removeClass('hidden');
     wnlShare.showSharePlatform();
   });
   // 再玩一次按钮
