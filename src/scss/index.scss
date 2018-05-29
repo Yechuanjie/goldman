@@ -80,8 +80,12 @@ html, body {
         margin-top: 2.5rem;
         .ore_list {
             position: relative;
-            
         }
+    }
+    .ore_list {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     // 公共样式
     .shadow {

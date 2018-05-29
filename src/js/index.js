@@ -90,6 +90,8 @@ $(() => {
   const landHeight = (screenHeight * percent) - hookHeight - MIN_ROPE_LENGTH;
   const MAX_ROPE_LENGTH = Math.sqrt(Math.pow(screenWidth / 2, 2) + Math.pow(landHeight, 2)); // eslint-disable-line
 
+  const LINE_SPEED = 9;
+  const HOOK_SPEED = 18;
   let xx = 0;
   let yy = 0;
   let rr = 0;
@@ -111,56 +113,59 @@ $(() => {
     }
   }
 
-  // function random(min, max) {
-  //   return parseInt((Math.random() * Math.abs((max - min))) + min, 10);
-  // }
+  function random(min, max) {
+    return parseInt((Math.random() * Math.abs((max - min))) + min, 10);
+  }
   // function init() {
-  //   let list = [];
-  //   let object = $('.ore_list .temp');
-  //   object.each(function() {
-  //     let x = random(0, screenWidth - 100);
-  //     let y = random(topHeight, screenHeight - 180);
-  //     list.push({
-  //       x,
-  //       y,
-  //       width: $(this).width(),
-  //       height: $(this).height(),
-  //       xr: x + $(this).width(),
-  //       yb: y + $(this).height()
+  //   // 随机一个行数
+  //   // let lineNumber = random(2, 6);
+  //   // let divNumInLine = Math.floor(8 / lineNumber);
+  //   // // let randomDivNumLine = random(1, divNumInLine);
+  //   // console.log(lineNumber, divNumInLine);
+  //   // let newx = this.getRandom(0, screenWidth - 100);
+  //   // let newy = this.getRandom(topHeight + 20, screenHeight - 130);
+  //   let rann = 45;
+  //   let baseHeight = topHeight + 20;
+  //   for (let i = 0; i < 8; i += 1) {
+  //     let temp = $(`.ore_list .temp:nth-child(${i + 1})`);
+  //     let x = random(i * rann, (i + 1) * rann);
+  //     let y = random((i + 1) * baseHeight, screenHeight - 500);
+  //     temp.css({
+  //       transform: `translate3d(${x}px, ${Math.abs(y)}px, 0)`
   //     });
-  //   });
-  // }
-  // function check(num) {
-  //   // 设置新障碍物的位置
-  //   let newWidth = $(`.temp:nth-child(${num})`).width();
-  //   let newHeight = $(`.temp:nth-child(${num})`).height();
-  //   let newx = random(0, screenWidth - 100);
-  //   let newy = random(topHeight, screenHeight - 180);
-  //   let positionInfo = {
-  //     x: newx, y: newy, width: newWidth, height: newHeight
-  //   };
-  //   // console.log(p);
-  //   let p = positionInfo;
-  //   for (let i = 0; i < list.length; i += 1) {
-  //     if (p.x < list[i].xr && p.x + p.width > list.x && p.y < list.yb && p.y + p.height > list.y) {
-  //       // console.log(`和第${i + 1}位置冲突`);
-  //       return check(num);
-  //     }
   //   }
-  //   return p;
   // }
-  // function setDimondPosition() {
-  //   let object = $('.ore_list .temp');
-  //   let postionList = [];
-  //   object.each(function() {
-  //   });
-  //   object.each(function(i) {
-  //     $(this).css({
-  //       transform: `translate3d(${postionList[i].x}px, ${Math.abs(postionList[i].y - topHeight)}px, 0)`
-  //     });
-  //   });
-  // }
-  // setDimondPosition();
+  function setDimondPosition() {
+    let rann = 35;
+    let baseHeight = topHeight + 20;
+    let maxwidth = screenWidth - 100;
+    let positionY = [];
+    for (let i = 0; i < 8; i += 1) {
+      let temp = $(`.ore_list .temp:nth-child(${i + 1})`);
+      let x;
+      let y;
+      x = random(i * rann, (i + 1) * rann > maxwidth ? maxwidth : (i + 1) * rann);
+      y = random(baseHeight, screenHeight - 80);
+      // x = random(0, maxwidth);
+      // y = random(baseHeight, screenHeight - 130);
+      let checky = (top) => {
+        let newy = 0;
+        if (Math.abs(positionY[i] - top) < 50) {
+          newy = random(baseHeight, screenHeight - 80);
+          console.log('y方向重叠');
+          return checky(newy);
+        }
+        return newy;
+      };
+      positionY.push(checky(y));
+      console.log(positionY);
+
+      temp.css({
+        transform: `translate3d(${x}px, ${Math.abs(y)}px, 0)`
+      });
+    }
+  }
+  setDimondPosition();
 
   class GAME {
     constructor(again = false) {
@@ -171,7 +176,7 @@ $(() => {
       this.manImgList = []; // 矿工图片动画列表
       this.count = 0; // 矿工动画基数
       this.oreList = []; // 矿石位置列表
-      this.TIME = 600; //倒计时
+      this.TIME = 6000; //倒计时
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
@@ -237,7 +242,7 @@ $(() => {
      * @memberof GAME
      */
     initHookAnimation() {
-      this.animateInterval = setInterval(this.hookAnimation, 20);
+      this.animateInterval = setInterval(this.hookAnimation, HOOK_SPEED);
     }
     /**
      * 钩子摆动动画
@@ -295,7 +300,7 @@ $(() => {
           transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
           height: `${hh}px`
         });
-      }, 5);
+      }, LINE_SPEED);
     }
     /**
      * 两个物体的碰撞检测
@@ -341,17 +346,17 @@ $(() => {
      */
     recover(num) {
       // console.log(num);
-      let speed = 5;
+      let speed = LINE_SPEED;
       if (num === 1) {
-        speed = 6;
+        speed = LINE_SPEED + 1;
       } else if (num === 2 || num === 3) {
-        speed = 7;
+        speed = LINE_SPEED + 3;
       } else if (num === 5 || num === 6) {
-        speed = 8;
+        speed = LINE_SPEED + 5;
       } else if (num === 4) {
-        speed = 9;
+        speed = LINE_SPEED + 7;
       } else if (num === 7 || num === 8) {
-        speed = 10;
+        speed = LINE_SPEED + 9;
       }
       this.manAction();
       let interval = setInterval(() => {
@@ -385,7 +390,7 @@ $(() => {
       let newWidth = $(`.temp:nth-child(${num})`).width();
       let newHeight = $(`.temp:nth-child(${num})`).height();
       let newx = this.getRandom(0, screenWidth - 100);
-      let newy = this.getRandom(topHeight, screenHeight - 180);
+      let newy = this.getRandom(topHeight + 20, screenHeight - 130);
       let positionInfo = {
         x: newx,
         y: newy,
@@ -399,7 +404,7 @@ $(() => {
           p.x + p.width > this.oreList[i].x &&
            p.y < this.oreList[i].yb &&
             p.y + p.height > this.oreList[i].y) {
-          // console.log(`和第${i + 1}位置冲突`);
+          // console.log(`和第${i + 1}个冲突`);
           return this.checkPosition(num);
         }
       }
@@ -415,7 +420,7 @@ $(() => {
       if (num > 0 && num <= 6) {
         DIAMOND_NUM += 1;
         $('.number').html(DIAMOND_NUM);
-
+        $('#diamond_num').html(`${DIAMOND_NUM}`);
         let index = this.getRandom(1, 6);
         $(`.temp:nth-child(${num})`).attr('class', `temp temp${index} hidden`);
         $(`.temp:nth-child(${num})`).find('.shadow').attr('class', `shadow shadow${index}`);
@@ -439,10 +444,10 @@ $(() => {
         // console.log(positionInfo.y, topHeight);
         setTimeout(() => {
           $(`.temp:nth-child(${num})`).css({
-            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y - topHeight)}px, 0)`
+            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y)}px, 0)`
           }).removeClass('hidden').find('img')
             .addClass('show');
-        }, 500);
+        }, 200);
       } else {
         $(`.temp:nth-child(${num})`).find('img').addClass('hidden');
         /////////////////////////*****************************////////////////////////
@@ -451,16 +456,16 @@ $(() => {
         /////////////////////////*****************************////////////////////////
         setTimeout(() => {
           $(`.temp:nth-child(${num})`).css({
-            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y - topHeight)}px, 0)`,
+            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y)}px, 0)`,
             opacity: 1
           }).find('img, .shadow').removeClass('hidden')
             .addClass('show');
-        }, 500);
+        }, 200);
       }
       setTimeout(() => {
         // 重新获取矿石位置
         this.getOreLocation();
-      }, 500);
+      }, 300);
     }
     // /**
     //  * 两个矩形div的碰撞检测
@@ -501,7 +506,7 @@ $(() => {
     handleRecoverAction(sort) {
       $(`.temp:nth-child(${sort}) .shadow`).addClass('hidden');
       let x1 = hook.offset().left;
-      let y1 = hook.offset().top - topHeight;
+      let y1 = hook.offset().top + 20;
       $(`.temp:nth-child(${sort})`).css({
         transform: `translate3d(${x1}px, ${y1}px, 0)`
       });
@@ -541,6 +546,10 @@ $(() => {
      */
     gameOver() {
       console.log(DIAMOND_NUM);
+      clearInterval(this.animateInterval);
+      clearInterval(this.extend);
+      clearInterval(this.actionInterval);
+
       let coinNumber;
       if (DIAMOND_NUM >= 0 && DIAMOND_NUM <= 10) {
         coinNumber = 50;
@@ -549,6 +558,7 @@ $(() => {
       } else if (DIAMOND_NUM > 20) {
         coinNumber = 150;
       }
+      $('#diamond_num').html(`${DIAMOND_NUM}`);
       $('.ore_number').html(DIAMOND_NUM);
       $('.coin_number').html(coinNumber);
       $('.congratulation_pop, .mask').removeClass('hidden');
@@ -556,11 +566,8 @@ $(() => {
         $('.oncemore_btn').addClass('hidden');
         $('.get_coin_btn').addClass('large');
       }
-      clearInterval(this.animateInterval);
-      clearInterval(this.extend);
-      clearInterval(this.actionInterval);
-      // 充重置数据
-      this.resetData();
+      // 重置数据
+      this.resetData(DIAMOND_NUM);
       // 设置结果页分享
       // alert(JSON.stringify(userInfo));
       let name = userInfo.nickname;
@@ -656,6 +663,7 @@ $(() => {
     if (!$('.congratulation_pop').hasClass('hidden')) {
       $('.oncemore_btn').removeClass('hidden');
       $('.share_btn').addClass('hidden');
+      $('.share_guide').addClass('hidden');
     }
   };
   // 领取金币按钮
