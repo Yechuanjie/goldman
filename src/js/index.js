@@ -176,7 +176,7 @@ $(() => {
       this.manImgList = []; // 矿工图片动画列表
       this.count = 0; // 矿工动画基数
       this.oreList = []; // 矿石位置列表
-      this.TIME = 6000; //倒计时
+      this.TIME = 60; //倒计时
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
