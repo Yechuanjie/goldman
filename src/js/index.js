@@ -136,34 +136,88 @@ $(() => {
   //   }
   // }
   function setDimondPosition() {
-    let rann = 35;
-    let baseHeight = topHeight + 20;
-    let maxwidth = screenWidth - 100;
-    let positionY = [];
+    let position = [];
     for (let i = 0; i < 8; i += 1) {
       let temp = $(`.ore_list .temp:nth-child(${i + 1})`);
-      let x;
-      let y;
-      x = random(i * rann, (i + 1) * rann > maxwidth ? maxwidth : (i + 1) * rann);
-      y = random(baseHeight, screenHeight - 80);
-      // x = random(0, maxwidth);
-      // y = random(baseHeight, screenHeight - 130);
-      let checky = (top) => {
-        let newy = 0;
-        if (Math.abs(positionY[i] - top) < 50) {
-          newy = random(baseHeight, screenHeight - 80);
-          console.log('y方向重叠');
-          return checky(newy);
-        }
-        return newy;
-      };
-      positionY.push(checky(y));
-      console.log(positionY);
-
-      temp.css({
-        transform: `translate3d(${x}px, ${Math.abs(y)}px, 0)`
+      // let x;
+      // let y;
+      // x = random(i * rann, (i + 1) * rann > maxwidth ? maxwidth : (i + 1) * rann);
+      // y = random(baseHeight, screenHeight - 80);
+      let x = random(0, screenWidth - 100);
+      let y = random(topHeight + 20, screenHeight - 130);
+      let width = temp.width();
+      let height = temp.height();
+      position.push({
+        x,
+        y,
+        width,
+        height,
+        xr: x + width,
+        yb: y + height
       });
+      // // x = random(0, maxwidth);
+      // // y = random(baseHeight, screenHeight - 130);
+      // let checky = (top) => {
+      //   console.log(positionY[i]);
+      //   let newy = 0;
+      //   if (Math.abs(positionY[i] - top) < 50) {
+      //     newy = random(baseHeight, screenHeight - 80);
+      //     console.log(`y方向重叠${i + 1}`);
+      //     return checky(newy);
+      //   }
+      //   return newy;
+      // };
+      // positionY.push(checky(y));
+      // console.log(positionY);
+      // temp.css({
+      //   transform: `translate3d(${x}px, ${Math.abs(y)}px, 0)`
+      // });
     }
+    console.log(position);
+    let check = (num, isagain) => {
+      let otherPosition = [].concat(position);
+      otherPosition.splice(num - 1, 1);
+      console.log(otherPosition, 'num: ' + num);
+      let p;
+      if (isagain) {
+        let newWidth = position[num - 1].width;
+        let newHeight = position[num - 1].height;
+        let newx = random(0, screenWidth - 100);
+        let newy = random(topHeight + 20, screenHeight - 130);
+        let positionInfo = {
+          x: newx,
+          y: newy,
+          width: newWidth,
+          height: newHeight
+        };
+        p = positionInfo;
+      } else {
+        p = position[num - 1];
+      }
+      for (let i = 0; i < otherPosition.length; i += 1) {
+        if (p.x < otherPosition[i].xr &&
+          p.x + p.width > otherPosition[i].x &&
+           p.y < otherPosition[i].yb &&
+            p.y + p.height > otherPosition[i].y) {
+          console.log(`和第${i + 1}个冲突`);
+          return check(num, true);
+        }
+      }
+      return p;
+    };
+
+    let finalPosition = [];
+    for (let j = 0; j < 8; j += 1) {
+      let pos = check(j + 1);
+      finalPosition.push(pos);
+    }
+
+    console.log('finalPosition', finalPosition);
+    $(`.ore_list .temp`).each(function(i) {
+      $(this).css({
+        transform: `translate3d(${finalPosition[i].x}px, ${Math.abs(finalPosition[i].y)}px, 0)`
+      });
+    });
   }
   setDimondPosition();
 
