@@ -202,7 +202,7 @@ $(() => {
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
-      $('.click_area').on('touchstart', (e) => {
+      $('.click_area').on('click', (e) => {
         console.log(that);
         e.preventDefault();
         if (!$('.congratulation_pop').hasClass('hidden')) {
@@ -565,8 +565,7 @@ $(() => {
         $('.oncemore_btn').addClass('hidden');
         $('.get_coin_btn').addClass('large');
       }
-      // 重置数据
-      this.resetData(DIAMOND_NUM);
+      this.repoort(DIAMOND_NUM);
       // 设置结果页分享
       // alert(JSON.stringify(userInfo));
       let name = userInfo.nickname;
@@ -583,6 +582,25 @@ $(() => {
       });
       //////////////// 游戏结束时解除绑定的点击事件，避免重新游戏时重复绑定事件/////////////////
       $('.click_area').unbind('touchstart');
+    }
+    repoort() {
+      let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
+                    &uid=${userInfo.userId}&otherinfo=${DIAMOND_NUM}&logintoken=${userInfo.token}`;
+      $.ajax({
+        url: reqUrl,
+        type: 'GET',
+        dataType: 'json',
+        success: (res) => {
+          console.log(JSON.stringify(res.data));
+        },
+        fail: (err) => {
+          console.log(err);
+        },
+        complete: () => {
+          // 重置数据
+          this.resetData(DIAMOND_NUM);
+        }
+      });
     }
     resetData() {
       xx = 0;
@@ -680,6 +698,45 @@ $(() => {
       $('.share_guide').addClass('hidden');
     }
   };
+  function handleHidden() {
+    let hidden = 'hidden';
+    function onchange(evt) {
+      let v = 'visible';
+      let h = 'hidden';
+      let evtMap = {
+        focus: v, focusin: v, pageshow: v, blur: h, focusout: h, pagehide: h
+      };
+      let pageState = false;
+      evt = evt || window.event;
+      if (evt.type in evtMap) {
+        pageState = evtMap[evt.type];
+      } else {
+        pageState = this[hidden] ? 'hidden' : 'visible';
+      }
+      if (pageState === 'visible') {
+        localStorage.removeItem('data');
+        window.location.href = 'protocol://back';
+      }
+    }
+    if (hidden in document) {
+      document.addEventListener('visibilitychange', onchange);
+    } else if ('mozHidden' in document) {
+      hidden = 'mozHidden';
+      document.addEventListener('mozvisibilitychange', onchange);
+    } else if ('webkitHidden' in document) {
+      hidden = 'webkitHidden';
+      document.addEventListener('webkitvisibilitychange', onchange);
+    } else if ('msHidden' in document) {
+      hidden = 'msHidden';
+      document.addEventListener('msvisibilitychange', onchange);
+    }
+    // setTimeout(() => {
+    //   // 跳转金币落地页
+    //   window.location.href = 'protocol://view_goldtask';
+    // }, 2000);
+    // // 跳转金币落地页
+    // window.location.href = 'protocol://view_goldtask';
+  }
   // 领取金币按钮
   $('.get_coin_btn').click(() => {
     let diamondNum = $('.ore_number').html();
@@ -700,56 +757,24 @@ $(() => {
     } else {
       $('.congratulation_pop .section2').removeClass('hidden');
       $('.congratulation_pop .section1').addClass('hidden');
-      let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
-                    &uid=${userInfo.userId}&otherinfo=${diamondNum}&logintoken=${userInfo.token}`;
-      $.ajax({
-        url: reqUrl,
-        type: 'GET',
-        dataType: 'json',
-        success: (res) => {
-          console.log(JSON.stringify(res.data));
-          let hidden = 'hidden';
-          function onchange(evt) {
-            let v = 'visible';
-            let h = 'hidden';
-            let evtMap = {
-              focus: v, focusin: v, pageshow: v, blur: h, focusout: h, pagehide: h
-            };
-            let pageState = false;
-            evt = evt || window.event;
-            if (evt.type in evtMap) {
-              pageState = evtMap[evt.type];
-            } else {
-              pageState = this[hidden] ? 'hidden' : 'visible';
-            }
-            if (pageState === 'visible') {
-              localStorage.removeItem('data');
-              window.location.href = 'protocol://back';
-            }
-          }
-          if (hidden in document) {
-            document.addEventListener('visibilitychange', onchange);
-          } else if ('mozHidden' in document) {
-            hidden = 'mozHidden';
-            document.addEventListener('mozvisibilitychange', onchange);
-          } else if ('webkitHidden' in document) {
-            hidden = 'webkitHidden';
-            document.addEventListener('webkitvisibilitychange', onchange);
-          } else if ('msHidden' in document) {
-            hidden = 'msHidden';
-            document.addEventListener('msvisibilitychange', onchange);
-          }
-          // setTimeout(() => {
-          //   // 跳转金币落地页
-          //   window.location.href = 'protocol://view_goldtask';
-          // }, 2000);
-          // 跳转金币落地页
-          window.location.href = 'protocol://view_goldtask';
-        },
-        fail: (err) => {
-          console.log(err);
-        }
-      });
+      handleHidden();
+      setTimeout(() => {
+        // 跳转金币落地页
+        window.location.href = 'protocol://view_goldtask';
+      }, 1500);
+      // let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
+      //               &uid=${userInfo.userId}&otherinfo=${diamondNum}&logintoken=${userInfo.token}`;
+      // $.ajax({
+      //   url: reqUrl,
+      //   type: 'GET',
+      //   dataType: 'json',
+      //   success: (res) => {
+      //     console.log(JSON.stringify(res.data));
+      //   },
+      //   fail: (err) => {
+      //     console.log(err);
+      //   }
+      // });
     }
   });
 });
