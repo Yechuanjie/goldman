@@ -66,7 +66,6 @@ $(() => {
   let hook = $('#hook');
   let line = $('#line');
   console.log(hook.offset());
-
   // 返回按钮
   $('.back_icon').click(() => {
     localStorage.removeItem('data');
@@ -128,7 +127,7 @@ $(() => {
     for (let i = 0; i < 8; i += 1) {
       let temp = $(`.ore_list .temp:nth-child(${i + 1})`);
       let x = random(0, screenWidth - 100);
-      let y = random(topHeight + 20, screenHeight - 130);
+      let y = random(topHeight + 20, screenHeight - 80);
       let width = temp.width();
       let height = temp.height();
       position.push({
@@ -149,7 +148,7 @@ $(() => {
         let newWidth = position[num - 1].width;
         let newHeight = position[num - 1].height;
         let newx = random(0, screenWidth - 100);
-        let newy = random(topHeight + 20, screenHeight - 130);
+        let newy = random(topHeight + 20, screenHeight - 80);
         let positionInfo = {
           x: newx,
           y: newy,
@@ -186,7 +185,7 @@ $(() => {
     });
     FINAL_POSITION = [].concat(finalPosition);
   }
-  setDimondPosition();
+  // setDimondPosition();
 
   class GAME {
     constructor() {
@@ -423,7 +422,7 @@ $(() => {
       let newWidth = $(`.temp:nth-child(${num})`).width();
       let newHeight = $(`.temp:nth-child(${num})`).height();
       let newx = this.getRandom(0, screenWidth - 100);
-      let newy = this.getRandom(topHeight + 20, screenHeight - 130);
+      let newy = this.getRandom(topHeight + 20, screenHeight - 80);
       let positionInfo = {
         x: newx,
         y: newy,
@@ -529,7 +528,7 @@ $(() => {
         }
         $('.man').attr('src', this.manImgList[this.count]);
         this.count += 1;
-      }, 40);
+      }, 20);
     }
     /**
      * 格式化数字
@@ -658,10 +657,20 @@ $(() => {
     e.stopPropagation();
     if ($(this).hasClass('on')) {
       $(this).removeClass('on').addClass('off');
+      audio.pause();
     } else {
       $(this).addClass('on').removeClass('off');
+      audio.play();
     }
   });
+  // document.querySelector('.wnlshare-mask').addEventListener('click', () => {
+  //   alert('12312');
+  //   $('.share_guide').addClass('hidden');
+  // });
+  // $('.wnlshare-mask').css({
+  //   zIndex: '999'
+  // })
+
   window.shareCallback = function() {
     // 万年历分享成功
     // 说明是结果页分享的，首页分享不处理
@@ -691,7 +700,8 @@ $(() => {
     } else {
       $('.congratulation_pop .section2').removeClass('hidden');
       $('.congratulation_pop .section1').addClass('hidden');
-      let reqUrl = `http://192.168.1.110:8780/api/Coin_Activity/Complete?code=A_1002_1&uid=${userInfo.userId}&otherinfo=${diamondNum}&logintoken=${userInfo.token}`;
+      let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
+                    &uid=${userInfo.userId}&otherinfo=${diamondNum}&logintoken=${userInfo.token}`;
       $.ajax({
         url: reqUrl,
         type: 'GET',
@@ -713,6 +723,7 @@ $(() => {
               pageState = this[hidden] ? 'hidden' : 'visible';
             }
             if (pageState === 'visible') {
+              localStorage.removeItem('data');
               window.location.href = 'protocol://back';
             }
           }
@@ -728,10 +739,12 @@ $(() => {
             hidden = 'msHidden';
             document.addEventListener('msvisibilitychange', onchange);
           }
-          setTimeout(() => {
-            // 跳转金币落地页
-            window.location.href = 'protocol://view_goldtask';
-          }, 2000);
+          // setTimeout(() => {
+          //   // 跳转金币落地页
+          //   window.location.href = 'protocol://view_goldtask';
+          // }, 2000);
+          // 跳转金币落地页
+          window.location.href = 'protocol://view_goldtask';
         },
         fail: (err) => {
           console.log(err);

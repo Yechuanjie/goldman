@@ -149,6 +149,7 @@ html, body {
         z-index: 20;
         transition: opacity .1s;
         opacity: 1;
+        transform: translate3d(50vw, 50vh, 0);
         &.fadeout {
             opacity: 0;
         }
@@ -195,44 +196,44 @@ html, body {
         &.temp1 {
             width: .28rem;
             height: .16rem;
-            transform: translate3d(2.79rem, .1rem, 0);
+            // transform: translate3d(2.79rem, .1rem, 0);
         }
         &.temp2 {
             width: .42rem;
             height: .24rem;
-            transform: translate3d(.56rem, .71rem, 0);
+            // transform: translate3d(.56rem, .71rem, 0);
         }
         &.temp3 {
             // width: .52rem;
             // height: .30rem;
             width: .42rem;
             height: .24rem;
-            transform: translate3d(2.12rem, 2.03rem, 0);
+            // transform: translate3d(2.12rem, 2.03rem, 0);
         }
         &.temp4 {
             width: .76rem;
             height: .44rem;
-            transform: translate3d(.7rem, 2.3rem, 0);
+            // transform: translate3d(.7rem, 2.3rem, 0);
         }
         &.temp5 {
             width: .52rem;
             height: .30rem;
-            transform: translate3d(2.72rem, 2.71rem, 0);
+            // transform: translate3d(2.72rem, 2.71rem, 0);
         }
         &.temp6 {
             width: .52rem;
             height: .30rem;
-            transform: translate3d(1.31rem, .93rem, 0);
+            // transform: translate3d(1.31rem, .93rem, 0);
         }
         &.temp7 {
             width: .47rem;
             height: .42rem;
-            transform: translate3d(2.55rem, .72rem, 0);
+            // transform: translate3d(2.55rem, .72rem, 0);
         }
         &.temp8 {
             width: .35rem;
             height: .45rem;
-            transform: translate3d(1.41rem, 2.74rem, 0);
+            // transform: translate3d(1.41rem, 2.74rem, 0);
         }
     }         
     .shine {
