@@ -51,7 +51,7 @@ html, body {
     .digging_man {
         position: absolute;
         left: 50%;
-        top: .80rem;
+        top: .82rem;
         margin-left: -.27rem;
         .man {
             width: 1.17rem;
@@ -63,7 +63,7 @@ html, body {
             height: 7px;
             background-color: rgb(181,181,180);
             margin-left: .258rem;
-            margin-top: .37rem;            
+            margin-top: .35rem;
             transform-origin: top;
             z-index: 9;
             .hook {
@@ -72,8 +72,8 @@ html, body {
                 position: absolute;
                 bottom: -.35rem;
                 left: 50%;
-                margin-left: -.09rem;
-            }            
+                margin-left: -.085rem;
+            }
         }
     }
     .bottom_wrapper {

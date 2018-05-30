@@ -23,7 +23,6 @@ if (util.isWnl) {
   });
 }
 if (!util.isWnl) {
-  $('.body_mask').removeClass('hidden');
   if (util.isIOS) {
     window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
   } else if (util.isAndroid) {
@@ -32,11 +31,21 @@ if (!util.isWnl) {
 }
 
 $(() => {
+  // $('.pop_rule').removeClass('hidden');
+  // alert(window.innerWidth);
+  // alert(window.innerHeight);
+  if (!util.isWnl) {
+    $('.body_mask').removeClass('hidden');
+  } else {
+    $('.body_mask').addClass('hidden');
+  }
   let userInfo = {
     nickname: '我',
     token: '',
     userId: ''
   };
+  // let hasGetCoin = localStorage.getItem('getCoin');
+  // if (hasGetCoin) {}
   function getInfo() {
     if (util.isWnl) {
       setTimeout(() => {
@@ -98,7 +107,11 @@ $(() => {
   let hh = MIN_ROPE_LENGTH;
   let FINISH = false;
   let DIAMOND_NUM = 0; //所得矿石
-
+  let GAME_OVER = false;
+  let TRY_AGAIN = false;
+  let firstGame = null;
+  let FINAL_POSITION = [];
+  // let secondGame = null;
   // 处理登陆返回后的逻辑 ps:登录成功或者从登录页直接返回该页面，都会导致本页面刷新。
   let localdata = JSON.parse(localStorage.getItem('data'));
   if (localdata) {
@@ -116,25 +129,6 @@ $(() => {
   function random(min, max) {
     return parseInt((Math.random() * Math.abs((max - min))) + min, 10);
   }
-  // function init() {
-  //   // 随机一个行数
-  //   // let lineNumber = random(2, 6);
-  //   // let divNumInLine = Math.floor(8 / lineNumber);
-  //   // // let randomDivNumLine = random(1, divNumInLine);
-  //   // console.log(lineNumber, divNumInLine);
-  //   // let newx = this.getRandom(0, screenWidth - 100);
-  //   // let newy = this.getRandom(topHeight + 20, screenHeight - 130);
-  //   let rann = 45;
-  //   let baseHeight = topHeight + 20;
-  //   for (let i = 0; i < 8; i += 1) {
-  //     let temp = $(`.ore_list .temp:nth-child(${i + 1})`);
-  //     let x = random(i * rann, (i + 1) * rann);
-  //     let y = random((i + 1) * baseHeight, screenHeight - 500);
-  //     temp.css({
-  //       transform: `translate3d(${x}px, ${Math.abs(y)}px, 0)`
-  //     });
-  //   }
-  // }
   function setDimondPosition() {
     let position = [];
     for (let i = 0; i < 8; i += 1) {
@@ -177,7 +171,7 @@ $(() => {
     let check = (num, isagain) => {
       let otherPosition = [].concat(position);
       otherPosition.splice(num - 1, 1);
-      console.log(otherPosition, 'num: ' + num);
+      // console.log(otherPosition, 'num: ' + num);
       let p;
       if (isagain) {
         let newWidth = position[num - 1].width;
@@ -199,10 +193,11 @@ $(() => {
           p.x + p.width > otherPosition[i].x &&
            p.y < otherPosition[i].yb &&
             p.y + p.height > otherPosition[i].y) {
-          console.log(`和第${i + 1}个冲突`);
+          // console.log(`和第${i + 1}个冲突`);
           return check(num, true);
         }
       }
+      position[num - 1] = p;
       return p;
     };
 
@@ -211,40 +206,44 @@ $(() => {
       let pos = check(j + 1);
       finalPosition.push(pos);
     }
-
     console.log('finalPosition', finalPosition);
     $(`.ore_list .temp`).each(function(i) {
       $(this).css({
         transform: `translate3d(${finalPosition[i].x}px, ${Math.abs(finalPosition[i].y)}px, 0)`
       });
     });
+    FINAL_POSITION = [].concat(finalPosition);
   }
   setDimondPosition();
 
   class GAME {
-    constructor(again = false) {
-      this.again = again;
+    constructor() {
+      let that = this;
+      this.again = TRY_AGAIN;
       this.animateInterval = null;
       this.actionInterval = null; // 矿工定时器
       this.extend = null;
       this.manImgList = []; // 矿工图片动画列表
       this.count = 0; // 矿工动画基数
-      this.oreList = []; // 矿石位置列表
+      this.oreList = FINAL_POSITION; // 矿石位置列表
       this.TIME = 60; //倒计时
+      // this.GAMEOVER = false;
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
-      $('.click_area').on('click', (e) => {
+      $('.click_area').on('touchstart', (e) => {
+        console.log(that);
         e.preventDefault();
         if (!$('.congratulation_pop').hasClass('hidden')) {
           return;
         }
         // 当绳子没有伸缩时，点击时才执行动画，避免重复执行
         if (hh <= MIN_ROPE_LENGTH) {
-          clearInterval(this.animateInterval);
-          if (!this.again || localStorage.getItem('data')) {
-            this.lineAnimation();
-          }
+          clearInterval(that.animateInterval);
+          that.lineAnimation();
+          // if (!that.again || localStorage.getItem('data')) {
+          //   that.lineAnimation();
+          // }
         }
       });
     }
@@ -268,6 +267,7 @@ $(() => {
      */
     getOreLocation(obj = 0) {
       this.oreList = []; // 每次重新计算矿石位置
+      FINAL_POSITION = [];
       let that = this;
       let object = obj ? $('.ore_list .temp') : $('.ore_list .temp img');
       object.each(function() {
@@ -288,6 +288,7 @@ $(() => {
           height
         };
         that.oreList.push(thisInfo);
+        FINAL_POSITION.push(thisInfo);
       });
       console.log(this.oreList);
     }
@@ -296,6 +297,9 @@ $(() => {
      * @memberof GAME
      */
     initHookAnimation() {
+      if (GAME_OVER) {
+        return;
+      }
       this.animateInterval = setInterval(this.hookAnimation, HOOK_SPEED);
     }
     /**
@@ -412,8 +416,14 @@ $(() => {
       } else if (num === 7 || num === 8) {
         speed = LINE_SPEED + 9;
       }
+      if (GAME_OVER) {
+        return;
+      }
       this.manAction();
       let interval = setInterval(() => {
+        // if (GAME_OVER) {
+        //   clearInterval(interval);
+        // }
         if (hh > MIN_ROPE_LENGTH) {
           hh -= 1;
           if (num) {
@@ -469,6 +479,9 @@ $(() => {
      * @memberof GAME
      */
     hideAndCreatNewOre(num) {
+      if (GAME_OVER) {
+        return;
+      }
       $(`.temp:nth-child(${num})`).addClass('fadeout');
       // 勾到钻石, 更新游戏数据
       if (num > 0 && num <= 6) {
@@ -599,11 +612,20 @@ $(() => {
      * @memberof GAME
      */
     gameOver() {
+      GAME_OVER = true;
       console.log(DIAMOND_NUM);
       clearInterval(this.animateInterval);
       clearInterval(this.extend);
       clearInterval(this.actionInterval);
-
+      // this.GAMEOVER = true;
+      // this.again = true;
+      // this.animateInterval = null;
+      // this.actionInterval = null; // 矿工定时器
+      // this.extend = null;
+      // this.manImgList = []; // 矿工图片动画列表
+      // this.count = 0; // 矿工动画基数
+      // this.oreList = []; // 矿石位置列表
+      // this.TIME = 16; //倒计时
       let coinNumber;
       if (DIAMOND_NUM >= 0 && DIAMOND_NUM <= 10) {
         coinNumber = 50;
@@ -616,7 +638,7 @@ $(() => {
       $('.ore_number').html(DIAMOND_NUM);
       $('.coin_number').html(coinNumber);
       $('.congratulation_pop, .mask').removeClass('hidden');
-      if (this.again) {
+      if (TRY_AGAIN) {
         $('.oncemore_btn').addClass('hidden');
         $('.get_coin_btn').addClass('large');
       }
@@ -636,6 +658,8 @@ $(() => {
         image: idnexShareInfo.image,
         url: idnexShareInfo.url
       });
+      //////////////// 游戏结束时解除绑定的点击事件，避免重新游戏时重复绑定事件/////////////////
+      $('.click_area').unbind('touchstart');
     }
     resetData() {
       xx = 0;
@@ -644,6 +668,7 @@ $(() => {
       hh = MIN_ROPE_LENGTH;
       DIAMOND_NUM = 0;
       FINISH = false;
+      // GAME_OVER = false;
       // this.animateInterval = null;
       // this.actionInterval = null; // 矿工定时器
       // this.extend = null;
@@ -663,6 +688,8 @@ $(() => {
     $('.count_down').removeClass('hidden');
     $('.number').html('0');
     $('.time').html('60');
+    // 重置矿石位置
+    setDimondPosition();
     let count = 3;
     let countDown = setInterval(() => {
       count -= 1;
@@ -670,8 +697,16 @@ $(() => {
         clearInterval(countDown);
         $('.count_down').html('3');
         $('.count_down').addClass('hidden');
+
         // 初始化游戏
-        new GAME(again); // eslint-disable-line
+        GAME_OVER = false;
+        if (!again && !firstGame) {
+          firstGame = new GAME(again); // eslint-disable-line
+        } else {
+          firstGame = null;
+          TRY_AGAIN = true;
+          let secondGame = new GAME(again); // eslint-disable-line
+        }
       } else {
         $('.count_down').html(count);
       }
@@ -747,6 +782,36 @@ $(() => {
         dataType: 'json',
         success: (res) => {
           console.log(JSON.stringify(res.data));
+          let hidden = 'hidden';
+          function onchange(evt) {
+            let v = 'visible';
+            let h = 'hidden';
+            let evtMap = {
+              focus: v, focusin: v, pageshow: v, blur: h, focusout: h, pagehide: h
+            };
+            let pageState = false;
+            evt = evt || window.event;
+            if (evt.type in evtMap) {
+              pageState = evtMap[evt.type];
+            } else {
+              pageState = this[hidden] ? 'hidden' : 'visible';
+            }
+            if (pageState === 'visible') {
+              window.location.href = 'protocol://back';
+            }
+          }
+          if (hidden in document) {
+            document.addEventListener('visibilitychange', onchange);
+          } else if ('mozHidden' in document) {
+            hidden = 'mozHidden';
+            document.addEventListener('mozvisibilitychange', onchange);
+          } else if ('webkitHidden' in document) {
+            hidden = 'webkitHidden';
+            document.addEventListener('webkitvisibilitychange', onchange);
+          } else if ('msHidden' in document) {
+            hidden = 'msHidden';
+            document.addEventListener('msvisibilitychange', onchange);
+          }
           setTimeout(() => {
             // 跳转金币落地页
             window.location.href = 'protocol://view_goldtask';
