@@ -199,10 +199,14 @@ $(() => {
       this.oreList = FINAL_POSITION; // 矿石位置列表
       this.TIME = 60; //倒计时
       // this.GAMEOVER = false;
+      this.unclickable = false;
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
       $('.click_area').on('click', (e) => {
+        if (this.unclickable) {
+          return;
+        }
         console.log(that);
         e.preventDefault();
         if (!$('.congratulation_pop').hasClass('hidden')) {
@@ -210,6 +214,7 @@ $(() => {
         }
         // 当绳子没有伸缩时，点击时才执行动画，避免重复执行
         if (hh <= MIN_ROPE_LENGTH) {
+          this.unclickable = true;
           clearInterval(that.animateInterval);
           that.lineAnimation();
           // if (!that.again || localStorage.getItem('data')) {
@@ -396,8 +401,10 @@ $(() => {
           hh -= 1;
           if (num) {
             this.handleRecoverAction(num);
+            // this.unclickable = false;
           }
         } else {
+          this.unclickable = true;
           clearInterval(interval);
           this.initHookAnimation();
           clearInterval(this.actionInterval);
@@ -488,6 +495,7 @@ $(() => {
       setTimeout(() => {
         // 重新获取矿石位置
         this.getOreLocation();
+        this.unclickable = false;
       }, 300);
     }
     /**
@@ -514,14 +522,16 @@ $(() => {
      * @memberof GAME
      */
     manAction() {
-      require.ensure([], () => {
-        /* eslint-disable */
-        let context = require.context('../assets', true, /^\.\/(man_action)\/.*\.png$/);
-        for (let index = 0; index < 24; index += 1) {
-          this.manImgList.push(require('../assets/man_action/donghua_000' + this.formatNumber(index) + '.png'));
-        }
-        /* eslint-enable */
-      });
+      if (this.manImgList.length < 1) {
+        require.ensure([], () => {
+          /* eslint-disable */
+          let context = require.context('../assets', true, /^\.\/(man_action)\/.*\.png$/);
+          for (let index = 0; index < 24; index += 1) {
+            this.manImgList.push(require('../assets/man_action/donghua_000' + this.formatNumber(index) + '.png'));
+          }
+          /* eslint-enable */
+        });
+      }
       this.actionInterval = setInterval(() => {
         if (this.count >= 24) {
           this.count = 0;
@@ -581,7 +591,7 @@ $(() => {
         url: idnexShareInfo.url
       });
       //////////////// 游戏结束时解除绑定的点击事件，避免重新游戏时重复绑定事件/////////////////
-      $('.click_area').unbind('touchstart');
+      $('.click_area').unbind('click');
     }
     repoort() {
       let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
@@ -592,6 +602,9 @@ $(() => {
         dataType: 'json',
         success: (res) => {
           console.log(JSON.stringify(res.data));
+          if (!userInfo.userId) {
+            window.location.href = 'protocol://enterlogin#';
+          }
         },
         fail: (err) => {
           console.log(err);
