@@ -31,9 +31,6 @@ if (!util.isWnl) {
 }
 
 $(() => {
-  // $('.pop_rule').removeClass('hidden');
-  // alert(window.innerWidth);
-  // alert(window.innerHeight);
   if (!util.isWnl) {
     $('.body_mask').removeClass('hidden');
   } else {
@@ -44,8 +41,7 @@ $(() => {
     token: '',
     userId: ''
   };
-  // let hasGetCoin = localStorage.getItem('getCoin');
-  // if (hasGetCoin) {}
+
   function getInfo() {
     if (util.isWnl) {
       setTimeout(() => {
@@ -67,8 +63,6 @@ $(() => {
 
   const audio = document.getElementById('audio');
   play(audio);
-  // new toast().show('toast~'); //eslint-disable-line
-  console.log(util.isIphoneX);
   let hook = $('#hook');
   let line = $('#line');
   console.log(hook.offset());
@@ -111,7 +105,7 @@ $(() => {
   let TRY_AGAIN = false;
   let firstGame = null;
   let FINAL_POSITION = [];
-  // let secondGame = null;
+
   // 处理登陆返回后的逻辑 ps:登录成功或者从登录页直接返回该页面，都会导致本页面刷新。
   let localdata = JSON.parse(localStorage.getItem('data'));
   if (localdata) {
@@ -133,10 +127,6 @@ $(() => {
     let position = [];
     for (let i = 0; i < 8; i += 1) {
       let temp = $(`.ore_list .temp:nth-child(${i + 1})`);
-      // let x;
-      // let y;
-      // x = random(i * rann, (i + 1) * rann > maxwidth ? maxwidth : (i + 1) * rann);
-      // y = random(baseHeight, screenHeight - 80);
       let x = random(0, screenWidth - 100);
       let y = random(topHeight + 20, screenHeight - 130);
       let width = temp.width();
@@ -149,29 +139,11 @@ $(() => {
         xr: x + width,
         yb: y + height
       });
-      // // x = random(0, maxwidth);
-      // // y = random(baseHeight, screenHeight - 130);
-      // let checky = (top) => {
-      //   console.log(positionY[i]);
-      //   let newy = 0;
-      //   if (Math.abs(positionY[i] - top) < 50) {
-      //     newy = random(baseHeight, screenHeight - 80);
-      //     console.log(`y方向重叠${i + 1}`);
-      //     return checky(newy);
-      //   }
-      //   return newy;
-      // };
-      // positionY.push(checky(y));
-      // console.log(positionY);
-      // temp.css({
-      //   transform: `translate3d(${x}px, ${Math.abs(y)}px, 0)`
-      // });
     }
     console.log(position);
     let check = (num, isagain) => {
       let otherPosition = [].concat(position);
       otherPosition.splice(num - 1, 1);
-      // console.log(otherPosition, 'num: ' + num);
       let p;
       if (isagain) {
         let newWidth = position[num - 1].width;
@@ -421,9 +393,6 @@ $(() => {
       }
       this.manAction();
       let interval = setInterval(() => {
-        // if (GAME_OVER) {
-        //   clearInterval(interval);
-        // }
         if (hh > MIN_ROPE_LENGTH) {
           hh -= 1;
           if (num) {
@@ -492,18 +461,6 @@ $(() => {
         $(`.temp:nth-child(${num})`).attr('class', `temp temp${index} hidden`);
         $(`.temp:nth-child(${num})`).find('.shadow').attr('class', `shadow shadow${index}`);
         $(`.temp:nth-child(${num})`).find('.shine').attr('id', `shine${index}`);
-
-        // let newWidth = $(`.temp:nth-child(${num})`).width();
-        // let newHeight = $(`.temp:nth-child(${num})`).height();
-        // let newx = this.getRandom(0, screenWidth - 100);
-        // // let newy = this.getRandom(topHeight + 180, screenHeight - topHeight - 180);
-        // let newy = this.getRandom(topHeight, screenHeight - topHeight);
-        // let positionInfo = {
-        //   x: newx,
-        //   y: newy,
-        //   width: newWidth,
-        //   height: newHeight
-        // };
         /////////////////////////*****************************////////////////////////
         // 检测位置
         let positionInfo = this.checkPosition(num);
@@ -534,31 +491,6 @@ $(() => {
         this.getOreLocation();
       }, 300);
     }
-    // /**
-    //  * 两个矩形div的碰撞检测
-    //  * @memberof GAME
-    //  * @returns Boolean
-    //  */
-    // isOverlap(objOne, objTwo) {
-    //   let offsetOne = objOne.offset();
-    //   let offsetTwo = objTwo.offset();
-    //   let x1 = offsetOne.left;
-    //   let y1 = offsetOne.top;
-    //   let x2 = x1 + objOne.width();
-    //   let y2 = y1 + objOne.height();
-
-    //   let x3 = offsetTwo.left;
-    //   let y3 = offsetTwo.top;
-    //   let x4 = x3 + objTwo.width();
-    //   let y4 = y3 + objTwo.height();
-
-    //   let zx = Math.abs(x1 + x2 - x3 - x4);
-    //   let x = Math.abs(x1 - x2) + Math.abs(x3 - x4);
-    //   let zy = Math.abs(y1 + y2 - y3 - y4);
-    //   let y = Math.abs(y1 - y2) + Math.abs(y3 - y4);
-    //   return (zx <= x && zy <= y);
-    // }
-
     /**
      * 获取指定区间随机数
      * @memberof GAME
@@ -617,15 +549,7 @@ $(() => {
       clearInterval(this.animateInterval);
       clearInterval(this.extend);
       clearInterval(this.actionInterval);
-      // this.GAMEOVER = true;
-      // this.again = true;
-      // this.animateInterval = null;
-      // this.actionInterval = null; // 矿工定时器
-      // this.extend = null;
-      // this.manImgList = []; // 矿工图片动画列表
-      // this.count = 0; // 矿工动画基数
-      // this.oreList = []; // 矿石位置列表
-      // this.TIME = 16; //倒计时
+
       let coinNumber;
       if (DIAMOND_NUM >= 0 && DIAMOND_NUM <= 10) {
         coinNumber = 50;
@@ -668,14 +592,6 @@ $(() => {
       hh = MIN_ROPE_LENGTH;
       DIAMOND_NUM = 0;
       FINISH = false;
-      // GAME_OVER = false;
-      // this.animateInterval = null;
-      // this.actionInterval = null; // 矿工定时器
-      // this.extend = null;
-      // this.manImgList = []; // 矿工图片动画列表
-      // this.count = 0; // 矿工动画基数
-      // this.oreList = []; // 矿石位置列表
-      // this.TIME = 60; //倒计时
       $('.man').attr('src', this.manImgList[0]);
       line.css({
         transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
