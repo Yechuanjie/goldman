@@ -152,10 +152,10 @@ $(() => {
     let position = [];
     for (let i = 0; i < 8; i += 1) {
       let temp = $(`.ore_list .temp:nth-child(${i + 1})`);
-      let x = random(0, screenWidth - 100);
-      let y = random(topHeight + 20, screenHeight - 80);
       let width = temp.width();
       let height = temp.height();
+      let x = random(0, screenWidth - width);
+      let y = random(topHeight + 20, screenHeight - height);
       position.push({
         x,
         y,
@@ -173,8 +173,8 @@ $(() => {
       if (isagain) {
         let newWidth = position[num - 1].width;
         let newHeight = position[num - 1].height;
-        let newx = random(0, screenWidth - 100);
-        let newy = random(topHeight + 20, screenHeight - 80);
+        let newx = random(0, screenWidth - newWidth);
+        let newy = random(topHeight + 20, screenHeight - newHeight);
         let positionInfo = {
           x: newx,
           y: newy,
@@ -457,8 +457,8 @@ $(() => {
       // 设置新障碍物的位置
       let newWidth = $(`.temp:nth-child(${num})`).width();
       let newHeight = $(`.temp:nth-child(${num})`).height();
-      let newx = this.getRandom(0, screenWidth - 100);
-      let newy = this.getRandom(topHeight + 20, screenHeight - 80);
+      let newx = this.getRandom(0, screenWidth - newWidth);
+      let newy = this.getRandom(topHeight + 20, screenHeight - newHeight);
       let positionInfo = {
         x: newx,
         y: newy,
@@ -683,9 +683,11 @@ $(() => {
   $('.share_btn').click(() => {
     $('.share_guide').removeClass('hidden');
     wnlShare.showSharePlatform();
+    _czc.push(['_trackEvent', 'WZS2018_shareBtn_wnl']);
   });
   // 再玩一次按钮
   $('.oncemore_btn').click(() => {
+    _czc.push(['_trackEvent', 'WZS2018_again_wnl']);
     $('.congratulation_pop, .mask').addClass('hidden');
     // 再玩一次传入标识
     initGame(true);
@@ -716,6 +718,7 @@ $(() => {
 
   window.shareCallback = function() {
     // 万年历分享成功
+    _czc.push(['_trackEvent', 'WZS2018_shared_wnl']);
     // 说明是结果页分享的，首页分享不处理
     if (!$('.congratulation_pop').hasClass('hidden')) {
       $('.oncemore_btn').removeClass('hidden');
@@ -764,6 +767,7 @@ $(() => {
   }
   // 领取金币按钮
   $('.get_coin_btn').click(() => {
+    _czc.push(['_trackEvent', 'WZS2018_draw_wnl']);
     let diamondNum = $('.ore_number').html();
     let coinNum = $('.coin_number').html();
     let times = 1;
