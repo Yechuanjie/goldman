@@ -43,8 +43,7 @@ $(() => {
   };
 
   function repoort(num) {
-    let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
-                  &uid=${userInfo.userId}&otherinfo=${num}&logintoken=${userInfo.token}`;
+    let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1&uid=${userInfo.userId}&otherinfo=${num}&logintoken=${userInfo.token}`;
     $.ajax({
       url: reqUrl,
       type: 'GET',
@@ -204,7 +203,7 @@ $(() => {
       let pos = check(j + 1);
       finalPosition.push(pos);
     }
-    console.log('finalPosition', finalPosition);
+    // console.log('finalPosition', finalPosition);
     $(`.ore_list .temp`).each(function(i) {
       $(this).css({
         transform: `translate3d(${finalPosition[i].x}px, ${Math.abs(finalPosition[i].y)}px, 0)`
@@ -234,7 +233,7 @@ $(() => {
         if (!this.clickable) {
           return;
         }
-        console.log(that);
+        // console.log(that);
         e.preventDefault();
         if (!$('.congratulation_pop').hasClass('hidden')) {
           return;
@@ -293,7 +292,7 @@ $(() => {
         that.oreList.push(thisInfo);
         FINAL_POSITION.push(thisInfo);
       });
-      console.log(this.oreList);
+      // console.log(this.oreList);
     }
     /**
      * 初始动画
@@ -643,6 +642,7 @@ $(() => {
   }
 
   function initGame(again = false) {
+    DIAMOND_NUM = 0;
     $('.count_down').removeClass('hidden');
     $('.number').html('0');
     $('.time').html('60');
