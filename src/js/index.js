@@ -42,7 +42,30 @@ $(() => {
     userId: ''
   };
 
-  function getInfo() {
+  function repoort(num) {
+    let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
+                  &uid=${userInfo.userId}&otherinfo=${num}&logintoken=${userInfo.token}`;
+    $.ajax({
+      url: reqUrl,
+      type: 'GET',
+      dataType: 'json',
+      success: (res) => {
+        console.log(JSON.stringify(res.data));
+        // if (!userInfo.userId) {
+        //   window.location.href = 'protocol://enterlogin#';
+        // }
+      },
+      fail: (err) => {
+        console.log(err);
+      },
+      complete: () => {
+        // 重置数据
+        this.resetData(num);
+      }
+    });
+  }
+
+  function getInfo(played) {
     if (util.isWnl) {
       setTimeout(() => {
         window.location.href = 'protocol://getuserinfo#userinfocallback';
@@ -54,6 +77,10 @@ $(() => {
           userInfo.nickname = _res.native_usercenter.nickname ? _res.native_usercenter.nickname : _res.native_usercenter.name;
           userInfo.token = _res.native_score.usertoken;
           userInfo.userId = _res.native_score.userId;
+          if (played) {
+            let data = JSON.parse(localStorage.getItem('data'));
+            repoort(data.num);
+          }
         } else {
           console.log('未登录');
         }
@@ -108,7 +135,7 @@ $(() => {
   // 处理登陆返回后的逻辑 ps:登录成功或者从登录页直接返回该页面，都会导致本页面刷新。
   let localdata = JSON.parse(localStorage.getItem('data'));
   if (localdata) {
-    getInfo();
+    getInfo(true);
     $('.congratulation_pop, .mask').removeClass('hidden');
     $('.pop_rule').addClass('hidden');
     $('.ore_number').html(localdata.num);
@@ -199,12 +226,12 @@ $(() => {
       this.oreList = FINAL_POSITION; // 矿石位置列表
       this.TIME = 60; //倒计时
       // this.GAMEOVER = false;
-      this.unclickable = false;
+      this.clickable = true;
       this.initTime();
       this.initHookAnimation();
       this.getOreLocation();
       $('.click_area').on('click', (e) => {
-        if (this.unclickable) {
+        if (!this.clickable) {
           return;
         }
         console.log(that);
@@ -214,7 +241,7 @@ $(() => {
         }
         // 当绳子没有伸缩时，点击时才执行动画，避免重复执行
         if (hh <= MIN_ROPE_LENGTH) {
-          this.unclickable = true;
+          // this.unclickable = true;
           clearInterval(that.animateInterval);
           that.lineAnimation();
           // if (!that.again || localStorage.getItem('data')) {
@@ -320,6 +347,7 @@ $(() => {
       }
       this.extend = setInterval(() => {
         if (hh < ropeHeight) {
+          this.clickable = false;
           hh += 1;
           let isImpact = this.checkImpact();
           if (isImpact) {
@@ -398,13 +426,13 @@ $(() => {
       this.manAction();
       let interval = setInterval(() => {
         if (hh > MIN_ROPE_LENGTH) {
+          this.clickable = false;
           hh -= 1;
           if (num) {
             this.handleRecoverAction(num);
             // this.unclickable = false;
           }
         } else {
-          this.unclickable = true;
           clearInterval(interval);
           this.initHookAnimation();
           clearInterval(this.actionInterval);
@@ -412,6 +440,8 @@ $(() => {
           // 勾到矿石，且到顶部时，处理隐藏该矿石，并生成新的矿石
           if (num) {
             this.hideAndCreatNewOre(num);
+          } else {
+            this.clickable = true;
           }
         }
         line.css({
@@ -477,6 +507,7 @@ $(() => {
             transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y)}px, 0)`
           }).removeClass('hidden').find('img')
             .addClass('show');
+          this.clickable = true;
         }, 200);
       } else {
         $(`.temp:nth-child(${num})`).find('img').addClass('hidden');
@@ -490,12 +521,13 @@ $(() => {
             opacity: 1
           }).find('img, .shadow').removeClass('hidden')
             .addClass('show');
+          this.clickable = true;
         }, 200);
       }
       setTimeout(() => {
         // 重新获取矿石位置
         this.getOreLocation();
-        this.unclickable = false;
+        // this.unclickable = false;
       }, 300);
     }
     /**
@@ -575,7 +607,9 @@ $(() => {
         $('.oncemore_btn').addClass('hidden');
         $('.get_coin_btn').addClass('large');
       }
-      this.repoort(DIAMOND_NUM);
+      if (userInfo.userId) {
+        repoort(DIAMOND_NUM);
+      }
       // 设置结果页分享
       // alert(JSON.stringify(userInfo));
       let name = userInfo.nickname;
@@ -592,28 +626,6 @@ $(() => {
       });
       //////////////// 游戏结束时解除绑定的点击事件，避免重新游戏时重复绑定事件/////////////////
       $('.click_area').unbind('click');
-    }
-    repoort() {
-      let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
-                    &uid=${userInfo.userId}&otherinfo=${DIAMOND_NUM}&logintoken=${userInfo.token}`;
-      $.ajax({
-        url: reqUrl,
-        type: 'GET',
-        dataType: 'json',
-        success: (res) => {
-          console.log(JSON.stringify(res.data));
-          if (!userInfo.userId) {
-            window.location.href = 'protocol://enterlogin#';
-          }
-        },
-        fail: (err) => {
-          console.log(err);
-        },
-        complete: () => {
-          // 重置数据
-          this.resetData(DIAMOND_NUM);
-        }
-      });
     }
     resetData() {
       xx = 0;
