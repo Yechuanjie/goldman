@@ -683,11 +683,11 @@ $(() => {
   $('.share_btn').click(() => {
     $('.share_guide').removeClass('hidden');
     wnlShare.showSharePlatform();
-    _czc.push(['_trackEvent', 'WZS2018_shareBtn_wnl']);
+    _czc.push(['_trackEvent', 'game', 'WZS2018_shareBtn_wnl']);
   });
   // 再玩一次按钮
   $('.oncemore_btn').click(() => {
-    _czc.push(['_trackEvent', 'WZS2018_again_wnl']);
+    _czc.push(['_trackEvent', 'game', 'WZS2018_again_wnl']);
     $('.congratulation_pop, .mask').addClass('hidden');
     // 再玩一次传入标识
     initGame(true);
@@ -718,7 +718,7 @@ $(() => {
 
   window.shareCallback = function() {
     // 万年历分享成功
-    _czc.push(['_trackEvent', 'WZS2018_shared_wnl']);
+    _czc.push(['_trackEvent', 'game', 'WZS2018_shared_wnl']);
     // 说明是结果页分享的，首页分享不处理
     if (!$('.congratulation_pop').hasClass('hidden')) {
       $('.oncemore_btn').removeClass('hidden');
@@ -767,7 +767,7 @@ $(() => {
   }
   // 领取金币按钮
   $('.get_coin_btn').click(() => {
-    _czc.push(['_trackEvent', 'WZS2018_draw_wnl']);
+    _czc.push(['_trackEvent', 'game', 'WZS2018_draw_wnl']);
     let diamondNum = $('.ore_number').html();
     let coinNum = $('.coin_number').html();
     let times = 1;
