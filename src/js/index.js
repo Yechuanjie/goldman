@@ -1,5 +1,5 @@
 // import 'babel-polyfill';
-import { wnlShare } from '@wnl/ui';
+import { wnlShare, toast } from '@wnl/ui';
 import { util } from '@wnl/util';
 import play from '../static/music';
 
@@ -22,20 +22,21 @@ if (util.isWnl) {
     url: idnexShareInfo.url
   });
 }
-if (!util.isWnl) {
-  if (util.isIOS) {
-    window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
-  } else if (util.isAndroid) {
-    window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
-  }
-}
+// if (!util.isWnl) {
+//   if (util.isIOS) {
+//     window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
+//   } else if (util.isAndroid) {
+//     window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
+//   }
+// }
 
 $(() => {
-  if (!util.isWnl) {
-    $('.body_mask').removeClass('hidden');
-  } else {
-    $('.body_mask').addClass('hidden');
-  }
+  // if (!util.isWnl) {
+  //   $('.body_mask').removeClass('hidden');
+  // } else {
+  //   $('.body_mask').addClass('hidden');
+  // }
+  $('.body_mask').addClass('hidden');
   let userInfo = {
     nickname: '我',
     token: '',
@@ -71,9 +72,10 @@ $(() => {
       }, 0);
       window.userinfocallback = (res) => {
         let _res = JSON.parse(Base64.decode(res));
+        // alert(JSON);
         // 已登录
         if (_res.native_score.userId) {
-          userInfo.nickname = _res.native_usercenter.nickname ? _res.native_usercenter.nickname : _res.native_usercenter.name;
+          userInfo.nickname = _res.native_usercenter.name ? _res.native_usercenter.name : _res.native_usercenter.nickname;
           userInfo.token = _res.native_score.usertoken;
           userInfo.userId = _res.native_score.userId;
           if (played) {
@@ -206,7 +208,9 @@ $(() => {
     // console.log('finalPosition', finalPosition);
     $(`.ore_list .temp`).each(function(i) {
       $(this).css({
-        transform: `translate3d(${finalPosition[i].x}px, ${Math.abs(finalPosition[i].y)}px, 0)`
+        transform: `translate3d(${finalPosition[i].x}px, ${Math.abs(finalPosition[i].y)}px, 0)`,
+        left: '0',
+        top: '0'
       });
     });
     FINAL_POSITION = [].concat(finalPosition);
@@ -503,7 +507,9 @@ $(() => {
         // console.log(positionInfo.y, topHeight);
         setTimeout(() => {
           $(`.temp:nth-child(${num})`).css({
-            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y)}px, 0)`
+            transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y)}px, 0)`,
+            left: '0',
+            top: '0'
           }).removeClass('hidden').find('img')
             .addClass('show');
           this.clickable = true;
@@ -517,7 +523,9 @@ $(() => {
         setTimeout(() => {
           $(`.temp:nth-child(${num})`).css({
             transform: `translate3d(${positionInfo.x}px, ${Math.abs(positionInfo.y)}px, 0)`,
-            opacity: 1
+            opacity: 1,
+            left: '0',
+            top: '0'
           }).find('img, .shadow').removeClass('hidden')
             .addClass('show');
           this.clickable = true;
@@ -545,7 +553,9 @@ $(() => {
       let x1 = hook.offset().left;
       let y1 = hook.offset().top + 20;
       $(`.temp:nth-child(${sort})`).css({
-        transform: `translate3d(${x1}px, ${y1}px, 0)`
+        transform: `translate3d(${x1}px, ${y1}px, 0)`,
+        left: '0',
+        top: '0'
       });
     }
     /**
@@ -606,9 +616,6 @@ $(() => {
         $('.oncemore_btn').addClass('hidden');
         $('.get_coin_btn').addClass('large');
       }
-      if (userInfo.userId) {
-        repoort(DIAMOND_NUM);
-      }
       // 设置结果页分享
       // alert(JSON.stringify(userInfo));
       let name = userInfo.nickname;
@@ -625,6 +632,27 @@ $(() => {
       });
       //////////////// 游戏结束时解除绑定的点击事件，避免重新游戏时重复绑定事件/////////////////
       $('.click_area').unbind('click');
+      /////////////////////////
+      if (userInfo.userId) {
+        repoort(DIAMOND_NUM);
+      } else {
+        new toast().show('您还没有登录，即将跳转登录页面');
+        let diamondNum = $('.ore_number').html();
+        let coinNum = $('.coin_number').html();
+        let times = 1;
+        if ($('.get_coin_btn').hasClass('large')) {
+          times = 2;
+        }
+        let data = {
+          num: diamondNum,
+          time: times,
+          coin: coinNum
+        };
+        localStorage.setItem('data', JSON.stringify(data));
+        setTimeout(() => {
+          window.location.href = 'protocol://enterlogin#';
+        }, 3000);
+      }
     }
     resetData() {
       xx = 0;
@@ -687,10 +715,10 @@ $(() => {
   });
   // 再玩一次按钮
   $('.oncemore_btn').click(() => {
-    _czc.push(['_trackEvent', 'game', 'WZS2018_again_wnl']);
     $('.congratulation_pop, .mask').addClass('hidden');
     // 再玩一次传入标识
     initGame(true);
+    _czc.push(['_trackEvent', 'game', 'WZS2018_again_wnl']);
   });
 
   $('.mask').click((e) => {
@@ -718,13 +746,13 @@ $(() => {
 
   window.shareCallback = function() {
     // 万年历分享成功
-    _czc.push(['_trackEvent', 'game', 'WZS2018_shared_wnl']);
     // 说明是结果页分享的，首页分享不处理
     if (!$('.congratulation_pop').hasClass('hidden')) {
       $('.oncemore_btn').removeClass('hidden');
       $('.share_btn').addClass('hidden');
       $('.share_guide').addClass('hidden');
     }
+    _czc.push(['_trackEvent', 'game', 'WZS2018_shared_wnl']);
   };
   function handleHidden() {
     let hidden = 'hidden';
@@ -742,8 +770,11 @@ $(() => {
         pageState = this[hidden] ? 'hidden' : 'visible';
       }
       if (pageState === 'visible') {
-        localStorage.removeItem('data');
-        window.location.href = 'protocol://back';
+        // localStorage.removeItem('data');
+        // window.location.href = 'protocol://back';
+        $('.congratulation_pop .section2').addClass('hidden');
+        $('.congratulation_pop .section1').removeClass('hidden');
+        // alert('从金币页返回');
       }
     }
     if (hidden in document) {

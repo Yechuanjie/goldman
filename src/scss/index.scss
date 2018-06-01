@@ -149,7 +149,9 @@ html, body {
         z-index: 20;
         transition: opacity .1s;
         opacity: 1;
-        transform: translate3d(50vw, 50vh, 0);
+        // transform: translate3d(150px, 300px, 0);
+        left: 1.5rem;
+        top: 3rem;
         &.fadeout {
             opacity: 0;
         }

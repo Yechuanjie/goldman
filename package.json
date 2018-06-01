@@ -92,5 +92,12 @@
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8",
+    "iOS >= 7",
+    "Android >=4.0"
+  ]
 }
