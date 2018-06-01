@@ -22,21 +22,21 @@ if (util.isWnl) {
     url: idnexShareInfo.url
   });
 }
-// if (!util.isWnl) {
-//   if (util.isIOS) {
-//     window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
-//   } else if (util.isAndroid) {
-//     window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
-//   }
-// }
+if (!util.isWnl) {
+  if (util.isIOS) {
+    window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
+  } else if (util.isAndroid) {
+    window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
+  }
+}
 
 $(() => {
-  // if (!util.isWnl) {
-  //   $('.body_mask').removeClass('hidden');
-  // } else {
-  //   $('.body_mask').addClass('hidden');
-  // }
-  $('.body_mask').addClass('hidden');
+  if (!util.isWnl) {
+    $('.body_mask').removeClass('hidden');
+  } else {
+    $('.body_mask').addClass('hidden');
+  }
+  // $('.body_mask').addClass('hidden');
   let userInfo = {
     nickname: '我',
     token: '',
@@ -75,7 +75,12 @@ $(() => {
         // alert(JSON);
         // 已登录
         if (_res.native_score.userId) {
-          userInfo.nickname = _res.native_usercenter.name ? _res.native_usercenter.name : _res.native_usercenter.nickname;
+          if (util.isAndroid) {
+            userInfo.nickname = _res.native_usercenter.name ? _res.native_usercenter.name : _res.native_usercenter.nickname;
+          }
+          if (util.isIOS) {
+            userInfo.nickname = _res.native_usercenter.nickname ? _res.native_usercenter.nickname : _res.native_usercenter.name;
+          }
           userInfo.token = _res.native_score.usertoken;
           userInfo.userId = _res.native_score.userId;
           if (played) {
