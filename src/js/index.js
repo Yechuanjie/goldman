@@ -76,10 +76,20 @@ $(() => {
         // 已登录
         if (_res.native_score.userId) {
           if (util.isAndroid) {
-            userInfo.nickname = _res.native_usercenter.name ? _res.native_usercenter.name : _res.native_usercenter.nickname;
+            // userInfo.nickname = _res.native_usercenter.name ? _res.native_usercenter.name : _res.native_usercenter.nickname;
+            // userInfo.nickname = _res.native_usercenter.displayname ? _res.native_usercenter.displayname : _res.native_usercenter.name;
+            // alert(JSON.stringify(_res));
+            if (_res.native_usercenter.displayname) {
+              userInfo.nickname = _res.native_usercenter.displayname;
+            } else if (_res.native_usercenter.nickname) {
+              userInfo.nickname = _res.native_usercenter.nickname;
+            } else if (_res.native_usercenter.name) {
+              userInfo.nickname = _res.native_usercenter.name;
+            }
           }
           if (util.isIOS) {
             userInfo.nickname = _res.native_usercenter.nickname ? _res.native_usercenter.nickname : _res.native_usercenter.name;
+            // alert(JSON.stringify(_res));
           }
           userInfo.token = _res.native_score.usertoken;
           userInfo.userId = _res.native_score.userId;
