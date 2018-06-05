@@ -35,6 +35,7 @@
     "@wnl/ui": "^1.3.1",
     "@wnl/util": "^1.1.0",
     "babel-runtime": "^6.26.0",
+    "es6-promise": "^4.2.4",
     "husky": "^0.15.0-rc.13",
     "jquery": "^3.2.1",
     "lint-staged": "^7.0.0",

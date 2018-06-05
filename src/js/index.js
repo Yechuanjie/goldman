@@ -6,6 +6,8 @@ import play from '../static/music';
 import '../scss/index.scss';
 import '../static/flexable';
 
+require('es6-promise').polyfill();
+
 const Base64 = require('js-base64').Base64;
 
 let idnexShareInfo = {
@@ -51,9 +53,6 @@ $(() => {
       dataType: 'json',
       success: (res) => {
         console.log(JSON.stringify(res.data));
-        // if (!userInfo.userId) {
-        //   window.location.href = 'protocol://enterlogin#';
-        // }
       },
       fail: (err) => {
         console.log(err);
@@ -72,13 +71,9 @@ $(() => {
       }, 0);
       window.userinfocallback = (res) => {
         let _res = JSON.parse(Base64.decode(res));
-        // alert(JSON);
         // 已登录
         if (_res.native_score.userId) {
           if (util.isAndroid) {
-            // userInfo.nickname = _res.native_usercenter.name ? _res.native_usercenter.name : _res.native_usercenter.nickname;
-            // userInfo.nickname = _res.native_usercenter.displayname ? _res.native_usercenter.displayname : _res.native_usercenter.name;
-            // alert(JSON.stringify(_res));
             if (_res.native_usercenter.displayname) {
               userInfo.nickname = _res.native_usercenter.displayname;
             } else if (_res.native_usercenter.nickname) {
@@ -115,6 +110,19 @@ $(() => {
     window.location.href = 'protocol://back';
   });
 
+  window.requestAnimFrame = (function() {
+    return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function(callback) {
+              window.setTimeout(callback, 1000 / 60);
+            };
+  })();
+  let lineRequestAnimation; // eslint-disable-line
+  let recoverRequestAnimation; // eslint-disable-line
+
   // 动画
   const screenWidth = $(window).width();
   const screenHeight = $(window).height();
@@ -135,8 +143,13 @@ $(() => {
   const landHeight = (screenHeight * percent) - hookHeight - MIN_ROPE_LENGTH;
   const MAX_ROPE_LENGTH = Math.sqrt(Math.pow(screenWidth / 2, 2) + Math.pow(landHeight, 2)); // eslint-disable-line
 
-  const LINE_SPEED = 9;
+  const LINE_SPEED = 10;
   const HOOK_SPEED = 18;
+  const HOOK_WIDTH = hook.width();
+  const HOOK_HEIGHT = hook.height();
+  // let HOOK_XR = HOOK_WIDTH + hook.offset().left;
+  // let HOOK_XR = HOOK_WIDTH + hook.offset().left;
+
   let xx = 0;
   let yy = 0;
   let rr = 0;
@@ -363,24 +376,45 @@ $(() => {
         ropeHeight = (landHeight / Math.cos(rad)) + 30;
         // console.log('ropeHeight', ropeHeight);
       }
-      this.extend = setInterval(() => {
+      this.clickable = false;
+
+      let that = this;
+      // this.extend = setInterval(() => {
+      //   if (hh < ropeHeight) {
+      //     hh += 1;
+      //     let isImpact = this.checkImpact();
+      //     if (isImpact) {
+      //       clearInterval(this.extend);
+      //       this.recover(isImpact);
+      //     }
+      //   } else {
+      //     clearInterval(this.extend);
+      //     this.recover();
+      //   }
+      //   line.css({
+      //     // transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
+      //     height: `${hh}px`
+      //   });
+      // }, LINE_SPEED);
+      function addHeight() {
         if (hh < ropeHeight) {
-          this.clickable = false;
-          hh += 1;
-          let isImpact = this.checkImpact();
+          hh += 2;
+          line.css({
+            height: `${hh}px`
+          });
+          let isImpact = that.checkImpact();
           if (isImpact) {
-            clearInterval(this.extend);
-            this.recover(isImpact);
+            that.recover(isImpact);
+            window.cancelAnimationFrame(lineRequestAnimation);
+            // debugger;
+          } else {
+            lineRequestAnimation = window.requestAnimFrame(addHeight);
           }
         } else {
-          clearInterval(this.extend);
-          this.recover();
+          that.recover();
         }
-        line.css({
-          transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
-          height: `${hh}px`
-        });
-      }, LINE_SPEED);
+      }
+      addHeight();
     }
     /**
      * 两个物体的碰撞检测
@@ -401,16 +435,16 @@ $(() => {
         xr1 = x1 + width;
         yb1 = y1 + height;
       } else {
-        width = hook.width();
-        height = hook.height();
+        // width = hook.width();
+        // height = hook.height();
         x1 = hook.offset().left;
         y1 = hook.offset().top;
-        xr1 = x1 + width;
-        yb1 = y1 + height;
+        xr1 = x1 + HOOK_WIDTH;
+        yb1 = y1 + HOOK_HEIGHT;
       }
 
       let impactNum = null;
-      for (let i = 0; i < this.oreList.length; i += 1) {
+      for (let i = 0; i < 8; i += 1) {
         if (this.oreList[i].yb < y1 || this.oreList[i].x > xr1 || this.oreList[i].y > yb1 || this.oreList[i].xr < x1) {
           // console.log('未重叠');
         } else {
@@ -425,48 +459,81 @@ $(() => {
      * @memberof GAME
      */
     recover(num) {
-      // console.log(num);
       let speed = LINE_SPEED;
-      if (num === 1) {
-        speed = LINE_SPEED + 1;
-      } else if (num === 2 || num === 3) {
-        speed = LINE_SPEED + 3;
-      } else if (num === 5 || num === 6) {
-        speed = LINE_SPEED + 5;
-      } else if (num === 4) {
-        speed = LINE_SPEED + 7;
-      } else if (num === 7 || num === 8) {
-        speed = LINE_SPEED + 9;
+      let that = this;
+      if (num) {
+        let name = $(`#temp${num}`)[0].className;
+        console.log(name, speed);
+        let typeNum = parseInt(name.slice(9, 10));
+        console.log('type:', typeNum);
+        if (typeNum === 1) {
+          speed = LINE_SPEED + 1;
+        } else if (typeNum === 2 || typeNum === 3) {
+          speed = LINE_SPEED + 3;
+        } else if (typeNum === 5 || typeNum === 6) {
+          speed = LINE_SPEED + 5;
+        } else if (typeNum === 4) {
+          speed = LINE_SPEED + 7;
+        } else if (typeNum === 7 || typeNum === 8) {
+          speed = LINE_SPEED + 9;
+        }
       }
       if (GAME_OVER) {
         return;
       }
       this.manAction();
-      let interval = setInterval(() => {
+      // this.clickable = false;
+      // let interval = setInterval(() => {
+      //   if (hh > MIN_ROPE_LENGTH) {
+      //     hh -= 1;
+      //     if (num) {
+      //       $(`.temp:nth-child(${num}) .shadow`).addClass('hidden');
+      //       this.handleRecoverAction(num);
+      //     }
+      //     line.css({
+      //       height: `${hh}px`
+      //     });
+      //   } else {
+      //     clearInterval(interval);
+      //     this.initHookAnimation();
+      //     clearInterval(this.actionInterval);
+      //     $('.man').attr('src', this.manImgList[this.count]);
+      //     // 勾到矿石，且到顶部时，处理隐藏该矿石，并生成新的矿石
+      //     if (num) {
+      //       this.hideAndCreatNewOre(num);
+      //     } else {
+      //       this.clickable = true;
+      //     }
+      //   }
+      // }, speed);
+      function setRcover() {
         if (hh > MIN_ROPE_LENGTH) {
-          this.clickable = false;
-          hh -= 1;
+          hh -= 2;
+          line.css({
+            height: `${hh}px`
+          });
           if (num) {
-            this.handleRecoverAction(num);
-            // this.unclickable = false;
+            $(`.temp:nth-child(${num}) .shadow`).addClass('hidden');
+            recoverRequestAnimation = window.requestAnimFrame(setRcover);
+            that.handleRecoverAction(num);
+            // window.cancelAnimationFrame(recoverRequestAnimation);
+          } else {
+            recoverRequestAnimation = window.requestAnimFrame(setRcover);
           }
         } else {
-          clearInterval(interval);
-          this.initHookAnimation();
-          clearInterval(this.actionInterval);
-          $('.man').attr('src', this.manImgList[this.count]);
+          // clearInterval(interval);
+          that.initHookAnimation();
+          clearInterval(that.actionInterval);
+          $('.man').attr('src', that.manImgList[that.count]);
           // 勾到矿石，且到顶部时，处理隐藏该矿石，并生成新的矿石
           if (num) {
-            this.hideAndCreatNewOre(num);
+            that.hideAndCreatNewOre(num);
           } else {
-            this.clickable = true;
+            that.clickable = true;
           }
         }
-        line.css({
-          transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
-          height: `${hh}px`
-        });
-      }, speed);
+      }
+      setRcover();
     }
     /**
      * 检测位置
@@ -564,7 +631,6 @@ $(() => {
      * @memberof GAME
      */
     handleRecoverAction(sort) {
-      $(`.temp:nth-child(${sort}) .shadow`).addClass('hidden');
       let x1 = hook.offset().left;
       let y1 = hook.offset().top + 20;
       $(`.temp:nth-child(${sort})`).css({
@@ -631,6 +697,9 @@ $(() => {
         $('.oncemore_btn').addClass('hidden');
         $('.get_coin_btn').addClass('large');
       }
+      window.cancelAnimationFrame(recoverRequestAnimation);
+      window.cancelAnimationFrame(lineRequestAnimation);
+      this.resetData();
       // 设置结果页分享
       // alert(JSON.stringify(userInfo));
       let name = userInfo.nickname;
@@ -661,7 +730,8 @@ $(() => {
         let data = {
           num: diamondNum,
           time: times,
-          coin: coinNum
+          coin: coinNum,
+          click: false
         };
         localStorage.setItem('data', JSON.stringify(data));
         setTimeout(() => {
@@ -678,7 +748,7 @@ $(() => {
       FINISH = false;
       $('.man').attr('src', this.manImgList[0]);
       line.css({
-        transform: `translate3d(${xx}px,${yy}px,0px) rotate(${rr}deg)`,
+        transform: `translate3d(0,0,0) rotate(0)`,
         height: `${hh}px`
       });
     }
@@ -720,8 +790,6 @@ $(() => {
     initGame(localStorage.getItem('data') ? true : false); // eslint-disable-line
     getInfo();
   });
-
-
   // 奔走相告按钮
   $('.share_btn').click(() => {
     $('.share_guide').removeClass('hidden');
@@ -751,13 +819,6 @@ $(() => {
       audio.play();
     }
   });
-  // document.querySelector('.wnlshare-mask').addEventListener('click', () => {
-  //   alert('12312');
-  //   $('.share_guide').addClass('hidden');
-  // });
-  // $('.wnlshare-mask').css({
-  //   zIndex: '999'
-  // })
 
   window.shareCallback = function() {
     // 万年历分享成功
@@ -804,12 +865,6 @@ $(() => {
       hidden = 'msHidden';
       document.addEventListener('msvisibilitychange', onchange);
     }
-    // setTimeout(() => {
-    //   // 跳转金币落地页
-    //   window.location.href = 'protocol://view_goldtask';
-    // }, 2000);
-    // // 跳转金币落地页
-    // window.location.href = 'protocol://view_goldtask';
   }
   // 领取金币按钮
   $('.get_coin_btn').click(() => {
@@ -823,12 +878,16 @@ $(() => {
     let data = {
       num: diamondNum,
       time: times,
-      coin: coinNum
+      coin: coinNum,
+      click: true
     };
     // 未登录
     if (userInfo.userId === '') {
       localStorage.setItem('data', JSON.stringify(data));
-      window.location.href = 'protocol://enterlogin#';
+      // alert(JSON.stringify(localdata));
+      if (localdata && localdata.click) {
+        window.location.href = 'protocol://enterlogin#';
+      }
     } else {
       $('.congratulation_pop .section2').removeClass('hidden');
       $('.congratulation_pop .section1').addClass('hidden');
@@ -837,19 +896,6 @@ $(() => {
         // 跳转金币落地页
         window.location.href = 'protocol://view_goldtask';
       }, 1500);
-      // let reqUrl = `//r.51wnl.com/api/Coin_Activity/Complete?code=A_1002_1
-      //               &uid=${userInfo.userId}&otherinfo=${diamondNum}&logintoken=${userInfo.token}`;
-      // $.ajax({
-      //   url: reqUrl,
-      //   type: 'GET',
-      //   dataType: 'json',
-      //   success: (res) => {
-      //     console.log(JSON.stringify(res.data));
-      //   },
-      //   fail: (err) => {
-      //     console.log(err);
-      //   }
-      // });
     }
   });
 });

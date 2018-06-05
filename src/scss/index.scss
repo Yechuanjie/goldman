@@ -434,7 +434,9 @@ html, body {
         position: absolute;
         width: 100%;
         margin-top: 1.8rem;
-        height: calc(100vh - 1.8rem);
+        height: 100%;
+        // height: -webkit-calc(100vh - 1.8rem);
+        // height: calc(100vh - 1.8rem);
         z-index: 60;
     }
     .share_guide {
