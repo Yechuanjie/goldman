@@ -13,32 +13,33 @@ const Base64 = require('js-base64').Base64;
 let idnexShareInfo = {
   title: `送现金的挖钻小游戏，参与就有你的份！`,
   text: '确认过眼神，51万年历现在就要送你现金！',
-  image: 'https://qiniu.image.cq-wnl.com/content/201805254510872760cd4bbb845181a3709db851.png',
-  url: `${window.location.href}${window.location.href.indexOf('?') > -1 ? '&' : '?'}share=1`
+  image: 'https://qiniu.image.cq-wnl.com/content/201805254510872760cd4bbb845181a3709db851.png'
+  // url: `${window.location.href}${window.location.href.indexOf('?') > -1 ? '&' : '?'}share=1`
 };
-if (util.isWnl) {
-  wnlShare.setShareData({
-    title: idnexShareInfo.title,
-    text: idnexShareInfo.text,
-    image: idnexShareInfo.image,
-    url: idnexShareInfo.url
-  });
-}
-if (!util.isWnl) {
-  if (util.isIOS) {
-    window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
-  } else if (util.isAndroid) {
-    window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
-  }
-}
 
+// if (!util.isWnl) {
+//   if (util.isIOS) {
+//     // window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
+//     idnexShareInfo.url = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
+//   } else if (util.isAndroid) {
+//     // window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
+//     idnexShareInfo.url = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
+//   }
+// }
+if (util.isIOS) {
+  // window.location.href = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
+  idnexShareInfo.url = 'https://itunes.apple.com/cn/app/%E4%B8%87%E5%B9%B4%E5%8E%86-%E5%80%BC%E5%BE%97%E4%BF%A1%E8%B5%96%E7%9A%84%E6%97%A5%E5%8E%86%E9%BB%84%E5%8E%86%E6%9F%A5%E8%AF%A2%E5%B7%A5%E5%85%B7/id419805549?mt=8&v0=WWW-GCCN-ITSTOP100-FREEAPPS&l=&ign-mpt=uo%3D4';
+} else if (util.isAndroid) {
+  // window.location.href = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
+  idnexShareInfo.url = 'http://sj.qq.com/myapp/detail.htm?apkName=com.youloft.calendar';
+}
+// alert(JSON.stringify(idnexShareInfo));
 $(() => {
   if (!util.isWnl) {
     $('.body_mask').removeClass('hidden');
   } else {
     $('.body_mask').addClass('hidden');
   }
-  // $('.body_mask').addClass('hidden');
   let userInfo = {
     nickname: '我',
     token: '',
@@ -71,6 +72,7 @@ $(() => {
       }, 0);
       window.userinfocallback = (res) => {
         let _res = JSON.parse(Base64.decode(res));
+        // alert(JSON.stringify(_res));
         // 已登录
         if (_res.native_score.userId) {
           if (util.isAndroid) {
@@ -84,7 +86,6 @@ $(() => {
           }
           if (util.isIOS) {
             userInfo.nickname = _res.native_usercenter.nickname ? _res.native_usercenter.nickname : _res.native_usercenter.name;
-            // alert(JSON.stringify(_res));
           }
           userInfo.token = _res.native_score.usertoken;
           userInfo.userId = _res.native_score.userId;
@@ -95,6 +96,16 @@ $(() => {
         } else {
           console.log('未登录');
         }
+        let resultShareInfo = {
+          title: `厉害了！${userInfo.nickname}在挖钻小游戏中竟赚得了现金，赶紧去看！`,
+          text: '轻松玩转挖钻小游戏，100%的几率把钱赚！'
+        };
+        wnlShare.setShareData({
+          title: resultShareInfo.title,
+          text: resultShareInfo.text,
+          image: idnexShareInfo.image,
+          url: idnexShareInfo.url
+        });
       };
     }
   }
@@ -107,6 +118,7 @@ $(() => {
   // 返回按钮
   $('.back_icon').click(() => {
     localStorage.removeItem('data');
+    localStorage.removeItem('oncemore');
     window.location.href = 'protocol://back';
   });
 
@@ -163,6 +175,19 @@ $(() => {
 
   // 处理登陆返回后的逻辑 ps:登录成功或者从登录页直接返回该页面，都会导致本页面刷新。
   let localdata = JSON.parse(localStorage.getItem('data'));
+  let isOnceMore = localStorage.getItem('oncemore');
+  if (isOnceMore === 'true') {
+    $('.oncemore_btn').removeClass('hidden');
+    $('.share_btn').addClass('hidden');
+  }
+  if (util.isWnl) {
+    wnlShare.setShareData({
+      title: idnexShareInfo.title,
+      text: idnexShareInfo.text,
+      image: idnexShareInfo.image,
+      url: idnexShareInfo.url
+    });
+  }
   if (localdata) {
     getInfo(true);
     $('.congratulation_pop, .mask').removeClass('hidden');
@@ -720,7 +745,7 @@ $(() => {
       if (userInfo.userId) {
         repoort(DIAMOND_NUM);
       } else {
-        new toast().show('您还没有登录，即将跳转登录页面');
+        new toast().show('您还没有登录，即将跳转登录页面'); //eslint-disable-line
         let diamondNum = $('.ore_number').html();
         let coinNum = $('.coin_number').html();
         let times = 1;
@@ -735,8 +760,9 @@ $(() => {
         };
         localStorage.setItem('data', JSON.stringify(data));
         setTimeout(() => {
+          audio.pause();
           window.location.href = 'protocol://enterlogin#';
-        }, 3000);
+        }, 2000);
       }
     }
     resetData() {
@@ -827,6 +853,7 @@ $(() => {
       $('.oncemore_btn').removeClass('hidden');
       $('.share_btn').addClass('hidden');
       $('.share_guide').addClass('hidden');
+      localStorage.setItem('oncemore', 'true');
     }
     _czc.push(['_trackEvent', 'game', 'WZS2018_shared_wnl']);
   };
@@ -850,6 +877,9 @@ $(() => {
         // window.location.href = 'protocol://back';
         $('.congratulation_pop .section2').addClass('hidden');
         $('.congratulation_pop .section1').removeClass('hidden');
+        setTimeout(() => {
+          audio.play();
+        }, 200);
         // alert('从金币页返回');
       }
     }
@@ -868,7 +898,6 @@ $(() => {
   }
   // 领取金币按钮
   $('.get_coin_btn').click(() => {
-    _czc.push(['_trackEvent', 'game', 'WZS2018_draw_wnl']);
     let diamondNum = $('.ore_number').html();
     let coinNum = $('.coin_number').html();
     let times = 1;
@@ -883,19 +912,26 @@ $(() => {
     };
     // 未登录
     if (userInfo.userId === '') {
-      localStorage.setItem('data', JSON.stringify(data));
+      if (!localdata) {
+        localStorage.setItem('data', JSON.stringify(data));
+      }
       // alert(JSON.stringify(localdata));
-      if (localdata && localdata.click) {
-        window.location.href = 'protocol://enterlogin#';
+      if (localdata && (localdata.click || data.click)) {
+        audio.pause();
+        setTimeout(() => {
+          window.location.href = 'protocol://enterlogin#';
+        }, 10);
       }
     } else {
       $('.congratulation_pop .section2').removeClass('hidden');
       $('.congratulation_pop .section1').addClass('hidden');
       handleHidden();
       setTimeout(() => {
+        audio.pause();
         // 跳转金币落地页
         window.location.href = 'protocol://view_goldtask';
       }, 1500);
     }
+    _czc.push(['_trackEvent', 'game', 'WZS2018_draw_wnl']);
   });
 });
