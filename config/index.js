@@ -21,7 +21,7 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report,
     assetsPublicPath: './',
-    ftpDirectory: 'temporary/wnl_digging_gold'
+    ftpDirectory: 'temp/goldman'
   },
   dev: {
     env: {

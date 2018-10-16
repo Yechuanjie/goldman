@@ -13,7 +13,9 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const dllManifest = require('../dll/vendors_manifest.json');
 
-const publicPath = 'https://mobilecdn.51wnl.com/' + config.build.ftpDirectory + '/';
+// const publicPath = 'https://mobilecdn.51wnl.com/' + config.build.ftpDirectory + '/';
+
+const publicPath = '../../';
 let deployArgs = process.argv.slice(2);
 let isDeploy = deployArgs.length > 0 && deployArgs[0].indexOf('deploy') > -1;
 
