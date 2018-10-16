@@ -1,7 +1,7 @@
 {
-  "name": "@wnl/cskeleton",
+  "name": "goldman",
   "version": "1.0.1",
-  "description": "\thtml(多)页面跳转的webpack脚手架",
+  "description": "\t使用jquery + es6实现的黄金矿工小游戏",
   "private": false,
   "sideEffects": false,
   "scripts": {
@@ -27,17 +27,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://guojinhai@192.168.1.80:29418/~guojinhai/cskeleton.git"
+    "url": "git@github.com:Yechuanjie/goldman.git"
   },
-  "author": "gjh",
+  "author": "YCJ",
   "license": "MIT",
   "dependencies": {
-    "@wnl/ui": "^1.3.1",
-    "@wnl/util": "^1.1.0",
     "babel-runtime": "^6.26.0",
     "es6-promise": "^4.2.4",
     "husky": "^0.15.0-rc.13",
     "jquery": "^3.2.1",
+    "js-base64": "^2.4.9",
     "lint-staged": "^7.0.0",
     "swiper": "^4.2.6"
   },

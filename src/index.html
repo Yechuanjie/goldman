@@ -14,16 +14,6 @@
   <meta name="full-screen" content="true">
   <meta name="x5-orientation" content="horizontal">
   <meta name="360-fullscreen" content="true">
-  <meta name="wnl-back-swipe" content="true">
-  <!-- <script src="//mobile.51wnl.com/temporary/wnl_digging_gold/static/flexable.js"></script> -->
-  <!-- <script src="https://s19.cnzz.com/z_stat.php?id=1273841455&web_id=1273841455" language="JavaScript"></script> -->
-  <!-- <script type="text/javascript">/*eslint-disable*/var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273841455'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1273841455' type='text/javascript'%3E%3C/script%3E"));</script> -->
-	<!-- <style>
-		#cnzz_stat_icon_1273841455{
-		  display: none!important
-		}
-	</style> -->
-  <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/2.5.2/vconsole.min.js"></script> -->
   <style>
     .section2 .load_icon {
         width: .4rem;
@@ -126,10 +116,9 @@
       </div>
       <div class="pop_head">游戏规则</div>
       <p class="rules">
-        1、在规定时间60s内，随着钩子左右摆动，只需在钻石区域点击任意位置，钩子就会朝着该方向挖钻石。</br>
-        2、在60S内，挖到0-10个钻石得50个金币，11-20个钻石得100个金币，20个及以上钻石得150个金币。</br>
-        3、每个用户有1次挖钻石机会，分享好友可增加1次机会，总共2次机会。</br>
-        4、挖的钻石个数等同于相应的金币，必须登录领取后，才会存入用户的金币账户，金币最后可用于兑换现金并进行提现。
+        1、在规定时间60s内，随着钩子左右摆动，点击钻石区域任意位置，钩子就会朝着该方向挖钻石。</br>
+        2、在60S内，挖到1-10个钻石得50金币，11-20个钻石得100金币，20个及以上钻石得150金币。</br>
+        3、游戏结束后可以在弹出的窗口中领取相应的金币。</br>
       </p>
     </div>
     <div class="mask"></div>
@@ -140,23 +129,24 @@
         <div class="result">此次挖得钻石<span class="ore_number red">10</span>个，可获得<span class="coin_number red">100</span>个金币</div>
         <div class="btn_wrapper">
           <div class="btn get_coin_btn">领取金币</div>
-          <div class="btn share_btn">奔走相告</div>
-          <div class="btn oncemore_btn hidden">再玩一次</div>
+          <div class="btn share_btn hidden">奔走相告</div>
+          <div class="btn oncemore_btn">再玩一次</div>
         </div>
       </div>
       <div class="section2 hidden">
         <img src="./assets/loading-icon@3x.png" alt="" class="load_icon">
-        <div class="tip">正在进入我的金币…</div>
+        <div class="tip">正在领取金币…</div>
         <div class="text">做更多任务，可获得相对应的金币，赶快参与吧！</div>
+      </div>
+      <div class="section3 hidden">
+        <img src="./assets/gongxi.png" alt="">
+        <div class="tip">金币领取成功！点击下方按钮再玩一次</div>
+        <div class="btn oncemore_btn">再玩一次</div>
       </div>
     </div>
     <div class="music on"></div>
     <audio src="./assets/music.mp3" id="audio" autoplay="autoplay" loop></audio>
     <div class="share_guide hidden">分享给好友后，请点击“返回51万年历”，增加一次游戏机会。</div>
-    <!-- <div class="guide_mask hidden"></div> -->
-  </div>
-  <div style="display:none">
-    <script type="text/javascript">/*eslint-disable*/var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1273841455'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1273841455' type='text/javascript'%3E%3C/script%3E"));</script>    
   </div>
 </body>
 
