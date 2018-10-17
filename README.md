@@ -34,6 +34,15 @@
   })();
   ```
 
+## cancelAnimationFrame
+  cancelAnimationFrame方法用于取消重绘。
+  ```javascript
+  window.cancelAnimationFrame(requestID);
+  ```
+  它的参数是requestAnimationFrame返回的一个代表任务ID的整数值。
+
+
+
 ## 物体碰撞检测
 
   **该项目用到的是2D碰撞检测中最基础的一种 --规则物体碰撞**
