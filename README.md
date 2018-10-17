@@ -55,6 +55,10 @@
   * 对于包含着图案（非填满整个矩形）的矩形进行碰撞检测，可能存在精度不足的问题。(如本项目中的钻石💎 和 钩子，为了简便我把它处理成了矩形，这样就会存在钩子未碰到钻石边缘却判定为碰撞的情况)
   * 物体运动速度过快时，可能会在相邻两动画帧之间快速穿越，导致忽略了本应碰撞的事件发生。
 
+## 项目演示
+
+ ![项目录制](https://ws1.sinaimg.cn/large/c43a8e1bly1fwb0mse5kig20aa0ih1kx.jpg)
+
 ## 试着玩一把
     git clone https://github.com/Yechuanjie/goldman.git
     npm install
