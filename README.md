@@ -1,5 +1,7 @@
 # **黄金矿工小游戏**
 
+[![Build Status](https://travis-ci.org/Yechuanjie/goldman.svg?branch=master)](https://travis-ci.org/Yechuanjie/goldman)
+
 ## 实现方式
   **jquery + es6**
 
