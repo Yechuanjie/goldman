@@ -14,19 +14,6 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": [
-        "lint-staged"
-      ]
-    }
-  },
-  "lint-staged": {
-    "*.{js,html}": [
-      "npm run eslint",
-      "git add"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git@github.com:Yechuanjie/goldman.git"
