@@ -1,7 +1,7 @@
 .DS_Store
 npm-debug.log*
 dll/*
-
+dist
 node_modules/*
 .eslintcache
 /.cache-loader

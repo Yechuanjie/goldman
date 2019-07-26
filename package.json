@@ -10,7 +10,9 @@
     "dll": "webpack --config build/webpack.dll.config.js",
     "build": "node build/build.js",
     "build:deploy": "node build/build.js --deploy",
-    "postinstall": "npm run dll"
+    "postinstall": "npm run dll",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "husky": {
     "hooks": {
@@ -34,6 +36,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "es6-promise": "^4.2.4",
+    "gh-pages": "^2.0.1",
     "husky": "^0.15.0-rc.13",
     "jquery": "^3.2.1",
     "js-base64": "^2.4.9",
@@ -99,5 +102,6 @@
     "not ie <= 8",
     "iOS >= 7",
     "Android >=4.0"
-  ]
+  ],
+  "homepage": "https://yechuanjie.com/goldman"
 }
