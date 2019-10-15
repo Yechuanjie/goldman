@@ -52,7 +52,7 @@
   **基本思路**
   判断任意两个（无旋转）矩形的任意一边是否无间距，从而判断是否碰撞。
 
-  ![两矩形间碰撞的各种情况](http://yechuanjie-image.oss-cn-beijing.aliyuncs.com/18-10-16/99740667.jpg)
+  ![两矩形间碰撞的各种情况](https://yechuanjie-image.oss-cn-beijing.aliyuncs.com/18-10-16/99740667.jpg)
 
   **基本算法**
   ```javascript
