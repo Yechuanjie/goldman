@@ -3,4 +3,4 @@ node_js:
   - '8.9.0'
 before_script:
   - npm install
-script: npm run build
+script: npm run deploy
