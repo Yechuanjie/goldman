@@ -14,3 +14,8 @@ after_script:
   - git add .
   - git commit -m "Update"
   - git push -f "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
+
+env:
+  global:
+    - GH_REF: github.com/Yechuanjie/goldman.git
+    - secure: "PQ0wd5iuymFHmyoYpZqtIdKFC5FT51HlL+I7z/LsHrt0CGsGrrmLZ5eDieHlCaHSgVjfLSTOZOl3wssf3Pxdhuk3ZmYnDhrDxOl1c5SK4kEWa2wU5x9+56Uy9T2tbOf6mVyXnq1+X2ScNj/44DAxcpdTox2tSuUscXlEmIGerTU6jgpE0Bqkx9iyR1GDVLtod3VQu+HR+kZgwh7YW1991z0oEOKMDZ1tIFyBcOecaYe9Lk6kIr4U3kmv2tqmyAU6oCDmEsIbiOzLbb/IscGQXzMfR82p++moBdpyd83cyBM/u/AzKM9hAc0yYAH2YC+zprUgtzJDdsZBmGD2wM5VAnRRVcIvTpQsFj1lEDWwJ5OubhLrQhrXcGYbVXYO+iOUHqGBF7wj+yk9tbhLcHce74kgLQlKQvr/Um1Dr2q7DHqNpHBDklFNjDSm3DoFhBs9WwU09w/qO3N602P6l1kZWc17AkFle6WkDNfXI2qnmNMTLoTBbTAzLio0i2Gz3FSejFwaCIoQv0DCBWQL8AajZtlYL5DLewRE86ZmhcoTowYUcAJYwwnTXEuerzcJGxY4FTvPM+4xNlDJqy+Ntbue531o77NsPOTytXT/0h0BsDQ2WXBP0nLDbqurg6eyNc3dsjZT4luYLqvJfO4ynveeUYEB6yDtmbhGdwUuPbFLWCg="
