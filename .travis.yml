@@ -3,4 +3,13 @@ node_js:
   - '8.9.0'
 before_script:
   - npm install
-script: npm run deploy
+script:
+  - npm run build
+after_script:
+  - cd dist
+  - git init
+  - git config user.name "yechuanjie"
+  - git config user.email "1102684711@qq.com"
+  - git add .
+  - git commit -m "Update"
+  - git push -f "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
