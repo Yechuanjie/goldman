@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/Yechuanjie/goldman.svg?branch=master)](https://travis-ci.org/Yechuanjie/goldman)
 
 ## 实现方式
-  **jquery + es6**
+  **js es6**
 
 ## 实现核心
   **requestAnimationFrame**  以及  **物体碰撞检测**
